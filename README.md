@@ -4,7 +4,7 @@
 
 ## [Go to App](https://rxresu.me) | [Docs](https://docs.rxresu.me)
 
-Reactive Resume is an open source resume builder that’s built to make the mundane tasks of creating, updating and sharing your resume as easy as 1, 2, 3. With this app, you can create multiple resumes, share them with recruiters through a unique link and print as PDF, all for free, no advertisements, without losing the integrity and privacy of your data.
+Reactive Resume is an open source resume builder that’s built to make the mundane tasks of creating, updating and sharing your resume easy. With this app, you can create multiple resumes, share them with recruiters through a unique link and print as PDF, all for free, no advertisements, without losing the integrity and privacy of your data.
 
 You have complete control over what goes into your resume, how it looks, what colors, what templates, even the layout in which sections placed. Want a dark mode resume? It’s as easy as editing 3 values and you’re done. You don’t need to wait to see your changes either. Everything you type, everything you change, appears immediately on your resume and gets updated in real time.
 
@@ -16,10 +16,7 @@ You have complete control over what goes into your resume, how it looks, what co
   - [Features](#features)
   - [Languages](#languages)
   - [Tutorial](#tutorial)
-  - [Build from Source](#build-from-source)
-  - [Infrastructure](#infrastructure)
-  - [Contributors Wall](#contributors-wall)
-  - [License](#license)
+  - [Tech Stack](#tech-stack)
 
 ## Features
 
@@ -47,18 +44,12 @@ You have complete control over what goes into your resume, how it looks, what co
 
 ## Tutorial
 
-The docs include an extensive [Tutorial](https://docs.rxresu.me/tutorial) section which outline the features of Reactive Resume and help you through building your first resume on the app.
+The docs include an extensive tutorial to outline the features of Reactive Resume and help you through building your first resume on the app.
 
-## Build from Source
-
-For extensive information on how to build the app on your local machine, head over to the docs's [Source Code](https://docs.rxresu.me/source-code) section.
-
-## Infrastructure
+## Tech Stack
 
 - [Next.js](https://nextjs.org/), frontend
 - [NestJS](https://nestjs.com/), backend
 - [PostgreSQL](https://www.postgresql.org/), database
 
-## License
 
-Reactive Resume is packaged and distributed using the [MIT License](https://choosealicense.com/licenses/mit/) which allows for commercial use, distribution, modification and private use provided that all copies of the software contain the same license and copyright.

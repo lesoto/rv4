@@ -5,8 +5,7 @@ const PrivacyPolicy: NextPage = () => (
     <h1>Privacy Policy</h1>
 
     <p>
-      Amruth Pillai built Reactive Resume as a free and open source app. This service is provided by Amruth Pillai at no
-      cost and is intended for use as is.
+      Reactive Resume is a free and open source app. This service is provided at no cost and is intended for use as is.
     </p>
 
     <p>
@@ -115,10 +114,7 @@ const PrivacyPolicy: NextPage = () => (
 
     <h3>Contact Us</h3>
 
-    <p>
-      If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at
-      im.amruth@gmail.com.
-    </p>
+    <p>If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact us.</p>
   </div>
 );
 

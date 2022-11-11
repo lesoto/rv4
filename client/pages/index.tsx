@@ -136,8 +136,7 @@ const Home: NextPage = () => {
 
         <p className="my-3">
           <Trans t={t} i18nKey="landing.testimonials.contact">
-            You can reach out to me through <a href="mailto:im.amruth@gmail.com">my email</a> or through the contact
-            form on <a href="https://www.amruthpillai.com">my website</a>.
+            You can reach out by email.
           </Trans>
         </p>
 

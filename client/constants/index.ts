@@ -10,4 +10,4 @@ export const FILENAME_TIMESTAMP = 'DDMMYYYYHHmmss';
 
 // Links
 export const DOCS_URL = 'https://docs.rxresu.me';
-export const GITHUB_URL = 'https://github.com/AmruthPillai/Reactive-Resume';
+export const GITHUB_URL = 'https://github.com/lesoto/rv4';

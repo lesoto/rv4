@@ -2,7 +2,7 @@ import { Resume } from '../entities/resume.entity';
 
 const sampleData: Partial<Resume> = {
   basics: {
-    name: 'Alexis Jones',
+    name: 'Jessica Jones',
     email: 'alexis.jones@gmail.com',
     phone: '+1 800 1200 3820',
     birthdate: '1995-08-06T00:00:00.000Z',
@@ -30,15 +30,15 @@ const sampleData: Partial<Resume> = {
     profiles: [
       {
         id: '4df61ffc-e48b-43f1-9434-add35d9cb155',
-        url: 'https://linkedin.com/in/AlexisJones',
+        url: 'https://linkedin.com/in/JessicaJones',
         network: 'LinkedIn',
-        username: 'AlexisJones',
+        username: 'JessicaJones',
       },
       {
         id: '8f77327d-4484-40b4-92eb-65eaa6aae5f4',
-        url: 'https://dribbble.com/AlexisJones',
+        url: 'https://dribbble.com/JessicaJones',
         network: 'Dribbble',
-        username: 'AlexisJones',
+        username: 'JessicaJones',
       },
     ],
   },
