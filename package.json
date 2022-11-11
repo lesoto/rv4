@@ -2,7 +2,7 @@
   "name": "rv3",
   "private": true,
   "description": "rv3 website builder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "scripts": {
     "dev": "env-cmd --silent turbo run dev",
