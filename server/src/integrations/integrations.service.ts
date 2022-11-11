@@ -8,9 +8,9 @@ import {
   Project,
   Publication,
   Reference,
-  Website,
   Skill,
   Volunteer,
+  Website,
   WorkExperience,
 } from '@reactive-website/schema';
 import csv from 'csvtojson';

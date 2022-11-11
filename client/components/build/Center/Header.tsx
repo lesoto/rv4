@@ -53,7 +53,9 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const { mutateAsync: duplicateMutation } = useMutation<Website, ServerError, DuplicateWebsiteParams>(duplicateWebsite);
+  const { mutateAsync: duplicateMutation } = useMutation<Website, ServerError, DuplicateWebsiteParams>(
+    duplicateWebsite
+  );
 
   const { mutateAsync: deleteMutation } = useMutation<void, ServerError, DeleteWebsiteParams>(deleteWebsite);
 

@@ -22,8 +22,3 @@ CHANGELOG.md
 # Project Dependencies
 node_modules
 pnpm-lock.yaml
-
-# Docker
-Dockerfile
-.dockerignore
-docker-compose.yml

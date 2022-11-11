@@ -74,11 +74,16 @@ export const fetchWebsiteByShortId = async ({ shortId }: FetchWebsiteByShortIdPa
   axios.get<Website>(`/website/short/${shortId}`).then((res) => res.data);
 
 export const createWebsite = (createWebsiteParams: CreateWebsiteParams) =>
-  axios.post<Website, AxiosResponse<Website>, CreateWebsiteParams>('/website', createWebsiteParams).then((res) => res.data);
+  axios
+    .post<Website, AxiosResponse<Website>, CreateWebsiteParams>('/website', createWebsiteParams)
+    .then((res) => res.data);
 
 export const renameWebsite = (renameWebsiteParams: RenameWebsiteParams) =>
   axios
-    .patch<Website, AxiosResponse<Website>, RenameWebsiteParams>(`/website/${renameWebsiteParams.id}`, renameWebsiteParams)
+    .patch<Website, AxiosResponse<Website>, RenameWebsiteParams>(
+      `/website/${renameWebsiteParams.id}`,
+      renameWebsiteParams
+    )
     .then((res) => res.data);
 
 export const updateWebsite = (updateWebsiteParams: Partial<Website>) =>

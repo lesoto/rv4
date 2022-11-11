@@ -10,7 +10,7 @@ export const screenshots: Screenshot[] = [
   },
   {
     src: '/images/screenshots/import-external.png',
-    alt: 'Import your data from JSON or Reactive Website',
+    alt: 'Import your website data from JSON',
   },
   {
     src: '/images/screenshots/builder.png',

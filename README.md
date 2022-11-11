@@ -1,5 +1,3 @@
-<img src="https://rxresu.me/images/logos/logo.png" alt="Reactive Website" width="256px" height="256px" />
-
 # Reactive Website
 
 Reactive Website is an open source website builder that’s built to make the mundane tasks of creating, updating and sharing your website easy. With this app, you can create multiple websites, share them with recruiters through a unique link and print as PDF, all for free, no advertisements, without losing the integrity and privacy of your data.

@@ -13,8 +13,8 @@ import { HealthModule } from './health/health.module';
 import { IntegrationsModule } from './integrations/integrations.module';
 import { MailModule } from './mail/mail.module';
 import { PrinterModule } from './printer/printer.module';
-import { WebsiteModule } from './website/website.module';
 import { UsersModule } from './users/users.module';
+import { WebsiteModule } from './website/website.module';
 
 @Module({
   imports: [

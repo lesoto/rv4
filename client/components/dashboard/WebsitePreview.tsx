@@ -40,7 +40,9 @@ const WebsitePreview: React.FC<Props> = ({ website }) => {
 
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 
-  const { mutateAsync: duplicateMutation } = useMutation<Website, ServerError, DuplicateWebsiteParams>(duplicateWebsite);
+  const { mutateAsync: duplicateMutation } = useMutation<Website, ServerError, DuplicateWebsiteParams>(
+    duplicateWebsite
+  );
 
   const { mutateAsync: deleteMutation } = useMutation<void, ServerError, DeleteWebsiteParams>(deleteWebsite);
 

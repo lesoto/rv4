@@ -4,8 +4,8 @@ import { mkdir } from 'fs/promises';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 
-import { WebsiteModule } from '@/website/website.module';
 import { User } from '@/users/entities/user.entity';
+import { WebsiteModule } from '@/website/website.module';
 
 import { IntegrationsController } from './integrations.controller';
 import { IntegrationsService } from './integrations.service';
