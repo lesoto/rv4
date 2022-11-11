@@ -1,13 +1,13 @@
 import { Code, ImportExport, TrackChanges, UploadFile } from '@mui/icons-material';
 import { Button, Divider } from '@mui/material';
-import { Integration, Resume } from '@reactive-resume/schema';
+import { Integration, Website } from '@reactive-website/schema';
 import { Trans, useTranslation } from 'next-i18next';
 import { useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
 
 import BaseModal from '@/components/shared/BaseModal';
-import { RESUMES_QUERY } from '@/constants/index';
+import { WEBSITE_QUERY } from '@/constants/index';
 import { ServerError } from '@/services/axios';
 import { importFromExternal, ImportFromExternalParams } from '@/services/integrations';
 import queryClient from '@/services/react-query';
@@ -21,27 +21,27 @@ const ImportExternalModal: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const reactiveResumeInputRef = useRef<HTMLInputElement>(null);
-  const reactiveResumeV2InputRef = useRef<HTMLInputElement>(null);
+  const reactiveWebsiteInputRef = useRef<HTMLInputElement>(null);
+  const reactiveWebsiteV2InputRef = useRef<HTMLInputElement>(null);
 
   const { open: isOpen } = useAppSelector((state) => state.modal['dashboard.import-external']);
 
-  const { mutateAsync, isLoading } = useMutation<Resume, ServerError, ImportFromExternalParams>(importFromExternal);
+  const { mutateAsync, isLoading } = useMutation<Website, ServerError, ImportFromExternalParams>(importFromExternal);
 
   const handleClose = () => {
     dispatch(setModalState({ modal: 'dashboard.import-external', state: { open: false } }));
   };
 
   const handleClick = (integration: Integration) => {
-    if (integration === 'reactive-resume') {
-      if (reactiveResumeInputRef.current) {
-        reactiveResumeInputRef.current.click();
-        reactiveResumeInputRef.current.value = '';
+    if (integration === 'reactive-website') {
+      if (reactiveWebsiteInputRef.current) {
+        reactiveWebsiteInputRef.current.click();
+        reactiveWebsiteInputRef.current.value = '';
       }
-    } else if (integration === 'reactive-resume-v2') {
-      if (reactiveResumeV2InputRef.current) {
-        reactiveResumeV2InputRef.current.click();
-        reactiveResumeV2InputRef.current.value = '';
+    } else if (integration === 'reactive-website-v2') {
+      if (reactiveWebsiteV2InputRef.current) {
+        reactiveWebsiteV2InputRef.current.click();
+        reactiveWebsiteV2InputRef.current.value = '';
       }
     }
   };
@@ -57,7 +57,7 @@ const ImportExternalModal: React.FC = () => {
 
       await mutateAsync({ integration, file });
 
-      queryClient.invalidateQueries(RESUMES_QUERY);
+      queryClient.invalidateQueries(WEBSITE_QUERY);
       handleClose();
     }
   };
@@ -74,43 +74,43 @@ const ImportExternalModal: React.FC = () => {
       <div className="grid gap-5">
         <h2 className="inline-flex items-center gap-2 text-lg font-medium">
           <TrackChanges />
-          {t<string>('modals.dashboard.import-external.reactive-resume.heading')}
+          {t<string>('modals.dashboard.import-external.reactive-website.heading')}
         </h2>
 
-        <p className="mb-2">{t<string>('modals.dashboard.import-external.reactive-resume.body')}</p>
+        <p className="mb-2">{t<string>('modals.dashboard.import-external.reactive-website.body')}</p>
 
         <div className="flex gap-4">
           <Button
             variant="contained"
             disabled={isLoading}
             startIcon={<UploadFile />}
-            onClick={() => handleClick('reactive-resume')}
+            onClick={() => handleClick('reactive-website')}
           >
-            {t<string>('modals.dashboard.import-external.reactive-resume.actions.upload-json')}
+            {t<string>('modals.dashboard.import-external.reactive-website.actions.upload-json')}
           </Button>
 
           <Button
             variant="contained"
             disabled={isLoading}
             startIcon={<UploadFile />}
-            onClick={() => handleClick('reactive-resume-v2')}
+            onClick={() => handleClick('reactive-website-v2')}
           >
-            {t<string>('modals.dashboard.import-external.reactive-resume.actions.upload-json-v2')}
+            {t<string>('modals.dashboard.import-external.reactive-website.actions.upload-json-v2')}
           </Button>
 
           <input
             hidden
             type="file"
-            ref={reactiveResumeInputRef}
-            onChange={(event) => handleChange(event, 'reactive-resume')}
+            ref={reactiveWebsiteInputRef}
+            onChange={(event) => handleChange(event, 'reactive-website')}
             accept="application/json"
           />
 
           <input
             hidden
             type="file"
-            ref={reactiveResumeV2InputRef}
-            onChange={(event) => handleChange(event, 'reactive-resume-v2')}
+            ref={reactiveWebsiteV2InputRef}
+            onChange={(event) => handleChange(event, 'reactive-website-v2')}
             accept="application/json"
           />
         </div>

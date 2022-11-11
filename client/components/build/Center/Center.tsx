@@ -13,10 +13,10 @@ import Page from './Page';
 const Center = () => {
   const orientation = useAppSelector((state) => state.build.page.orientation);
 
-  const resume = useAppSelector((state) => state.resume.present);
-  const layout: string[][][] = get(resume, 'metadata.layout');
+  const website = useAppSelector((state) => state.website.present);
+  const layout: string[][][] = get(website, 'metadata.layout');
 
-  if (isEmpty(resume)) return null;
+  if (isEmpty(website)) return null;
 
   return (
     <div className={clsx(styles.center)}>

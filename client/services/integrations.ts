@@ -1,4 +1,4 @@
-import { Integration, Resume } from '@reactive-resume/schema';
+import { Integration, Website } from '@reactive-website/schema';
 import { AxiosResponse } from 'axios';
 
 import axios from './axios';
@@ -14,6 +14,6 @@ export const importFromExternal = async (importFromExternalParams: ImportFromExt
   formData.append('file', importFromExternalParams.file);
 
   return axios
-    .post<Resume, AxiosResponse<Resume>, FormData>(`/integrations/${importFromExternalParams.integration}`, formData)
+    .post<Website, AxiosResponse<Website>, FormData>(`/integrations/${importFromExternalParams.integration}`, formData)
     .then((res) => res.data);
 };

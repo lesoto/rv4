@@ -1,6 +1,6 @@
 import { Download, Downloading } from '@mui/icons-material';
 import { ButtonBase } from '@mui/material';
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import clsx from 'clsx';
 import download from 'downloadjs';
 import get from 'lodash/get';
@@ -15,10 +15,10 @@ import { useMutation, useQuery } from 'react-query';
 
 import Page from '@/components/build/Center/Page';
 import { ServerError } from '@/services/axios';
-import { printResumeAsPdf, PrintResumeAsPdfParams } from '@/services/printer';
-import { fetchResumeByIdentifier } from '@/services/resume';
+import { printWebsiteAsPdf, PrintWebsiteAsPdfParams } from '@/services/printer';
+import { fetchWebsiteByIdentifier } from '@/services/website';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResume } from '@/store/resume/resumeSlice';
+import { setWebsite } from '@/store/website/websiteSlice';
 import styles from '@/styles/pages/Preview.module.scss';
 
 type QueryParams = {
@@ -28,7 +28,7 @@ type QueryParams = {
 
 type Props = {
   slug: string;
-  resume?: Resume;
+  website?: Website;
   username: string;
 };
 
@@ -36,63 +36,63 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query, loc
   const { username, slug } = query as QueryParams;
 
   try {
-    const resume = await fetchResumeByIdentifier({ username, slug });
+    const website = await fetchWebsiteByIdentifier({ username, slug });
 
     return {
-      props: { username, slug, resume, ...(await serverSideTranslations(locale, ['common'])) },
+      props: { username, slug, website, ...(await serverSideTranslations(locale, ['common'])) },
     };
   } catch {
     return { props: { username, slug, ...(await serverSideTranslations(locale, ['common'])) } };
   }
 };
 
-const Preview: NextPage<Props> = ({ username, slug, resume: initialData }) => {
+const Preview: NextPage<Props> = ({ username, slug, website: initialData }) => {
   const router = useRouter();
 
   const dispatch = useAppDispatch();
 
-  const resume = useAppSelector((state) => state.resume.present);
+  const website = useAppSelector((state) => state.website.present);
 
   useEffect(() => {
     if (initialData && !isEmpty(initialData)) {
-      dispatch(setResume(initialData));
+      dispatch(setWebsite(initialData));
     }
   }, [dispatch, initialData]);
 
   useEffect(() => {
-    if (!isEmpty(resume) && router.locale !== resume.metadata.locale) {
+    if (!isEmpty(website) && router.locale !== website.metadata.locale) {
       const { pathname, asPath, query } = router;
 
-      router.push({ pathname, query }, asPath, { locale: resume.metadata.locale });
+      router.push({ pathname, query }, asPath, { locale: website.metadata.locale });
     }
-  }, [resume, router]);
+  }, [website, router]);
 
-  useQuery<Resume>(`resume/${username}/${slug}`, () => fetchResumeByIdentifier({ username, slug }), {
+  useQuery<Website>(`website/${username}/${slug}`, () => fetchWebsiteByIdentifier({ username, slug }), {
     initialData,
     retry: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     onSuccess: (data) => {
-      dispatch(setResume(data));
+      dispatch(setWebsite(data));
     },
     onError: (error) => {
       const errorObj = JSON.parse(JSON.stringify(error));
       const statusCode: number = get(errorObj, 'status', 404);
 
       if (statusCode === 404) {
-        toast.error('The resume you were looking for does not exist, or maybe it never did?');
+        toast.error('The website you were looking for does not exist, or maybe it never did?');
 
         router.push('/');
       }
     },
   });
 
-  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintResumeAsPdfParams>(printResumeAsPdf);
+  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintWebsiteAsPdfParams>(printWebsiteAsPdf);
 
-  if (isEmpty(resume)) return null;
+  if (isEmpty(website)) return null;
 
-  const layout: string[][][] = get(resume, 'metadata.layout', []);
+  const layout: string[][][] = get(website, 'metadata.layout', []);
 
   const handleDownload = async () => {
     try {
@@ -127,7 +127,7 @@ const Preview: NextPage<Props> = ({ username, slug, resume: initialData }) => {
       </div>
 
       <p className={styles.footer}>
-        Made with <Link href="/">Reactive Resume</Link>
+        Made with <Link href="/">Reactive Website</Link>
       </p>
     </div>
   );

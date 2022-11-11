@@ -1,4 +1,4 @@
-import { ListItem, Profile, Resume, Section } from '@reactive-resume/schema';
+import { ListItem, Profile, Website, Section } from '@reactive-website/schema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
@@ -7,7 +7,7 @@ import pick from 'lodash/pick';
 import set from 'lodash/set';
 import { v4 as uuidv4 } from 'uuid';
 
-type SetResumeStatePayload = { path: string; value: unknown };
+type SetWebsiteStatePayload = { path: string; value: unknown };
 
 type AddItemPayload = { path: string; value: ListItem };
 
@@ -23,19 +23,19 @@ type DeleteSectionPayload = { path: string };
 
 type DeletePagePayload = { page: number };
 
-const initialState: Resume = {} as Resume;
+const initialState: Website = {} as Website;
 
-export const resumeSlice = createSlice({
-  name: 'resume',
+export const websiteSlice = createSlice({
+  name: 'website',
   initialState,
   reducers: {
-    setResume: (_state: Resume, action: PayloadAction<Resume>) => action.payload,
-    setResumeState: (state: Resume, action: PayloadAction<SetResumeStatePayload>) => {
+    setWebsite: (_state: Website, action: PayloadAction<Website>) => action.payload,
+    setWebsiteState: (state: Website, action: PayloadAction<SetWebsiteStatePayload>) => {
       const { path, value } = action.payload;
 
       set(state, path, value);
     },
-    addItem: (state: Resume, action: PayloadAction<AddItemPayload>) => {
+    addItem: (state: Website, action: PayloadAction<AddItemPayload>) => {
       const { path, value } = action.payload;
       const id = uuidv4();
       const list = get(state, path, []);
@@ -45,7 +45,7 @@ export const resumeSlice = createSlice({
 
       set(state, path, list);
     },
-    editItem: (state: Resume, action: PayloadAction<EditItemPayload>) => {
+    editItem: (state: Website, action: PayloadAction<EditItemPayload>) => {
       const { path, value } = action.payload;
       const list: ListItem[] = get(state, path, []);
       const index = list.findIndex((item) => item.id === value.id);
@@ -54,7 +54,7 @@ export const resumeSlice = createSlice({
 
       set(state, path, list);
     },
-    duplicateItem: (state: Resume, action: PayloadAction<DuplicateItemPayload>) => {
+    duplicateItem: (state: Website, action: PayloadAction<DuplicateItemPayload>) => {
       const { path, value } = action.payload;
       const list: ListItem[] = get(state, path, []);
       const index = list.findIndex((item) => item.id === value.id);
@@ -65,7 +65,7 @@ export const resumeSlice = createSlice({
 
       set(state, path, list);
     },
-    deleteItem: (state: Resume, action: PayloadAction<DeleteItemPayload>) => {
+    deleteItem: (state: Website, action: PayloadAction<DeleteItemPayload>) => {
       const { path, value } = action.payload;
       let list = get(state, path, []);
 
@@ -73,14 +73,14 @@ export const resumeSlice = createSlice({
 
       set(state, path, list);
     },
-    addSection: (state: Resume, action: PayloadAction<AddSectionPayload>) => {
+    addSection: (state: Website, action: PayloadAction<AddSectionPayload>) => {
       const id = uuidv4();
       const { value } = action.payload;
 
       state.sections[id] = value;
       state.metadata.layout[0][0].push(id);
     },
-    deleteSection: (state: Resume, action: PayloadAction<DeleteSectionPayload>) => {
+    deleteSection: (state: Website, action: PayloadAction<DeleteSectionPayload>) => {
       const { path } = action.payload;
       const id = path.split('.')[1];
 
@@ -90,10 +90,10 @@ export const resumeSlice = createSlice({
       set(state, 'sections', pick(state.sections, sections));
       set(state, 'metadata.layout', layout);
     },
-    addPage: (state: Resume) => {
+    addPage: (state: Website) => {
       state.metadata.layout.push([[], []]);
     },
-    deletePage: (state: Resume, action: PayloadAction<DeletePagePayload>) => {
+    deletePage: (state: Website, action: PayloadAction<DeletePagePayload>) => {
       const { page } = action.payload;
 
       // Do not delete the first page
@@ -112,8 +112,8 @@ export const resumeSlice = createSlice({
 });
 
 export const {
-  setResume,
-  setResumeState,
+  setWebsite,
+  setWebsiteState,
   addItem,
   editItem,
   duplicateItem,
@@ -122,6 +122,6 @@ export const {
   deleteSection,
   addPage,
   deletePage,
-} = resumeSlice.actions;
+} = websiteSlice.actions;
 
-export default resumeSlice.reducer;
+export default websiteSlice.reducer;

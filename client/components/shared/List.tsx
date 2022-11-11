@@ -1,4 +1,4 @@
-import { ListItem as ListItemType } from '@reactive-resume/schema';
+import { ListItem as ListItemType } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
@@ -10,7 +10,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { deleteItem, setResumeState } from '@/store/resume/resumeSlice';
+import { deleteItem, setWebsiteState } from '@/store/website/websiteSlice';
 
 import styles from './List.module.scss';
 import ListItem from './ListItem';
@@ -36,7 +36,7 @@ const List: React.FC<Props> = ({
 
   const dispatch = useAppDispatch();
 
-  const list: Array<ListItemType> = useAppSelector((state) => get(state.resume.present, path, []));
+  const list: Array<ListItemType> = useAppSelector((state) => get(state.website.present, path, []));
 
   const handleEdit = (item: ListItemType) => {
     isFunction(onEdit) && onEdit(item);
@@ -58,7 +58,7 @@ const List: React.FC<Props> = ({
       newList.splice(dragIndex, 1);
       newList.splice(hoverIndex, 0, dragItem);
 
-      dispatch(setResumeState({ path, value: newList }));
+      dispatch(setWebsiteState({ path, value: newList }));
     },
     [list, dispatch, path]
   );

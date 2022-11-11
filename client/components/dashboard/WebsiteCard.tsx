@@ -4,7 +4,7 @@ import { ButtonBase } from '@mui/material';
 import { useAppDispatch } from '@/store/hooks';
 import { ModalName, setModalState } from '@/store/modal/modalSlice';
 
-import styles from './ResumeCard.module.scss';
+import styles from './WebsiteCard.module.scss';
 
 type Props = {
   modal: ModalName;
@@ -13,7 +13,7 @@ type Props = {
   subtitle: string;
 };
 
-const ResumeCard: React.FC<Props> = ({ modal, icon: Icon, title, subtitle }) => {
+const WebsiteCard: React.FC<Props> = ({ modal, icon: Icon, title, subtitle }) => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
@@ -21,7 +21,7 @@ const ResumeCard: React.FC<Props> = ({ modal, icon: Icon, title, subtitle }) => 
   };
 
   return (
-    <section className={styles.resume}>
+    <section className={styles.website}>
       <ButtonBase className={styles.preview} onClick={handleClick}>
         <Icon sx={{ fontSize: 64 }} />
       </ButtonBase>
@@ -36,4 +36,4 @@ const ResumeCard: React.FC<Props> = ({ modal, icon: Icon, title, subtitle }) => 
   );
 };
 
-export default ResumeCard;
+export default WebsiteCard;

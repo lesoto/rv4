@@ -74,9 +74,9 @@
     }
   },
   "dashboard": {
-    "create-resume": {
+    "create-website": {
       "actions": {
-        "create-resume": "Создать резюме"
+        "create-website": "Создать резюме"
       },
       "body": "Начните создание своего резюме, добавив его имя. Оно может быть связано с должностью, на которую вы претендуете, или просто с вашей любимой закуской.",
       "form": {
@@ -94,18 +94,18 @@
     },
     "import-external": {
       "heading": "Импорт из внешних источников",
-      "reactive-resume": {
+      "reactive-website": {
         "actions": {
           "upload-json": "Загрузить JSON",
           "upload-json-v2": "Загрузить JSON из v2"
         },
-        "body": "Если у вас есть JSON, который был экспортирован из текущей версии Reactive Resume, вы можете импортировать его сюда, чтобы снова получить редактируемую версию.",
-        "heading": "Импорт из Reactive Resume"
+        "body": "Если у вас есть JSON, который был экспортирован из текущей версии Reactive Website, вы можете импортировать его сюда, чтобы снова получить редактируемую версию.",
+        "heading": "Импорт из Reactive Website"
       }
     },
-    "rename-resume": {
+    "rename-website": {
       "actions": {
-        "rename-resume": "Переименовать резюме"
+        "rename-website": "Переименовать резюме"
       },
       "form": {
         "name": {

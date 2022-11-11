@@ -1,7 +1,7 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, Slider, TextField } from '@mui/material';
-import { SectionPath, Skill } from '@reactive-resume/schema';
+import { SectionPath, Skill } from '@reactive-website/schema';
 import Joi from 'joi';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -13,7 +13,7 @@ import ArrayInput from '@/components/shared/ArrayInput';
 import BaseModal from '@/components/shared/BaseModal';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
-import { addItem, editItem } from '@/store/resume/resumeSlice';
+import { addItem, editItem } from '@/store/website/websiteSlice';
 
 type FormData = Skill;
 
@@ -39,7 +39,7 @@ const SkillModal: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const heading = useAppSelector((state) => get(state.resume.present, `${path}.name`));
+  const heading = useAppSelector((state) => get(state.website.present, `${path}.name`));
   const { open: isOpen, payload } = useAppSelector((state) => state.modal[`builder.${path}`]);
 
   const item: FormData = get(payload, 'item', null);

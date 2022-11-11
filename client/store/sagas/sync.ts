@@ -1,8 +1,8 @@
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import debounce from 'lodash/debounce';
 import { select, takeLatest } from 'redux-saga/effects';
 
-import { updateResume } from '@/services/resume';
+import { updateWebsite } from '@/services/website';
 import { RootState } from '@/store/index';
 
 import {
@@ -12,22 +12,22 @@ import {
   deleteSection,
   duplicateItem,
   editItem,
-  setResumeState,
-} from '../resume/resumeSlice';
+  setWebsiteState,
+} from '../website/websiteSlice';
 
 const DEBOUNCE_WAIT = 1000;
 
-const debouncedSync = debounce((resume: Resume) => updateResume(resume), DEBOUNCE_WAIT);
+const debouncedSync = debounce((website: Website) => updateWebsite(website), DEBOUNCE_WAIT);
 
 function* handleSync() {
-  const resume: Resume = yield select((state: RootState) => state.resume.present);
+  const website: Website = yield select((state: RootState) => state.website.present);
 
-  debouncedSync(resume);
+  debouncedSync(website);
 }
 
 function* syncSaga() {
   yield takeLatest(
-    [setResumeState, addItem, editItem, duplicateItem, deleteItem, addSection, deleteSection],
+    [setWebsiteState, addItem, editItem, duplicateItem, deleteItem, addSection, deleteSection],
     handleSync
   );
 }

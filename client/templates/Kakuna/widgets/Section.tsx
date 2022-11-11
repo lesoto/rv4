@@ -1,5 +1,5 @@
 import { Email, Phone } from '@mui/icons-material';
-import { ListItem, Section as SectionType } from '@reactive-resume/schema';
+import { ListItem, Section as SectionType } from '@reactive-website/schema';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
@@ -21,9 +21,9 @@ const Section: React.FC<SectionProps> = ({
   headlinePath = 'headline',
   keywordsPath = 'keywords',
 }) => {
-  const section: SectionType = useAppSelector((state) => get(state.resume.present, path, {}));
-  const dateFormat: string = useAppSelector((state) => get(state.resume.present, 'metadata.date.format'));
-  const primaryColor: string = useAppSelector((state) => get(state.resume.present, 'metadata.theme.primary'));
+  const section: SectionType = useAppSelector((state) => get(state.website.present, path, {}));
+  const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
+  const primaryColor: string = useAppSelector((state) => get(state.website.present, 'metadata.theme.primary'));
 
   const sectionId = useMemo(() => section.id || path.replace('sections.', ''), [path, section]);
 

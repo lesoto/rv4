@@ -7,8 +7,8 @@ import toast from 'react-hot-toast';
 
 import Heading from '@/components/shared/Heading';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
-import getResumeUrl from '@/utils/getResumeUrl';
+import { setWebsiteState } from '@/store/website/websiteSlice';
+import getWebsiteUrl from '@/utils/getWebsiteUrl';
 
 const Sharing = () => {
   const { t } = useTranslation();
@@ -17,19 +17,19 @@ const Sharing = () => {
 
   const [showShortUrl, setShowShortUrl] = useState(false);
 
-  const resume = useAppSelector((state) => state.resume.present);
-  const isPublic = useMemo(() => get(resume, 'public'), [resume]);
-  const url = useMemo(() => getResumeUrl(resume, { withHost: true }), [resume]);
-  const shortUrl = useMemo(() => getResumeUrl(resume, { withHost: true, shortUrl: true }), [resume]);
+  const website = useAppSelector((state) => state.website.present);
+  const isPublic = useMemo(() => get(website, 'public'), [website]);
+  const url = useMemo(() => getWebsiteUrl(website, { withHost: true }), [website]);
+  const shortUrl = useMemo(() => getWebsiteUrl(website, { withHost: true, shortUrl: true }), [website]);
 
-  const handleSetVisibility = (value: boolean) => dispatch(setResumeState({ path: 'public', value }));
+  const handleSetVisibility = (value: boolean) => dispatch(setWebsiteState({ path: 'public', value }));
 
   const handleCopyToClipboard = async () => {
     const text = showShortUrl ? shortUrl : url;
 
     await navigator.clipboard.writeText(text);
 
-    toast.success(t<string>('common.toast.success.resume-link-copied'));
+    toast.success(t<string>('common.toast.success.website-link-copied'));
   };
 
   return (

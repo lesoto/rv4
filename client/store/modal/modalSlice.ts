@@ -5,9 +5,9 @@ export type ModalName =
   | 'auth.register'
   | 'auth.forgot'
   | 'auth.reset'
-  | 'dashboard.create-resume'
+  | 'dashboard.create-website'
   | 'dashboard.import-external'
-  | 'dashboard.rename-resume'
+  | 'dashboard.rename-website'
   | 'builder.sections.profile'
   | `builder.sections.${string}`;
 
@@ -23,9 +23,9 @@ const initialState: Record<ModalName, ModalState> = {
   'auth.register': { open: false },
   'auth.forgot': { open: false },
   'auth.reset': { open: false },
-  'dashboard.create-resume': { open: false },
+  'dashboard.create-website': { open: false },
   'dashboard.import-external': { open: false },
-  'dashboard.rename-resume': { open: false },
+  'dashboard.rename-website': { open: false },
   'builder.sections.profile': { open: false },
   'builder.sections.work': { open: false },
   'builder.sections.education': { open: false },

@@ -1,5 +1,5 @@
 import { Autocomplete, Skeleton, Slider, TextField } from '@mui/material';
-import { Font, TypeCategory, TypeProperty, Typography as TypographyType } from '@reactive-resume/schema';
+import { Font, TypeCategory, TypeProperty, Typography as TypographyType } from '@reactive-website/schema';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { useTranslation } from 'next-i18next';
@@ -9,7 +9,7 @@ import Heading from '@/components/shared/Heading';
 import { FONTS_QUERY } from '@/constants/index';
 import { fetchFonts } from '@/services/fonts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 
 import styles from './Typography.module.scss';
 
@@ -33,7 +33,7 @@ const Widgets: React.FC<WidgetProps> = ({ label, category }) => {
 
   const dispatch = useAppDispatch();
 
-  const { family, size } = useAppSelector<TypographyType>((state) => get(state.resume.present, 'metadata.typography'));
+  const { family, size } = useAppSelector<TypographyType>((state) => get(state.website.present, 'metadata.typography'));
 
   const { data: fonts } = useQuery(FONTS_QUERY, fetchFonts, {
     select: (fonts) => fonts.sort((a, b) => a.category.localeCompare(b.category)),
@@ -43,7 +43,7 @@ const Widgets: React.FC<WidgetProps> = ({ label, category }) => {
     if (!value) return;
 
     dispatch(
-      setResumeState({
+      setWebsiteState({
         path: `metadata.typography.${property}.${category}`,
         value: property === 'family' ? (value as Font).family : value,
       })

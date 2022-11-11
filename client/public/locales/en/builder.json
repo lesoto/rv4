@@ -78,7 +78,7 @@
   "controller": {
     "tooltip": {
       "center-artboard": "Center Artboard",
-      "copy-link": "Copy Link to Resume",
+      "copy-link": "Copy Link to Website",
       "export-pdf": "Export PDF",
       "toggle-orientation": "Toggle Page Orientation",
       "toggle-page-break-line": "Toggle Page Break Line",
@@ -96,8 +96,8 @@
       "rename": "Rename",
       "share-link": "Share Link",
       "tooltips": {
-        "delete": "Are you sure you want to delete this resume? This is an irreversible action.",
-        "share-link": "You need to change the visibility of your resume to public to make it visible to others."
+        "delete": "Are you sure you want to delete this website? This is an irreversible action.",
+        "share-link": "You need to change the visibility of your website to public to make it visible to others."
       }
     }
   },
@@ -239,7 +239,7 @@
         "heading": "Export",
         "json": {
           "primary": "JSON",
-          "secondary": "Download a JSON version of your resume that can be imported back into Reactive Resume."
+          "secondary": "Download a JSON version of your website that can be imported back into Reactive Website."
         },
         "pdf": {
           "loading": {
@@ -248,7 +248,7 @@
           },
           "normal": {
             "primary": "PDF",
-            "secondary": "Download a PDF of your resume that you can print and send out. This file cannot be imported back for further editing."
+            "secondary": "Download a PDF of your website that you can print and send out. This file cannot be imported back for further editing."
           }
         }
       },
@@ -282,7 +282,7 @@
         "page": {
           "format": {
             "primary": "Paper Size",
-            "secondary": "Determines the dimensions of your resume pages"
+            "secondary": "Determines the dimensions of your website pages"
           },
           "break-line": {
             "primary": "Break Line",
@@ -295,15 +295,15 @@
             "secondary": "Whether to display pages horizontally or vertically"
           }
         },
-        "resume": {
-          "heading": "Resume",
+        "website": {
+          "heading": "Website",
           "reset": {
             "primary": "Reset Everything",
             "secondary": "Made too many mistakes? Click here to reset all changes and start from scratch. Be careful, this action cannot be reversed."
           },
           "sample": {
             "primary": "Load Sample Data",
-            "secondary": "Not sure where to begin? Click here to load some sample data to see how a complete resume looks like."
+            "secondary": "Not sure where to begin? Click here to load some sample data to see how a complete website looks like."
           }
         }
       },
@@ -313,7 +313,7 @@
           "label": "Prefer Short URL"
         },
         "visibility": {
-          "subtitle": "Allow anyone with a link to view your resume",
+          "subtitle": "Allow anyone with a link to view your website",
           "title": "Public"
         }
       },

@@ -21,10 +21,10 @@ import { ReactZoomPanPinchRef } from 'react-zoom-pan-pinch';
 import { ActionCreators } from 'redux-undo';
 
 import { ServerError } from '@/services/axios';
-import { printResumeAsPdf, PrintResumeAsPdfParams } from '@/services/printer';
+import { printWebsiteAsPdf, PrintWebsiteAsPdfParams } from '@/services/printer';
 import { togglePageBreakLine, togglePageOrientation, toggleSidebar } from '@/store/build/buildSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import getResumeUrl from '@/utils/getResumeUrl';
+import getWebsiteUrl from '@/utils/getWebsiteUrl';
 
 import styles from './ArtboardController.module.scss';
 
@@ -36,12 +36,12 @@ const ArtboardController: React.FC<ReactZoomPanPinchRef> = ({ zoomIn, zoomOut, c
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
 
-  const { past, present: resume, future } = useAppSelector((state) => state.resume);
-  const pages = get(resume, 'metadata.layout');
+  const { past, present: website, future } = useAppSelector((state) => state.website);
+  const pages = get(website, 'metadata.layout');
   const { left, right } = useAppSelector((state) => state.build.sidebar);
   const orientation = useAppSelector((state) => state.build.page.orientation);
 
-  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintResumeAsPdfParams>(printResumeAsPdf);
+  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintWebsiteAsPdfParams>(printWebsiteAsPdf);
 
   const handleUndo = () => dispatch(ActionCreators.undo());
   const handleRedo = () => dispatch(ActionCreators.redo());
@@ -56,17 +56,17 @@ const ArtboardController: React.FC<ReactZoomPanPinchRef> = ({ zoomIn, zoomOut, c
   };
 
   const handleCopyLink = async () => {
-    const url = getResumeUrl(resume, { withHost: true });
+    const url = getWebsiteUrl(website, { withHost: true });
     await navigator.clipboard.writeText(url);
 
-    toast.success(t<string>('common.toast.success.resume-link-copied'));
+    toast.success(t<string>('common.toast.success.website-link-copied'));
   };
 
   const handleExportPDF = async () => {
     const download = (await import('downloadjs')).default;
 
-    const slug = get(resume, 'slug');
-    const username = get(resume, 'user.username');
+    const slug = get(website, 'slug');
+    const username = get(website, 'user.username');
 
     const url = await mutateAsync({ username, slug });
 

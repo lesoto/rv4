@@ -20,7 +20,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import { useRouter } from 'next/router';
@@ -29,14 +29,14 @@ import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
 
-import { RESUMES_QUERY } from '@/constants/index';
+import { WEBSITE_QUERY } from '@/constants/index';
 import { ServerError } from '@/services/axios';
 import queryClient from '@/services/react-query';
-import { deleteResume, DeleteResumeParams, duplicateResume, DuplicateResumeParams } from '@/services/resume';
+import { deleteWebsite, DeleteWebsiteParams, duplicateWebsite, DuplicateWebsiteParams } from '@/services/website';
 import { setSidebarState, toggleSidebar } from '@/store/build/buildSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
-import getResumeUrl from '@/utils/getResumeUrl';
+import getWebsiteUrl from '@/utils/getWebsiteUrl';
 
 import styles from './Header.module.scss';
 
@@ -53,14 +53,14 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const { mutateAsync: duplicateMutation } = useMutation<Resume, ServerError, DuplicateResumeParams>(duplicateResume);
+  const { mutateAsync: duplicateMutation } = useMutation<Website, ServerError, DuplicateWebsiteParams>(duplicateWebsite);
 
-  const { mutateAsync: deleteMutation } = useMutation<void, ServerError, DeleteResumeParams>(deleteResume);
+  const { mutateAsync: deleteMutation } = useMutation<void, ServerError, DeleteWebsiteParams>(deleteWebsite);
 
-  const resume = useAppSelector((state) => state.resume.present);
+  const website = useAppSelector((state) => state.website.present);
   const { left, right } = useAppSelector((state) => state.build.sidebar);
 
-  const name = useMemo(() => get(resume, 'name'), [resume]);
+  const name = useMemo(() => get(website, 'name'), [website]);
 
   useEffect(() => {
     if (isDesktop) {
@@ -91,15 +91,15 @@ const Header = () => {
 
     dispatch(
       setModalState({
-        modal: 'dashboard.rename-resume',
+        modal: 'dashboard.rename-website',
         state: {
           open: true,
           payload: {
-            item: resume,
-            onComplete: (newResume: Resume) => {
-              queryClient.invalidateQueries(RESUMES_QUERY);
+            item: website,
+            onComplete: (newWebsite: Website) => {
+              queryClient.invalidateQueries(WEBSITE_QUERY);
 
-              router.push(`/${resume.user.username}/${newResume.slug}/build`);
+              router.push(`/${website.user.username}/${newWebsite.slug}/build`);
             },
           },
         },
@@ -110,19 +110,19 @@ const Header = () => {
   const handleDuplicate = async () => {
     handleClose();
 
-    const newResume = await duplicateMutation({ id: resume.id });
+    const newWebsite = await duplicateMutation({ id: website.id });
 
-    queryClient.invalidateQueries(RESUMES_QUERY);
+    queryClient.invalidateQueries(WEBSITE_QUERY);
 
-    router.push(`/${resume.user.username}/${newResume.slug}/build`);
+    router.push(`/${website.user.username}/${newWebsite.slug}/build`);
   };
 
   const handleDelete = async () => {
     handleClose();
 
-    await deleteMutation({ id: resume.id });
+    await deleteMutation({ id: website.id });
 
-    queryClient.invalidateQueries(RESUMES_QUERY);
+    queryClient.invalidateQueries(WEBSITE_QUERY);
 
     goBack();
   };
@@ -130,10 +130,10 @@ const Header = () => {
   const handleShareLink = async () => {
     handleClose();
 
-    const url = getResumeUrl(resume, { withHost: true });
+    const url = getWebsiteUrl(website, { withHost: true });
     await navigator.clipboard.writeText(url);
 
-    toast.success(t<string>('common.toast.success.resume-link-copied'));
+    toast.success(t<string>('common.toast.success.website-link-copied'));
   };
 
   return (
@@ -176,7 +176,7 @@ const Header = () => {
               <ListItemText>{t<string>('builder.header.menu.duplicate')}</ListItemText>
             </MenuItem>
 
-            {resume.public ? (
+            {website.public ? (
               <MenuItem onClick={handleShareLink}>
                 <ListItemIcon>
                   <LinkIcon className="scale-90" />

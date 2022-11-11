@@ -7,15 +7,15 @@ import { useMutation } from 'react-query';
 
 import Heading from '@/components/shared/Heading';
 import { ServerError } from '@/services/axios';
-import { printResumeAsPdf, PrintResumeAsPdfParams } from '@/services/printer';
+import { printWebsiteAsPdf, PrintWebsiteAsPdfParams } from '@/services/printer';
 import { useAppSelector } from '@/store/hooks';
 
 const Export = () => {
   const { t } = useTranslation();
 
-  const resume = useAppSelector((state) => state.resume.present);
+  const website = useAppSelector((state) => state.website.present);
 
-  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintResumeAsPdfParams>(printResumeAsPdf);
+  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintWebsiteAsPdfParams>(printWebsiteAsPdf);
 
   const pdfListItemText = {
     normal: {
@@ -32,10 +32,10 @@ const Export = () => {
     const { nanoid } = await import('nanoid');
     const download = (await import('downloadjs')).default;
 
-    const redactedResume = pick(resume, ['basics', 'sections', 'metadata', 'public']);
-    const jsonString = JSON.stringify(redactedResume, null, 4);
+    const redactedWebsite = pick(website, ['basics', 'sections', 'metadata', 'public']);
+    const jsonString = JSON.stringify(redactedWebsite, null, 4);
     const jsonBlob = new Blob([jsonString], { type: 'application/json;charset=utf-8' });
-    const filename = `RxResume_JSONExport_${nanoid()}.json`;
+    const filename = `RxWebsite_JSONExport_${nanoid()}.json`;
 
     download(jsonBlob, filename);
   };
@@ -43,8 +43,8 @@ const Export = () => {
   const handleExportPDF = async () => {
     const download = (await import('downloadjs')).default;
 
-    const slug = get(resume, 'slug');
-    const username = get(resume, 'user.username');
+    const slug = get(website, 'slug');
+    const username = get(website, 'user.username');
 
     const url = await mutateAsync({ username, slug });
 

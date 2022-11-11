@@ -6,15 +6,15 @@ type Screenshot = {
 export const screenshots: Screenshot[] = [
   {
     src: '/images/screenshots/dashboard.png',
-    alt: 'Create multiple resumes under one account',
+    alt: 'Create multiple websites under one account',
   },
   {
     src: '/images/screenshots/import-external.png',
-    alt: 'Import your data from JSON or Reactive Resume',
+    alt: 'Import your data from JSON or Reactive Website',
   },
   {
     src: '/images/screenshots/builder.png',
-    alt: 'Variety of features to personalize your resume to your liking',
+    alt: 'Variety of features to personalize your website to your liking',
   },
   {
     src: '/images/screenshots/add-section.png',
@@ -26,6 +26,6 @@ export const screenshots: Screenshot[] = [
   },
   {
     src: '/images/screenshots/preview.png',
-    alt: 'Get a unique link to your resume which can be shared with anyone for the latest information',
+    alt: 'Get a unique link to your website which can be shared with anyone for the latest information',
   },
 ];

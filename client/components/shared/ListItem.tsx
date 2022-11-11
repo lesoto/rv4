@@ -1,6 +1,6 @@
 import { DeleteOutline, DriveFileRenameOutline, FileCopy, MoreVert } from '@mui/icons-material';
 import { Divider, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip } from '@mui/material';
-import { ListItem as ListItemType } from '@reactive-resume/schema';
+import { ListItem as ListItemType } from '@reactive-website/schema';
 import clsx from 'clsx';
 import isFunction from 'lodash/isFunction';
 import { useTranslation } from 'next-i18next';

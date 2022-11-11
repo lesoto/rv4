@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Heading from '@/components/shared/Heading';
-import ResumeInput from '@/components/shared/ResumeInput';
+import WebsiteInput from '@/components/shared/WebsiteInput';
 
 import PhotoFilters from './PhotoFilters';
 import PhotoUpload from './PhotoUpload';
@@ -33,7 +33,7 @@ const Basics = () => {
           </div>
 
           <div className="grid w-full gap-2 sm:col-span-2">
-            <ResumeInput label={t<string>('builder.leftSidebar.sections.basics.name.label')} path="basics.name" />
+            <WebsiteInput label={t<string>('builder.leftSidebar.sections.basics.name.label')} path="basics.name" />
 
             <Button variant="outlined" startIcon={<PhotoFilter />} onClick={handleClick}>
               {t<string>('builder.leftSidebar.sections.basics.actions.photo-filters')}
@@ -57,28 +57,28 @@ const Basics = () => {
           </div>
         </div>
 
-        <ResumeInput
+        <WebsiteInput
           type="date"
           label={t<string>('builder.leftSidebar.sections.basics.birthdate.label')}
           path="basics.birthdate"
           className="sm:col-span-2"
         />
-        <ResumeInput
+        <WebsiteInput
           label={t<string>('builder.common.form.email.label')}
           path="basics.email"
           className="sm:col-span-2"
         />
-        <ResumeInput label={t<string>('builder.common.form.phone.label')} path="basics.phone" />
-        <ResumeInput label={t<string>('builder.common.form.url.label')} path="basics.website" />
+        <WebsiteInput label={t<string>('builder.common.form.phone.label')} path="basics.phone" />
+        <WebsiteInput label={t<string>('builder.common.form.url.label')} path="basics.website" />
 
         <Divider className="sm:col-span-2" />
 
-        <ResumeInput
+        <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.basics.headline.label')}
           path="basics.headline"
           className="sm:col-span-2"
         />
-        <ResumeInput
+        <WebsiteInput
           type="textarea"
           label={t<string>('builder.common.form.summary.label')}
           path="basics.summary"

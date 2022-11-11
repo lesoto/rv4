@@ -1,1 +1,1 @@
-export type Integration = 'reactive-resume' | 'reactive-resume-v2';
+export type Integration = 'reactive-website' | 'reactive-website-v2';

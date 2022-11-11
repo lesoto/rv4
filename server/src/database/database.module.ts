@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Resume } from '@/resume/entities/resume.entity';
+import { Website } from '@/website/entities/website.entity';
 import { User } from '@/users/entities/user.entity';
 
 @Module({
@@ -18,7 +18,7 @@ import { User } from '@/users/entities/user.entity';
         password: configService.get<string>('postgres.password'),
         database: configService.get<string>('postgres.database'),
         synchronize: true,
-        entities: [User, Resume],
+        entities: [User, Website],
         ssl: configService.get<string>('postgres.certificate') && {
           ca: Buffer.from(configService.get<string>('postgres.certificate'), 'base64').toString('ascii'),
         },

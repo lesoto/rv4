@@ -8,12 +8,12 @@ import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { ActionCreators } from 'redux-undo';
 
-import ResumeCard from '@/components/dashboard/ResumeCard';
-import ResumePreview from '@/components/dashboard/ResumePreview';
+import WebsiteCard from '@/components/dashboard/WebsiteCard';
+import WebsitePreview from '@/components/dashboard/WebsitePreview';
 import Avatar from '@/components/shared/Avatar';
 import Logo from '@/components/shared/Logo';
-import { RESUMES_QUERY } from '@/constants/index';
-import { fetchResumes } from '@/services/resume';
+import { WEBSITE_QUERY } from '@/constants/index';
+import { fetchWebsites } from '@/services/website';
 import { useAppDispatch } from '@/store/hooks';
 import styles from '@/styles/pages/Dashboard.module.scss';
 
@@ -30,7 +30,7 @@ const Dashboard: NextPage = () => {
 
   const dispatch = useAppDispatch();
 
-  const { data } = useQuery(RESUMES_QUERY, fetchResumes);
+  const { data } = useQuery(WEBSITE_QUERY, fetchWebsites);
 
   useEffect(() => {
     dispatch(ActionCreators.clearHistory());
@@ -56,23 +56,23 @@ const Dashboard: NextPage = () => {
         <Avatar size={40} />
       </header>
 
-      <main className={styles.resumes}>
-        <ResumeCard
-          modal="dashboard.create-resume"
+      <main className={styles.websites}>
+        <WebsiteCard
+          modal="dashboard.create-website"
           icon={Add}
-          title={t<string>('dashboard.create-resume.title')}
-          subtitle={t<string>('dashboard.create-resume.subtitle')}
+          title={t<string>('dashboard.create-website.title')}
+          subtitle={t<string>('dashboard.create-website.subtitle')}
         />
 
-        <ResumeCard
+        <WebsiteCard
           modal="dashboard.import-external"
           icon={ImportExport}
           title={t<string>('dashboard.import-external.title')}
           subtitle={t<string>('dashboard.import-external.subtitle')}
         />
 
-        {data.map((resume) => (
-          <ResumePreview key={resume.id} resume={resume} />
+        {data.map((website) => (
+          <WebsitePreview key={website.id} website={website} />
         ))}
       </main>
     </div>

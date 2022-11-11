@@ -1,7 +1,7 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, AlternateEmail, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
-import { Profile } from '@reactive-resume/schema';
+import { Profile } from '@reactive-website/schema';
 import Joi from 'joi';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -13,7 +13,7 @@ import BaseModal from '@/components/shared/BaseModal';
 import { VALID_URL_REGEX } from '@/constants/index';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
-import { addItem, editItem } from '@/store/resume/resumeSlice';
+import { addItem, editItem } from '@/store/website/websiteSlice';
 
 type FormData = Profile;
 

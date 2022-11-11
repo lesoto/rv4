@@ -1,4 +1,4 @@
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -8,9 +8,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
 
 import Page from '@/components/build/Center/Page';
-import { fetchResumeByIdentifier } from '@/services/resume';
+import { fetchWebsiteByIdentifier } from '@/services/website';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResume } from '@/store/resume/resumeSlice';
+import { setWebsite } from '@/store/website/websiteSlice';
 import styles from '@/styles/pages/Printer.module.scss';
 
 type QueryParams = {
@@ -20,7 +20,7 @@ type QueryParams = {
 };
 
 type Props = {
-  resume?: Resume;
+  website?: Website;
   locale: string;
   redirect?: any;
 };
@@ -34,12 +34,12 @@ export const getServerSideProps: GetServerSideProps<Props | Promise<Props>, Quer
   try {
     if (isEmpty(secretKey)) throw new Error('There is no secret key!');
 
-    const resume = await fetchResumeByIdentifier({ username, slug, options: { secretKey } });
-    const displayLocale = resume.metadata.locale || locale || 'en';
+    const website = await fetchWebsiteByIdentifier({ username, slug, options: { secretKey } });
+    const displayLocale = website.metadata.locale || locale || 'en';
 
     return {
       props: {
-        resume,
+        website,
         locale: displayLocale,
         ...(await serverSideTranslations(displayLocale, ['common'])),
       },
@@ -54,12 +54,12 @@ export const getServerSideProps: GetServerSideProps<Props | Promise<Props>, Quer
   }
 };
 
-const Printer: NextPage<Props> = ({ resume: initialData, locale }) => {
+const Printer: NextPage<Props> = ({ website: initialData, locale }) => {
   const router = useRouter();
 
   const dispatch = useAppDispatch();
 
-  const resume = useAppSelector((state) => state.resume.present);
+  const website = useAppSelector((state) => state.website.present);
 
   useEffect(() => {
     if (router.locale !== locale) {
@@ -70,12 +70,12 @@ const Printer: NextPage<Props> = ({ resume: initialData, locale }) => {
   }, [router, locale]);
 
   useEffect(() => {
-    if (initialData) dispatch(setResume(initialData));
+    if (initialData) dispatch(setWebsite(initialData));
   }, [dispatch, initialData]);
 
-  if (!resume || isEmpty(resume)) return null;
+  if (!website || isEmpty(website)) return null;
 
-  const layout: string[][][] = get(resume, 'metadata.layout', []);
+  const layout: string[][][] = get(website, 'metadata.layout', []);
 
   return (
     <div className={clsx('printer-mode', styles.container)}>

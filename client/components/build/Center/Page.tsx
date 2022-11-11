@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { CustomCSS, PageConfig, ThemeConfig, Typography } from '@reactive-resume/schema';
+import { CustomCSS, PageConfig, ThemeConfig, Typography } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -20,14 +20,14 @@ type Props = PageProps & {
 const Page: React.FC<Props> = ({ page, showPageNumbers = false }) => {
   const { t } = useTranslation();
 
-  const resume = useAppSelector((state) => state.resume.present);
+  const website = useAppSelector((state) => state.website.present);
   const breakLine: boolean = useAppSelector((state) => state.build.page.breakLine);
 
-  const theme: ThemeConfig = get(resume, 'metadata.theme');
-  const customCSS: CustomCSS = get(resume, 'metadata.css');
-  const template: string = get(resume, 'metadata.template');
-  const pageConfig: PageConfig = get(resume, 'metadata.page');
-  const typography: Typography = get(resume, 'metadata.typography');
+  const theme: ThemeConfig = get(website, 'metadata.theme');
+  const customCSS: CustomCSS = get(website, 'metadata.css');
+  const template: string = get(website, 'metadata.template');
+  const pageConfig: PageConfig = get(website, 'metadata.page');
+  const typography: Typography = get(website, 'metadata.typography');
 
   const themeCSS = useMemo(() => !isEmpty(theme) && generateThemeStyles(theme), [theme]);
   const typographyCSS = useMemo(() => !isEmpty(typography) && generateTypographyStyles(typography), [typography]);

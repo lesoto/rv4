@@ -7,20 +7,20 @@ import { memoryStorage } from 'multer';
 import { AuthModule } from '@/auth/auth.module';
 import { UsersModule } from '@/users/users.module';
 
-import { Resume } from './entities/resume.entity';
-import { ResumeController } from './resume.controller';
-import { ResumeService } from './resume.service';
+import { Website } from './entities/website.entity';
+import { WebsiteController } from './website.controller';
+import { WebsiteService } from './website.service';
 
 @Module({
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([Resume]),
+    TypeOrmModule.forFeature([Website]),
     MulterModule.register({ storage: memoryStorage() }),
     AuthModule,
     UsersModule,
   ],
-  controllers: [ResumeController],
-  providers: [ResumeService],
-  exports: [ResumeService],
+  controllers: [WebsiteController],
+  providers: [WebsiteService],
+  exports: [WebsiteService],
 })
-export class ResumeModule {}
+export class WebsiteModule {}

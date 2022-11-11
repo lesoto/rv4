@@ -1,7 +1,7 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { SchedulerRegistry } from '@nestjs/schedule';
-import { PageConfig } from '@reactive-resume/schema';
+import { PageConfig } from '@reactive-website/schema';
 import { mkdir, unlink, writeFile } from 'fs/promises';
 import { nanoid } from 'nanoid';
 import { join } from 'path';
@@ -41,7 +41,7 @@ export class PrinterService implements OnModuleInit, OnModuleDestroy {
       (pages) => pages[0].getAttribute('data-format') as PageConfig['format']
     );
 
-    const resumePages = await page.$$eval('[data-page]', (pages) =>
+    const websitePages = await page.$$eval('[data-page]', (pages) =>
       pages.map((page, index) => ({
         pageNumber: index + 1,
         innerHTML: page.innerHTML,
@@ -51,15 +51,15 @@ export class PrinterService implements OnModuleInit, OnModuleDestroy {
 
     const pdf = await PDFDocument.create();
     const directory = join(__dirname, '..', 'assets/exports');
-    const filename = `RxResume_PDFExport_${nanoid()}.pdf`;
+    const filename = `RxWebsite_PDFExport_${nanoid()}.pdf`;
     const publicUrl = `${serverUrl}/assets/exports/${filename}`;
 
-    for (let index = 0; index < resumePages.length; index++) {
-      await page.evaluate((page) => (document.body.innerHTML = page.innerHTML), resumePages[index]);
+    for (let index = 0; index < websitePages.length; index++) {
+      await page.evaluate((page) => (document.body.innerHTML = page.innerHTML), websitePages[index]);
 
       const buffer = await page.pdf({
         printBackground: true,
-        height: resumePages[index].height,
+        height: websitePages[index].height,
         width: pageFormat === 'A4' ? '210mm' : '216mm',
       });
 

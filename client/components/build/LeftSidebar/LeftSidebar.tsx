@@ -1,6 +1,6 @@
 import { Add, Star } from '@mui/icons-material';
 import { Button, Divider, IconButton, SwipeableDrawer, Tooltip, useMediaQuery, useTheme } from '@mui/material';
-import { Section as SectionRecord } from '@reactive-resume/schema';
+import { Section as SectionRecord } from '@reactive-website/schema';
 import get from 'lodash/get';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
@@ -11,7 +11,7 @@ import Logo from '@/components/shared/Logo';
 import { getCustomSections, left } from '@/config/sections';
 import { setSidebarState } from '@/store/build/buildSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { addSection } from '@/store/resume/resumeSlice';
+import { addSection } from '@/store/website/websiteSlice';
 
 import styles from './LeftSidebar.module.scss';
 import Section from './sections/Section';
@@ -25,7 +25,7 @@ const LeftSidebar = () => {
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
-  const sections = useAppSelector((state) => state.resume.present.sections);
+  const sections = useAppSelector((state) => state.website.present.sections);
   const { open } = useAppSelector((state) => state.build.sidebar.left);
 
   const customSections = useMemo(() => getCustomSections(sections), [sections]);

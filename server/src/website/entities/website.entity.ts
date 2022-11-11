@@ -1,11 +1,11 @@
-import { Basics, Metadata, Section } from '@reactive-resume/schema';
+import { Basics, Metadata, Section } from '@reactive-website/schema';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 import { User } from '@/users/entities/user.entity';
 
 @Entity()
 @Unique(['user', 'slug'])
-export class Resume {
+export class Website {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -21,7 +21,7 @@ export class Resume {
   @Column({ nullable: true })
   image?: string;
 
-  @ManyToOne(() => User, (user) => user.resumes, {
+  @ManyToOne(() => User, (user) => user.websites, {
     eager: true,
     cascade: true,
     onDelete: 'CASCADE',
@@ -46,7 +46,7 @@ export class Resume {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  constructor(partial: Partial<Resume>) {
+  constructor(partial: Partial<Website>) {
     Object.assign(this, partial);
   }
 }

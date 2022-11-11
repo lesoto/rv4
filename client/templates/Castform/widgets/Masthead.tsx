@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import { Cake, Email, Phone, Public, Room } from '@mui/icons-material';
-import { ThemeConfig } from '@reactive-resume/schema';
+import { ThemeConfig } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -15,11 +15,11 @@ import { getContrastColor } from '@/utils/styles';
 import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 export const MastheadSidebar: React.FC = () => {
-  const dateFormat: string = useAppSelector((state) => get(state.resume.present, 'metadata.date.format'));
+  const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const { name, headline, photo, email, phone, birthdate, website, location, profiles } = useAppSelector(
-    (state) => state.resume.present.basics
+    (state) => state.website.present.basics
   );
-  const theme: ThemeConfig = useAppSelector((state) => get(state.resume.present, 'metadata.theme', {}));
+  const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
   const contrast = useMemo(() => getContrastColor(theme.primary), [theme.primary]);
   const color = useMemo(() => (contrast === 'dark' ? theme.text : theme.background), [theme, contrast]);
 
@@ -72,7 +72,7 @@ export const MastheadSidebar: React.FC = () => {
 };
 
 export const MastheadMain: React.FC = () => {
-  const { summary } = useAppSelector((state) => state.resume.present.basics);
+  const { summary } = useAppSelector((state) => state.website.present.basics);
 
   return (
     <div className="px-4 pt-4">

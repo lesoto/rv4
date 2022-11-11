@@ -7,7 +7,7 @@ import {
   OpenInNew,
 } from '@mui/icons-material';
 import { ButtonBase, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip } from '@mui/material';
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,22 +16,22 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
 
-import { RESUMES_QUERY } from '@/constants/index';
+import { WEBSITE_QUERY } from '@/constants/index';
 import { ServerError } from '@/services/axios';
 import queryClient from '@/services/react-query';
-import { deleteResume, DeleteResumeParams, duplicateResume, DuplicateResumeParams } from '@/services/resume';
+import { deleteWebsite, DeleteWebsiteParams, duplicateWebsite, DuplicateWebsiteParams } from '@/services/website';
 import { useAppDispatch } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
 import { getRelativeTime } from '@/utils/date';
-import getResumeUrl from '@/utils/getResumeUrl';
+import getWebsiteUrl from '@/utils/getWebsiteUrl';
 
-import styles from './ResumePreview.module.scss';
+import styles from './WebsitePreview.module.scss';
 
 type Props = {
-  resume: Resume;
+  website: Website;
 };
 
-const ResumePreview: React.FC<Props> = ({ resume }) => {
+const WebsitePreview: React.FC<Props> = ({ website }) => {
   const router = useRouter();
 
   const { t } = useTranslation();
@@ -40,16 +40,16 @@ const ResumePreview: React.FC<Props> = ({ resume }) => {
 
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 
-  const { mutateAsync: duplicateMutation } = useMutation<Resume, ServerError, DuplicateResumeParams>(duplicateResume);
+  const { mutateAsync: duplicateMutation } = useMutation<Website, ServerError, DuplicateWebsiteParams>(duplicateWebsite);
 
-  const { mutateAsync: deleteMutation } = useMutation<void, ServerError, DeleteResumeParams>(deleteResume);
+  const { mutateAsync: deleteMutation } = useMutation<void, ServerError, DeleteWebsiteParams>(deleteWebsite);
 
   const handleOpen = () => {
     handleClose();
 
     router.push({
       pathname: '/[username]/[slug]/build',
-      query: { username: resume.user.username, slug: resume.slug },
+      query: { username: website.user.username, slug: website.slug },
     });
   };
 
@@ -66,13 +66,13 @@ const ResumePreview: React.FC<Props> = ({ resume }) => {
 
     dispatch(
       setModalState({
-        modal: 'dashboard.rename-resume',
+        modal: 'dashboard.rename-website',
         state: {
           open: true,
           payload: {
-            item: resume,
+            item: website,
             onComplete: () => {
-              queryClient.invalidateQueries(RESUMES_QUERY);
+              queryClient.invalidateQueries(WEBSITE_QUERY);
             },
           },
         },
@@ -83,48 +83,48 @@ const ResumePreview: React.FC<Props> = ({ resume }) => {
   const handleDuplicate = async () => {
     handleClose();
 
-    await duplicateMutation({ id: resume.id });
+    await duplicateMutation({ id: website.id });
 
-    queryClient.invalidateQueries(RESUMES_QUERY);
+    queryClient.invalidateQueries(WEBSITE_QUERY);
   };
 
   const handleShareLink = async () => {
     handleClose();
 
-    const url = getResumeUrl(resume, { withHost: true });
+    const url = getWebsiteUrl(website, { withHost: true });
     await navigator.clipboard.writeText(url);
 
-    toast.success(t<string>('common.toast.success.resume-link-copied'));
+    toast.success(t<string>('common.toast.success.website-link-copied'));
   };
 
   const handleDelete = async () => {
     handleClose();
 
-    await deleteMutation({ id: resume.id });
+    await deleteMutation({ id: website.id });
 
-    queryClient.invalidateQueries(RESUMES_QUERY);
+    queryClient.invalidateQueries(WEBSITE_QUERY);
   };
 
   return (
-    <section className={styles.resume}>
+    <section className={styles.website}>
       <Link
         passHref
         href={{
           pathname: '/[username]/[slug]/build',
-          query: { username: resume.user.username, slug: resume.slug },
+          query: { username: website.user.username, slug: website.slug },
         }}
       >
         <ButtonBase className={styles.preview}>
-          {resume.image ? (
-            <Image src={resume.image} alt={resume.name} objectFit="cover" layout="fill" priority />
+          {website.image ? (
+            <Image src={website.image} alt={website.name} objectFit="cover" layout="fill" priority />
           ) : null}
         </ButtonBase>
       </Link>
 
       <footer>
         <div className={styles.meta}>
-          <p>{resume.name}</p>
-          <p>{t<string>('dashboard.resume.timestamp', { timestamp: getRelativeTime(resume.updatedAt) })}</p>
+          <p>{website.name}</p>
+          <p>{t<string>('dashboard.website.timestamp', { timestamp: getRelativeTime(website.updatedAt) })}</p>
         </div>
 
         <ButtonBase className={styles.menu} onClick={handleOpenMenu}>
@@ -136,49 +136,49 @@ const ResumePreview: React.FC<Props> = ({ resume }) => {
             <ListItemIcon>
               <OpenInNew className="scale-90" />
             </ListItemIcon>
-            <ListItemText>{t<string>('dashboard.resume.menu.open')}</ListItemText>
+            <ListItemText>{t<string>('dashboard.website.menu.open')}</ListItemText>
           </MenuItem>
 
           <MenuItem onClick={handleRename}>
             <ListItemIcon>
               <DriveFileRenameOutline className="scale-90" />
             </ListItemIcon>
-            <ListItemText>{t<string>('dashboard.resume.menu.rename')}</ListItemText>
+            <ListItemText>{t<string>('dashboard.website.menu.rename')}</ListItemText>
           </MenuItem>
 
           <MenuItem onClick={handleDuplicate}>
             <ListItemIcon>
               <ContentCopy className="scale-90" />
             </ListItemIcon>
-            <ListItemText>{t<string>('dashboard.resume.menu.duplicate')}</ListItemText>
+            <ListItemText>{t<string>('dashboard.website.menu.duplicate')}</ListItemText>
           </MenuItem>
 
-          {resume.public ? (
+          {website.public ? (
             <MenuItem onClick={handleShareLink}>
               <ListItemIcon>
                 <LinkIcon className="scale-90" />
               </ListItemIcon>
-              <ListItemText>{t<string>('dashboard.resume.menu.share-link')}</ListItemText>
+              <ListItemText>{t<string>('dashboard.website.menu.share-link')}</ListItemText>
             </MenuItem>
           ) : (
-            <Tooltip arrow placement="right" title={t<string>('dashboard.resume.menu.tooltips.share-link')}>
+            <Tooltip arrow placement="right" title={t<string>('dashboard.website.menu.tooltips.share-link')}>
               <div>
                 <MenuItem>
                   <ListItemIcon>
                     <LinkIcon className="scale-90" />
                   </ListItemIcon>
-                  <ListItemText>{t<string>('dashboard.resume.menu.share-link')}</ListItemText>
+                  <ListItemText>{t<string>('dashboard.website.menu.share-link')}</ListItemText>
                 </MenuItem>
               </div>
             </Tooltip>
           )}
 
-          <Tooltip arrow placement="right" title={t<string>('dashboard.resume.menu.tooltips.delete')}>
+          <Tooltip arrow placement="right" title={t<string>('dashboard.website.menu.tooltips.delete')}>
             <MenuItem onClick={handleDelete}>
               <ListItemIcon>
                 <DeleteOutline className="scale-90" />
               </ListItemIcon>
-              <ListItemText>{t<string>('dashboard.resume.menu.delete')}</ListItemText>
+              <ListItemText>{t<string>('dashboard.website.menu.delete')}</ListItemText>
             </MenuItem>
           </Tooltip>
         </Menu>
@@ -187,4 +187,4 @@ const ResumePreview: React.FC<Props> = ({ resume }) => {
   );
 };
 
-export default ResumePreview;
+export default WebsitePreview;

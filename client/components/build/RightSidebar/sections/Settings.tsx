@@ -10,7 +10,7 @@ import {
   Switch,
   TextField,
 } from '@mui/material';
-import { DateConfig, PageConfig, Resume } from '@reactive-resume/schema';
+import { DateConfig, PageConfig, Website } from '@reactive-website/schema';
 import dayjs from 'dayjs';
 import get from 'lodash/get';
 import { useRouter } from 'next/router';
@@ -23,10 +23,10 @@ import ThemeSwitch from '@/components/shared/ThemeSwitch';
 import { Language, languageMap, languages } from '@/config/languages';
 import { ServerError } from '@/services/axios';
 import queryClient from '@/services/react-query';
-import { loadSampleData, LoadSampleDataParams, resetResume, ResetResumeParams } from '@/services/resume';
+import { loadSampleData, LoadSampleDataParams, resetWebsite, ResetWebsiteParams } from '@/services/website';
 import { setTheme, togglePageBreakLine, togglePageOrientation } from '@/store/build/buildSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 import { dateFormatOptions } from '@/utils/date';
 
 const Settings = () => {
@@ -38,41 +38,41 @@ const Settings = () => {
 
   const [confirmReset, setConfirmReset] = useState(false);
 
-  const resume = useAppSelector((state) => state.resume.present);
+  const website = useAppSelector((state) => state.website.present);
   const theme = useAppSelector((state) => state.build.theme);
-  const pages = useAppSelector((state) => state.resume.present.metadata.layout);
+  const pages = useAppSelector((state) => state.website.present.metadata.layout);
   const breakLine = useAppSelector((state) => state.build.page.breakLine);
   const orientation = useAppSelector((state) => state.build.page.orientation);
 
-  const id: number = useMemo(() => get(resume, 'id'), [resume]);
-  const slug: string = useMemo(() => get(resume, 'slug'), [resume]);
-  const username: string = useMemo(() => get(resume, 'user.username'), [resume]);
-  const pageConfig: PageConfig = useMemo(() => get(resume, 'metadata.page'), [resume]);
-  const dateConfig: DateConfig = useMemo(() => get(resume, 'metadata.date'), [resume]);
+  const id: number = useMemo(() => get(website, 'id'), [website]);
+  const slug: string = useMemo(() => get(website, 'slug'), [website]);
+  const username: string = useMemo(() => get(website, 'user.username'), [website]);
+  const pageConfig: PageConfig = useMemo(() => get(website, 'metadata.page'), [website]);
+  const dateConfig: DateConfig = useMemo(() => get(website, 'metadata.date'), [website]);
 
   const isDarkMode = useMemo(() => theme === 'dark', [theme]);
   const exampleDateString = useMemo(() => `Eg. ${dayjs().utc().format(dateConfig.format)}`, [dateConfig.format]);
   const themeString = useMemo(() => (isDarkMode ? 'Matte Black Everything' : 'As bright as your future'), [isDarkMode]);
 
-  const { mutateAsync: loadSampleDataMutation } = useMutation<Resume, ServerError, LoadSampleDataParams>(
+  const { mutateAsync: loadSampleDataMutation } = useMutation<Website, ServerError, LoadSampleDataParams>(
     loadSampleData
   );
-  const { mutateAsync: resetResumeMutation } = useMutation<Resume, ServerError, ResetResumeParams>(resetResume);
+  const { mutateAsync: resetWebsiteMutation } = useMutation<Website, ServerError, ResetWebsiteParams>(resetWebsite);
 
   const handleSetTheme = (value: boolean) => dispatch(setTheme({ theme: value ? 'dark' : 'light' }));
 
   const handleChangePageFormat = (value: PageConfig['format'] | null) =>
-    dispatch(setResumeState({ path: 'metadata.page.format', value }));
+    dispatch(setWebsiteState({ path: 'metadata.page.format', value }));
 
   const handleChangeDateFormat = (value: string | null) =>
-    dispatch(setResumeState({ path: 'metadata.date.format', value }));
+    dispatch(setWebsiteState({ path: 'metadata.date.format', value }));
 
   const handleChangeLanguage = (value: Language | null) => {
     const { pathname, asPath, query, push } = router;
     const code = value?.code || 'en';
 
     document.cookie = `NEXT_LOCALE=${code}; path=/; expires=2147483647`;
-    dispatch(setResumeState({ path: 'metadata.locale', value: code }));
+    dispatch(setWebsiteState({ path: 'metadata.locale', value: code }));
 
     push({ pathname, query }, asPath, { locale: code });
   };
@@ -80,16 +80,16 @@ const Settings = () => {
   const handleLoadSampleData = async () => {
     await loadSampleDataMutation({ id });
 
-    queryClient.invalidateQueries(`resume/${username}/${slug}`);
+    queryClient.invalidateQueries(`website/${username}/${slug}`);
   };
 
-  const handleResetResume = async () => {
+  const handleResetWebsite = async () => {
     if (!confirmReset) {
       return setConfirmReset(true);
     }
 
-    await resetResumeMutation({ id });
-    await queryClient.invalidateQueries(`resume/${username}/${slug}`);
+    await resetWebsiteMutation({ id });
+    await queryClient.invalidateQueries(`website/${username}/${slug}`);
 
     setConfirmReset(false);
   };
@@ -206,10 +206,10 @@ const Settings = () => {
           </ListItem>
         </>
 
-        {/* Resume Settings */}
+        {/* Website Settings */}
         <>
           <ListSubheader disableSticky className="rounded">
-            {t<string>('builder.rightSidebar.sections.settings.resume.heading')}
+            {t<string>('builder.rightSidebar.sections.settings.website.heading')}
           </ListSubheader>
 
           <ListItem>
@@ -218,14 +218,14 @@ const Settings = () => {
                 <Anchor />
               </ListItemIcon>
               <ListItemText
-                primary={t<string>('builder.rightSidebar.sections.settings.resume.sample.primary')}
-                secondary={t<string>('builder.rightSidebar.sections.settings.resume.sample.secondary')}
+                primary={t<string>('builder.rightSidebar.sections.settings.website.sample.primary')}
+                secondary={t<string>('builder.rightSidebar.sections.settings.website.sample.secondary')}
               />
             </ListItemButton>
           </ListItem>
 
           <ListItem>
-            <ListItemButton onClick={handleResetResume}>
+            <ListItemButton onClick={handleResetWebsite}>
               <ListItemIcon>
                 <DeleteForever />
               </ListItemIcon>
@@ -233,9 +233,9 @@ const Settings = () => {
                 primary={
                   confirmReset
                     ? 'Are you sure?'
-                    : t<string>('builder.rightSidebar.sections.settings.resume.reset.primary')
+                    : t<string>('builder.rightSidebar.sections.settings.website.reset.primary')
                 }
-                secondary={t<string>('builder.rightSidebar.sections.settings.resume.reset.secondary')}
+                secondary={t<string>('builder.rightSidebar.sections.settings.website.reset.secondary')}
               />
             </ListItemButton>
           </ListItem>

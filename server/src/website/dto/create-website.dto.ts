@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
 import { IsBoolean, IsNotEmpty, IsString, Matches, MinLength } from 'class-validator';
 
-export class CreateResumeDto {
+export class CreateWebsiteDto {
   @IsString()
   @IsNotEmpty()
   name: string;

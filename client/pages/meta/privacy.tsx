@@ -5,7 +5,7 @@ const PrivacyPolicy: NextPage = () => (
     <h1>Privacy Policy</h1>
 
     <p>
-      Reactive Resume is a free and open source app. This service is provided at no cost and is intended for use as is.
+      Reactive Website is a free and open source app. This service is provided at no cost and is intended for use as is.
     </p>
 
     <p>
@@ -21,14 +21,14 @@ const PrivacyPolicy: NextPage = () => (
 
     <p>
       The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible
-      at Reactive Resume unless otherwise defined in this Privacy Policy.
+      at Reactive Website unless otherwise defined in this Privacy Policy.
     </p>
 
     <h3>Information Collection and Use</h3>
 
     <p>
       For a better experience, while using our Service, I may require you to provide us with certain personally
-      identifiable information, including but not limited to Name, Email Address, Resume Information. The information
+      identifiable information, including but not limited to Name, Email Address, Website Information. The information
       that I request will be retained on your device and is not collected by me in any way.
     </p>
 

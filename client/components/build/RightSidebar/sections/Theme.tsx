@@ -1,4 +1,4 @@
-import { ThemeConfig } from '@reactive-resume/schema';
+import { ThemeConfig } from '@reactive-website/schema';
 import get from 'lodash/get';
 import { useTranslation } from 'next-i18next';
 
@@ -7,7 +7,7 @@ import ColorPicker from '@/components/shared/ColorPicker';
 import Heading from '@/components/shared/Heading';
 import { colorOptions } from '@/config/colors';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 
 import styles from './Theme.module.scss';
 
@@ -17,11 +17,11 @@ const Theme = () => {
   const dispatch = useAppDispatch();
 
   const { background, text, primary } = useAppSelector<ThemeConfig>((state) =>
-    get(state.resume.present, 'metadata.theme')
+    get(state.website.present, 'metadata.theme')
   );
 
   const handleChange = (property: string, color: string) => {
-    dispatch(setResumeState({ path: `metadata.theme.${property}`, value: color[0] !== '#' ? `#${color}` : color }));
+    dispatch(setWebsiteState({ path: `metadata.theme.${property}`, value: color[0] !== '#' ? `#${color}` : color }));
   };
 
   return (

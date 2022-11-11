@@ -2,7 +2,7 @@ import { DeleteObjectCommand, PutObjectCommand, S3, S3Client } from '@aws-sdk/cl
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Resume as ResumeSchema } from '@reactive-resume/schema';
+import { Website as WebsiteSchema } from '@reactive-website/schema';
 import fs from 'fs/promises';
 import { isEmpty, pick, sample, set } from 'lodash';
 import { nanoid } from 'nanoid';
@@ -15,19 +15,19 @@ import { UsersService } from '@/users/users.service';
 import { covers } from './data/covers';
 import defaultState from './data/defaultState';
 import sampleData from './data/sampleData';
-import { CreateResumeDto } from './dto/create-resume.dto';
-import { UpdateResumeDto } from './dto/update-resume.dto';
-import { Resume } from './entities/resume.entity';
+import { CreateWebsiteDto } from './dto/create-website.dto';
+import { UpdateWebsiteDto } from './dto/update-website.dto';
+import { Website } from './entities/website.entity';
 
 export const SHORT_ID_LENGTH = 8;
 
 @Injectable()
-export class ResumeService {
+export class WebsiteService {
   private s3Client: S3Client;
   private s3Enabled: boolean;
 
   constructor(
-    @InjectRepository(Resume) private resumeRepository: Repository<Resume>,
+    @InjectRepository(Website) private websiteRepository: Repository<Website>,
     private configService: ConfigService,
     private usersService: UsersService
   ) {
@@ -45,16 +45,16 @@ export class ResumeService {
     }
   }
 
-  async create(createResumeDto: CreateResumeDto, userId: number) {
+  async create(createWebsiteDto: CreateWebsiteDto, userId: number) {
     try {
       const user = await this.usersService.findById(userId);
 
       const shortId = nanoid(SHORT_ID_LENGTH);
       const image = `/images/covers/${sample(covers)}`;
 
-      const resume = this.resumeRepository.create({
+      const website = this.websiteRepository.create({
         ...defaultState,
-        ...createResumeDto,
+        ...createWebsiteDto,
         shortId,
         image,
         user,
@@ -64,11 +64,11 @@ export class ResumeService {
         },
       });
 
-      return await this.resumeRepository.save(resume);
+      return await this.websiteRepository.save(website);
     } catch (error: any) {
       if (error?.code === PostgresErrorCode.UniqueViolation) {
         throw new HttpException(
-          'A resume with the same slug already exists, please enter a unique slug and try again.',
+          'A website with the same slug already exists, please enter a unique slug and try again.',
           HttpStatus.BAD_REQUEST
         );
       }
@@ -80,22 +80,22 @@ export class ResumeService {
     }
   }
 
-  async import(importResumeDto: Partial<ResumeSchema>, userId: number) {
+  async import(importWebsiteDto: Partial<WebsiteSchema>, userId: number) {
     try {
       const user = await this.usersService.findById(userId);
 
       const shortId = nanoid(SHORT_ID_LENGTH);
       const image = `/images/covers/${sample(covers)}`;
 
-      const resume = this.resumeRepository.create({
+      const website = this.websiteRepository.create({
         ...defaultState,
-        ...importResumeDto,
+        ...importWebsiteDto,
         shortId,
         image,
         user,
       });
 
-      return this.resumeRepository.save(resume);
+      return this.websiteRepository.save(website);
     } catch {
       throw new HttpException(
         'Something went wrong. Please try again later, or raise an issue on GitHub if the problem persists.',
@@ -105,106 +105,106 @@ export class ResumeService {
   }
 
   findAll() {
-    return this.resumeRepository.find();
+    return this.websiteRepository.find();
   }
 
   findAllByUser(userId: number) {
-    return this.resumeRepository.find({ where: { user: { id: userId } } });
+    return this.websiteRepository.find({ where: { user: { id: userId } } });
   }
 
   async findOne(id: number, userId?: number) {
-    const resume = await this.resumeRepository.findOne({ where: { id } });
+    const website = await this.websiteRepository.findOne({ where: { id } });
 
-    if (!resume) {
-      throw new HttpException('The resume you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
+    if (!website) {
+      throw new HttpException('The website you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
     }
 
-    const isPrivate = !resume.public;
-    const isNotOwner = resume.user.id !== userId;
+    const isPrivate = !website.public;
+    const isNotOwner = website.user.id !== userId;
 
     if (isPrivate && isNotOwner) {
-      throw new HttpException('The resume you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
+      throw new HttpException('The website you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
     }
 
-    return resume;
+    return website;
   }
 
   async findOneByShortId(shortId: string, userId?: number, secretKey?: string) {
-    const resume = await this.resumeRepository.findOne({ where: { shortId } });
+    const website = await this.websiteRepository.findOne({ where: { shortId } });
 
-    if (!resume) {
-      throw new HttpException('The resume you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
+    if (!website) {
+      throw new HttpException('The website you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
     }
 
-    const isPrivate = !resume.public;
-    const isOwner = resume.user.id === userId;
+    const isPrivate = !website.public;
+    const isOwner = website.user.id === userId;
     const isInternal = secretKey === this.configService.get<string>('app.secretKey');
 
     if (!isInternal && isPrivate && !isOwner) {
-      throw new HttpException('The resume you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
+      throw new HttpException('The website you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
     }
 
-    return resume;
+    return website;
   }
 
   async findOneByIdentifier(username: string, slug: string, userId?: number, secretKey?: string) {
-    const resume = await this.resumeRepository.findOne({ where: { user: { username }, slug } });
+    const website = await this.websiteRepository.findOne({ where: { user: { username }, slug } });
 
-    if (!resume) {
-      throw new HttpException('The resume you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
+    if (!website) {
+      throw new HttpException('The website you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
     }
 
-    const isPrivate = !resume.public;
-    const isOwner = resume.user.id === userId;
+    const isPrivate = !website.public;
+    const isOwner = website.user.id === userId;
     const isInternal = secretKey === this.configService.get<string>('app.secretKey');
 
     if (!isInternal && isPrivate && !isOwner) {
-      throw new HttpException('The resume you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
+      throw new HttpException('The website you are looking does not exist, or maybe never did?', HttpStatus.NOT_FOUND);
     }
 
-    return resume;
+    return website;
   }
 
-  async update(id: number, updateResumeDto: UpdateResumeDto, userId: number) {
-    const resume = await this.findOne(id, userId);
+  async update(id: number, updateWebsiteDto: UpdateWebsiteDto, userId: number) {
+    const website = await this.findOne(id, userId);
 
-    const updatedResume = {
-      ...resume,
-      ...updateResumeDto,
+    const updatedWebsite = {
+      ...website,
+      ...updateWebsiteDto,
     };
 
-    return this.resumeRepository.save<Resume>(updatedResume);
+    return this.websiteRepository.save<Website>(updatedWebsite);
   }
 
   async remove(id: number, userId: number) {
-    await this.resumeRepository.delete({ id, user: { id: userId } });
+    await this.websiteRepository.delete({ id, user: { id: userId } });
   }
 
   async duplicate(id: number, userId: number) {
     try {
-      const originalResume = await this.findOne(id, userId);
+      const originalWebsite = await this.findOne(id, userId);
 
       const shortId = nanoid(SHORT_ID_LENGTH);
       const image = `/images/covers/${sample(covers)}`;
 
-      const duplicatedResume: Partial<Resume> = {
-        ...pick(originalResume, ['name', 'slug', 'basics', 'metadata', 'sections', 'public']),
-        name: `${originalResume.name} Copy`,
-        slug: `${originalResume.slug}-copy`,
+      const duplicatedWebsite: Partial<Website> = {
+        ...pick(originalWebsite, ['name', 'slug', 'basics', 'metadata', 'sections', 'public']),
+        name: `${originalWebsite.name} Copy`,
+        slug: `${originalWebsite.slug}-copy`,
         shortId,
         image,
       };
 
-      const resume = this.resumeRepository.create({
-        ...duplicatedResume,
+      const website = this.websiteRepository.create({
+        ...duplicatedWebsite,
         user: { id: userId },
       });
 
-      return this.resumeRepository.save(resume);
+      return this.websiteRepository.save(website);
     } catch (error: any) {
       if (error?.code === PostgresErrorCode.UniqueViolation) {
         throw new HttpException(
-          'A resume with the same slug already exists, please enter a unique slug and try again.',
+          'A website with the same slug already exists, please enter a unique slug and try again.',
           HttpStatus.BAD_REQUEST
         );
       }
@@ -217,27 +217,27 @@ export class ResumeService {
   }
 
   async sample(id: number, userId: number) {
-    const resume = await this.findOne(id, userId);
+    const website = await this.findOne(id, userId);
 
-    const sampleResume = { ...resume, ...sampleData };
+    const sampleWebsite = { ...website, ...sampleData };
 
-    return this.resumeRepository.save<Resume>(sampleResume);
+    return this.websiteRepository.save<Website>(sampleWebsite);
   }
 
   async reset(id: number, userId: number) {
-    const resume = await this.findOne(id, userId);
+    const website = await this.findOne(id, userId);
 
-    const prevResume = pick(resume, ['id', 'shortId', 'name', 'slug', 'image', 'user', 'createdAt']);
-    const nextResume = { ...prevResume, ...defaultState };
+    const prevWebsite = pick(website, ['id', 'shortId', 'name', 'slug', 'image', 'user', 'createdAt']);
+    const nextWebsite = { ...prevWebsite, ...defaultState };
 
-    return this.resumeRepository.update(id, nextResume);
+    return this.websiteRepository.update(id, nextWebsite);
   }
 
   async uploadPhoto(id: number, userId: number, file: Express.Multer.File) {
-    const resume = await this.findOne(id, userId);
+    const website = await this.findOne(id, userId);
 
     const filename = new Date().getTime() + extname(file.originalname);
-    let updatedResume = null;
+    let updatedWebsite = null;
 
     if (this.s3Enabled) {
       const urlPrefix = this.configService.get<string>('storage.urlPrefix');
@@ -251,7 +251,7 @@ export class ResumeService {
           ACL: 'public-read',
         })
       );
-      updatedResume = set(resume, 'basics.photo.url', publicUrl);
+      updatedWebsite = set(website, 'basics.photo.url', publicUrl);
     } else {
       const path = `${__dirname}/../assets/uploads/${userId}/${id}/`;
       const serverUrl = this.configService.get<string>('app.serverUrl');
@@ -260,7 +260,7 @@ export class ResumeService {
         await fs.mkdir(path, { recursive: true });
         await fs.writeFile(path + filename, file.buffer);
 
-        updatedResume = set(resume, 'basics.photo.url', `${serverUrl}/assets/uploads/${userId}/${id}/` + filename);
+        updatedWebsite = set(website, 'basics.photo.url', `${serverUrl}/assets/uploads/${userId}/${id}/` + filename);
       } catch (error) {
         throw new HttpException(
           'Something went wrong. Please try again later, or raise an issue on GitHub if the problem persists.',
@@ -269,12 +269,12 @@ export class ResumeService {
       }
     }
 
-    return this.resumeRepository.save<Resume>(updatedResume);
+    return this.websiteRepository.save<Website>(updatedWebsite);
   }
 
   async deletePhoto(id: number, userId: number) {
-    const resume = await this.findOne(id, userId);
-    const publicUrl = resume.basics.photo.url;
+    const website = await this.findOne(id, userId);
+    const publicUrl = website.basics.photo.url;
 
     if (this.s3Enabled) {
       const urlPrefix = this.configService.get<string>('storage.urlPrefix');
@@ -288,7 +288,7 @@ export class ResumeService {
       );
     } else {
       const serverUrl = this.configService.get<string>('app.serverUrl');
-      const filePath = __dirname + '/..' + resume.basics.photo.url.replace(serverUrl, '');
+      const filePath = __dirname + '/..' + website.basics.photo.url.replace(serverUrl, '');
 
       const isValidFile = (await fs.stat(filePath)).isFile();
 
@@ -297,8 +297,8 @@ export class ResumeService {
       }
     }
 
-    const updatedResume = set(resume, 'basics.photo.url', '');
+    const updatedWebsite = set(website, 'basics.photo.url', '');
 
-    return this.resumeRepository.save<Resume>(updatedResume);
+    return this.websiteRepository.save<Website>(updatedWebsite);
   }
 }

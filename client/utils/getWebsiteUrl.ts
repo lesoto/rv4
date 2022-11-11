@@ -1,5 +1,5 @@
 import env from '@beam-australia/react-env';
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import get from 'lodash/get';
 
 type Options = {
@@ -14,10 +14,10 @@ const defaultOptions: Options = {
   buildUrl: false,
 };
 
-const getResumeUrl = (resume: Resume, options: Options = defaultOptions): string => {
-  const username: string = get(resume, 'user.username');
-  const shortId: string = get(resume, 'shortId');
-  const slug: string = get(resume, 'slug');
+const getWebsiteUrl = (website: Website, options: Options = defaultOptions): string => {
+  const username: string = get(website, 'user.username');
+  const shortId: string = get(website, 'shortId');
+  const slug: string = get(website, 'slug');
 
   let url = '';
   let hostname = env('URL');
@@ -33,4 +33,4 @@ const getResumeUrl = (resume: Resume, options: Options = defaultOptions): string
   return url;
 };
 
-export default getResumeUrl;
+export default getWebsiteUrl;

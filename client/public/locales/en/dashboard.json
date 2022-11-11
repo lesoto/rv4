@@ -1,13 +1,13 @@
 {
-  "create-resume": {
+  "create-website": {
     "subtitle": "Start from scratch",
-    "title": "Create New Resume"
+    "title": "Create New Website"
   },
   "import-external": {
-    "subtitle": "JSON or Reactive Resume",
+    "subtitle": "JSON or Reactive Website",
     "title": "Import from External Sources"
   },
-  "resume": {
+  "website": {
     "menu": {
       "delete": "Delete",
       "duplicate": "Duplicate",
@@ -15,8 +15,8 @@
       "rename": "Rename",
       "share-link": "Share Link",
       "tooltips": {
-        "delete": "Are you sure you want to delete this resume? This is an irreversible action.",
-        "share-link": "You need to change the visibility of your resume to public to make it visible to others."
+        "delete": "Are you sure you want to delete this website? This is an irreversible action.",
+        "share-link": "You need to change the visibility of your website to public to make it visible to others."
       }
     },
     "timestamp": "Last updated {{timestamp}} ago"

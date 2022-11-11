@@ -25,7 +25,7 @@
       "@/mail/*": ["src/mail/*"],
       "@/users/*": ["src/users/*"],
       "@/config/*": ["src/config/*"],
-      "@/resume/*": ["src/resume/*"],
+      "@/website/*": ["src/website/*"],
       "@/filters/*": ["src/filters/*"],
       "@/database/*": ["src/database/*"],
       "@/constants/*": ["src/constants/*"],

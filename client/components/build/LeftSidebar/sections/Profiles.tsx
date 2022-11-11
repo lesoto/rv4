@@ -1,13 +1,13 @@
 import { Add } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { ListItem } from '@reactive-resume/schema';
+import { ListItem } from '@reactive-website/schema';
 import { useTranslation } from 'next-i18next';
 
 import Heading from '@/components/shared/Heading';
 import List from '@/components/shared/List';
 import { useAppDispatch } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
-import { duplicateItem } from '@/store/resume/resumeSlice';
+import { duplicateItem } from '@/store/website/websiteSlice';
 
 const Profiles = () => {
   const { t } = useTranslation();

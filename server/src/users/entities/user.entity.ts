@@ -1,7 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { Resume } from '@/resume/entities/resume.entity';
+import { Website } from '@/website/entities/website.entity';
 
 @Entity()
 export class User {
@@ -25,8 +25,8 @@ export class User {
   @Exclude()
   resetToken?: string;
 
-  @OneToMany(() => Resume, (resume) => resume.user)
-  resumes: Resume[];
+  @OneToMany(() => Website, (website) => website.user)
+  websites: Website[];
 
   @Column()
   provider: 'email' | 'google';

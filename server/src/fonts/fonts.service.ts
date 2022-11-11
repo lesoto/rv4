@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Font } from '@reactive-resume/schema';
+import { Font } from '@reactive-website/schema';
 import { get } from 'lodash';
 import { firstValueFrom } from 'rxjs';
 

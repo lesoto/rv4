@@ -1,6 +1,6 @@
-import { Resume } from '../entities/resume.entity';
+import { Website } from '../entities/website.entity';
 
-const sampleData: Partial<Resume> = {
+const sampleData: Partial<Website> = {
   basics: {
     name: 'Jessica Jones',
     email: 'alexis.jones@gmail.com',

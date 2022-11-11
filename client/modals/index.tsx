@@ -21,9 +21,9 @@ import ReferenceModal from './builder/sections/ReferenceModal';
 import SkillModal from './builder/sections/SkillModal';
 import VolunteerModal from './builder/sections/VolunteerModal';
 import WorkModal from './builder/sections/WorkModal';
-import CreateResumeModal from './dashboard/CreateResumeModal';
+import CreateWebsiteModal from './dashboard/CreateWebsiteModal';
 import ImportExternalModal from './dashboard/ImportExternalModal';
-import RenameResumeModal from './dashboard/RenameResumeModal';
+import RenameWebsiteModal from './dashboard/RenameWebsiteModal';
 
 type QueryParams = {
   modal?: ModalName;
@@ -51,9 +51,9 @@ const ModalWrapper: React.FC = () => {
       <ResetPasswordModal />
 
       {/* Dashboard */}
-      <CreateResumeModal />
+      <CreateWebsiteModal />
       <ImportExternalModal />
-      <RenameResumeModal />
+      <RenameWebsiteModal />
 
       {/* Builder */}
 

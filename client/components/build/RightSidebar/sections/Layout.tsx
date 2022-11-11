@@ -8,7 +8,7 @@ import { useTranslation } from 'next-i18next';
 
 import Heading from '@/components/shared/Heading';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { addPage, deletePage, setResumeState } from '@/store/resume/resumeSlice';
+import { addPage, deletePage, setWebsiteState } from '@/store/website/websiteSlice';
 
 import styles from './Layout.module.scss';
 
@@ -23,8 +23,8 @@ const Layout = () => {
 
   const dispatch = useAppDispatch();
 
-  const layout = useAppSelector((state) => state.resume.present.metadata.layout);
-  const resumeSections = useAppSelector((state) => state.resume.present.sections);
+  const layout = useAppSelector((state) => state.website.present.metadata.layout);
+  const websiteSections = useAppSelector((state) => state.website.present.sections);
 
   const onDragEnd = (dropResult: DropResult) => {
     const { source: srcLoc, destination: destLoc } = dropResult;
@@ -43,7 +43,7 @@ const Layout = () => {
     // Insert item at destination
     newLayout[destIndex.page][destIndex.column].splice(destIndex.section, 0, section);
 
-    dispatch(setResumeState({ path: 'metadata.layout', value: newLayout }));
+    dispatch(setWebsiteState({ path: 'metadata.layout', value: newLayout }));
   };
 
   const handleAddPage = () => dispatch(addPage());
@@ -114,10 +114,10 @@ const Layout = () => {
                               <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                                 <div
                                   className={clsx(styles.section, {
-                                    [styles.disabled]: !get(resumeSections, `${sectionId}.visible`, true),
+                                    [styles.disabled]: !get(websiteSections, `${sectionId}.visible`, true),
                                   })}
                                 >
-                                  {get(resumeSections, `${sectionId}.name`, '') as string}
+                                  {get(websiteSections, `${sectionId}.name`, '') as string}
                                 </div>
                               </div>
                             )}

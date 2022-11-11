@@ -1,6 +1,6 @@
 import Editor from '@monaco-editor/react';
 import { useTheme } from '@mui/material';
-import { CustomCSS as CustomCSSType } from '@reactive-resume/schema';
+import { CustomCSS as CustomCSSType } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import { useTranslation } from 'next-i18next';
@@ -8,7 +8,7 @@ import React from 'react';
 
 import Heading from '@/components/shared/Heading';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 
 const CustomCSS = () => {
   const theme = useTheme();
@@ -17,10 +17,10 @@ const CustomCSS = () => {
 
   const dispatch = useAppDispatch();
 
-  const customCSS: CustomCSSType = useAppSelector((state) => get(state.resume.present, 'metadata.css', {}));
+  const customCSS: CustomCSSType = useAppSelector((state) => get(state.website.present, 'metadata.css', {}));
 
   const handleChange = (value: string | undefined) => {
-    dispatch(setResumeState({ path: 'metadata.css.value', value }));
+    dispatch(setWebsiteState({ path: 'metadata.css.value', value }));
   };
 
   return (

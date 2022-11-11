@@ -18,24 +18,24 @@ import { JwtAuthGuard } from '@/auth/guards/jwt.guard';
 import { OptionalJwtAuthGuard } from '@/auth/guards/optional-jwt.guard';
 import { User } from '@/decorators/user.decorator';
 
-import { CreateResumeDto } from './dto/create-resume.dto';
-import { UpdateResumeDto } from './dto/update-resume.dto';
-import { ResumeService } from './resume.service';
+import { CreateWebsiteDto } from './dto/create-website.dto';
+import { UpdateWebsiteDto } from './dto/update-website.dto';
+import { WebsiteService } from './website.service';
 
-@Controller('resume')
-export class ResumeController {
-  constructor(private readonly resumeService: ResumeService) {}
+@Controller('website')
+export class WebsiteController {
+  constructor(private readonly websiteService: WebsiteService) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createResumeDto: CreateResumeDto, @User('id') userId: number) {
-    return this.resumeService.create(createResumeDto, userId);
+  create(@Body() createWebsiteDto: CreateWebsiteDto, @User('id') userId: number) {
+    return this.websiteService.create(createWebsiteDto, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get()
   async findAllByUser(@User('id') userId: number) {
-    return this.resumeService.findAllByUser(userId);
+    return this.websiteService.findAllByUser(userId);
   }
 
   @UseGuards(OptionalJwtAuthGuard)
@@ -45,7 +45,7 @@ export class ResumeController {
     @User('id') userId?: number,
     @Query('secretKey') secretKey?: string
   ) {
-    return this.resumeService.findOneByShortId(shortId, userId, secretKey);
+    return this.websiteService.findOneByShortId(shortId, userId, secretKey);
   }
 
   @UseGuards(OptionalJwtAuthGuard)
@@ -56,55 +56,55 @@ export class ResumeController {
     @User('id') userId?: number,
     @Query('secretKey') secretKey?: string
   ) {
-    return this.resumeService.findOneByIdentifier(username, slug, userId, secretKey);
+    return this.websiteService.findOneByIdentifier(username, slug, userId, secretKey);
   }
 
   @UseGuards(OptionalJwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string, @User('id') userId?: number) {
-    return this.resumeService.findOne(+id, userId);
+    return this.websiteService.findOne(+id, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
-  update(@Param('id') id: string, @User('id') userId: number, @Body() updateResumeDto: UpdateResumeDto) {
-    return this.resumeService.update(+id, updateResumeDto, userId);
+  update(@Param('id') id: string, @User('id') userId: number, @Body() updateWebsiteDto: UpdateWebsiteDto) {
+    return this.websiteService.update(+id, updateWebsiteDto, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @User('id') userId: number) {
-    return this.resumeService.remove(+id, userId);
+    return this.websiteService.remove(+id, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Post(':id/duplicate')
   duplicate(@Param('id') id: string, @User('id') userId: number) {
-    return this.resumeService.duplicate(+id, userId);
+    return this.websiteService.duplicate(+id, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Post(':id/sample')
   sample(@Param('id') id: string, @User('id') userId: number) {
-    return this.resumeService.sample(+id, userId);
+    return this.websiteService.sample(+id, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Post(':id/reset')
   reset(@Param('id') id: string, @User('id') userId: number) {
-    return this.resumeService.reset(+id, userId);
+    return this.websiteService.reset(+id, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Put(':id/photo')
   @UseInterceptors(FileInterceptor('file'))
   async uploadPhoto(@Param('id') id: string, @User('id') userId: number, @UploadedFile() file: Express.Multer.File) {
-    return this.resumeService.uploadPhoto(+id, userId, file);
+    return this.websiteService.uploadPhoto(+id, userId, file);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id/photo')
   deletePhoto(@Param('id') id: string, @User('id') userId: number) {
-    return this.resumeService.deletePhoto(+id, userId);
+    return this.websiteService.deletePhoto(+id, userId);
   }
 }

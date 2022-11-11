@@ -1,4 +1,4 @@
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import isEmpty from 'lodash/isEmpty';
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
@@ -10,9 +10,9 @@ import { useQuery } from 'react-query';
 import Center from '@/components/build/Center/Center';
 import LeftSidebar from '@/components/build/LeftSidebar/LeftSidebar';
 import RightSidebar from '@/components/build/RightSidebar/RightSidebar';
-import { fetchResumeByIdentifier } from '@/services/resume';
+import { fetchWebsiteByIdentifier } from '@/services/website';
 import { useAppDispatch } from '@/store/hooks';
-import { setResume } from '@/store/resume/resumeSlice';
+import { setWebsite } from '@/store/website/websiteSlice';
 import styles from '@/styles/pages/Build.module.scss';
 
 type QueryParams = {
@@ -38,31 +38,31 @@ const Build: NextPage<Props> = ({ username, slug }) => {
 
   const dispatch = useAppDispatch();
 
-  const { data: resume } = useQuery<Resume>(
-    `resume/${username}/${slug}`,
-    () => fetchResumeByIdentifier({ username, slug }),
+  const { data: website } = useQuery<Website>(
+    `website/${username}/${slug}`,
+    () => fetchWebsiteByIdentifier({ username, slug }),
     {
       cacheTime: 0,
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-      onSuccess: (resume) => {
-        dispatch(setResume(resume));
+      onSuccess: (website) => {
+        dispatch(setWebsite(website));
       },
     }
   );
 
   useEffect(() => {
-    if (resume) dispatch(setResume(resume));
-  }, [resume, dispatch]);
+    if (website) dispatch(setWebsite(website));
+  }, [website, dispatch]);
 
-  if (!resume || isEmpty(resume)) return null;
+  if (!website || isEmpty(website)) return null;
 
   return (
     <div className={styles.container}>
       <Head>
         <title>
-          {resume.name} | {t<string>('common.title')}
+          {website.name} | {t<string>('common.title')}
         </title>
       </Head>
 

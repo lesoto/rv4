@@ -13,8 +13,8 @@ import Section from './widgets/Section';
 const Glalie: React.FC<PageProps> = ({ page }) => {
   const isFirstPage = useMemo(() => page === 0, [page]);
 
-  const layout: string[][] = useAppSelector((state) => state.resume.present.metadata.layout[page]);
-  const primaryColor: string = useAppSelector((state) => get(state.resume.present, 'metadata.theme.primary'));
+  const layout: string[][] = useAppSelector((state) => state.website.present.metadata.layout[page]);
+  const primaryColor: string = useAppSelector((state) => get(state.website.present, 'metadata.theme.primary'));
 
   return (
     <div className={styles.page}>

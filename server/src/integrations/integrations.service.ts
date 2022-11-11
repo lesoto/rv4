@@ -8,11 +8,11 @@ import {
   Project,
   Publication,
   Reference,
-  Resume,
+  Website,
   Skill,
   Volunteer,
   WorkExperience,
-} from '@reactive-resume/schema';
+} from '@reactive-website/schema';
 import csv from 'csvtojson';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -23,67 +23,67 @@ import { DeepPartial } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
 import { FILENAME_TIMESTAMP } from '@/constants/index';
-import defaultState from '@/resume/data/defaultState';
-import { Resume as ResumeEntity } from '@/resume/entities/resume.entity';
-import { ResumeService } from '@/resume/resume.service';
+import defaultState from '@/website/data/defaultState';
+import { Website as WebsiteEntity } from '@/website/entities/website.entity';
+import { WebsiteService } from '@/website/website.service';
 
 @Injectable()
 export class IntegrationsService {
-  constructor(private resumeService: ResumeService) {
+  constructor(private websiteService: WebsiteService) {
     dayjs.extend(utc);
   }
 
-  async reactiveResume(userId: number, path: string): Promise<ResumeEntity> {
+  async reactiveWebsite(userId: number, path: string): Promise<WebsiteEntity> {
     try {
-      const jsonResume = JSON.parse(await readFile(path, 'utf8'));
+      const jsonWebsite = JSON.parse(await readFile(path, 'utf8'));
 
-      const resume: Partial<Resume> = cloneDeep(jsonResume);
+      const website: Partial<Website> = cloneDeep(jsonWebsite);
 
       // Metadata
       const timestamp = dayjs().utc().format(FILENAME_TIMESTAMP);
-      merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
-        name: `Imported from Reactive Resume (${timestamp})`,
-        slug: `imported-from-reactive-resume-${timestamp}`,
+      merge<Partial<Website>, DeepPartial<Website>>(website, {
+        name: `Imported from Reactive Website (${timestamp})`,
+        slug: `imported-from-reactive-website-${timestamp}`,
       });
 
-      return this.resumeService.import(resume, userId);
+      return this.websiteService.import(website, userId);
     } catch {
-      throw new HttpException('You must upload a valid JSON Resume file.', HttpStatus.BAD_REQUEST);
+      throw new HttpException('You must upload a valid JSON Website file.', HttpStatus.BAD_REQUEST);
     } finally {
       await unlink(path);
     }
   }
 
-  async reactiveResumeV2(userId: number, path: string): Promise<ResumeEntity> {
+  async reactiveWebsiteV2(userId: number, path: string): Promise<WebsiteEntity> {
     try {
-      const jsonResume = JSON.parse(await readFile(path, 'utf8'));
+      const jsonWebsite = JSON.parse(await readFile(path, 'utf8'));
 
-      const resume: Partial<Resume> = cloneDeep(defaultState);
+      const website: Partial<Website> = cloneDeep(defaultState);
 
       // Metadata
       const timestamp = dayjs().utc().format(FILENAME_TIMESTAMP);
-      merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
-        name: `Imported from Reactive Resume V2 (${timestamp})`,
-        slug: `imported-from-reactive-resume-v2-${timestamp}`,
+      merge<Partial<Website>, DeepPartial<Website>>(website, {
+        name: `Imported from Reactive Website V2 (${timestamp})`,
+        slug: `imported-from-reactive-website-v2-${timestamp}`,
       });
 
       // Basics
       try {
-        merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+        merge<Partial<Website>, DeepPartial<Website>>(website, {
           basics: {
-            name: get(jsonResume, 'profile.firstName') + ' ' + get(jsonResume, 'profile.lastName'),
-            headline: get(jsonResume, 'profile.subtitle'),
+            name: get(jsonWebsite, 'profile.firstName') + ' ' + get(jsonWebsite, 'profile.lastName'),
+            headline: get(jsonWebsite, 'profile.subtitle'),
             photo: {
-              url: get(jsonResume, 'profile.photograph'),
+              url: get(jsonWebsite, 'profile.photograph'),
             },
-            email: get(jsonResume, 'profile.email'),
-            phone: get(jsonResume, 'profile.phone'),
-            website: get(jsonResume, 'profile.website'),
-            summary: get(jsonResume, 'objective'),
+            email: get(jsonWebsite, 'profile.email'),
+            phone: get(jsonWebsite, 'profile.phone'),
+            website: get(jsonWebsite, 'profile.website'),
+            summary: get(jsonWebsite, 'objective'),
             location: {
-              address: get(jsonResume, 'profile.address.line1'),
-              postalCode: get(jsonResume, 'profile.address.pincode'),
-              city: get(jsonResume, 'profile.address.city'),
+              address: get(jsonWebsite, 'profile.address.line1'),
+              postalCode: get(jsonWebsite, 'profile.address.pincode'),
+              city: get(jsonWebsite, 'profile.address.city'),
             },
           },
         });
@@ -93,12 +93,12 @@ export class IntegrationsService {
 
       // Profiles
       try {
-        const profiles: any[] = get(jsonResume, 'social.items', []);
+        const profiles: any[] = get(jsonWebsite, 'social.items', []);
         profiles.forEach((profile) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             basics: {
               profiles: [
-                ...resume.basics.profiles,
+                ...website.basics.profiles,
                 {
                   id: uuidv4(),
                   url: get(profile, 'url'),
@@ -115,13 +115,13 @@ export class IntegrationsService {
 
       // Work
       try {
-        const work: any[] = get(jsonResume, 'work.items', []);
+        const work: any[] = get(jsonWebsite, 'work.items', []);
         work.forEach((item) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               work: {
                 items: [
-                  ...get(resume, 'sections.work.items', []),
+                  ...get(website, 'sections.work.items', []),
                   {
                     id: uuidv4(),
                     name: get(item, 'company'),
@@ -144,13 +144,13 @@ export class IntegrationsService {
 
       // Education
       try {
-        const education: any[] = get(jsonResume, 'education.items', []);
+        const education: any[] = get(jsonWebsite, 'education.items', []);
         education.forEach((item) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               education: {
                 items: [
-                  ...get(resume, 'sections.education.items', []),
+                  ...get(website, 'sections.education.items', []),
                   {
                     id: uuidv4(),
                     institution: get(item, 'institution'),
@@ -176,13 +176,13 @@ export class IntegrationsService {
 
       // Awards
       try {
-        const awards: any[] = get(jsonResume, 'awards.items', []);
+        const awards: any[] = get(jsonWebsite, 'awards.items', []);
         awards.forEach((award) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               awards: {
                 items: [
-                  ...get(resume, 'sections.awards.items', []),
+                  ...get(website, 'sections.awards.items', []),
                   {
                     id: uuidv4(),
                     title: get(award, 'title'),
@@ -201,13 +201,13 @@ export class IntegrationsService {
 
       // Certifications
       try {
-        const certifications: any[] = get(jsonResume, 'certifications.items', []);
+        const certifications: any[] = get(jsonWebsite, 'certifications.items', []);
         certifications.forEach((certificate) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               certifications: {
                 items: [
-                  ...get(resume, 'sections.certifications.items', []),
+                  ...get(website, 'sections.certifications.items', []),
                   {
                     id: uuidv4(),
                     name: get(certificate, 'title'),
@@ -226,13 +226,13 @@ export class IntegrationsService {
 
       // Skills
       try {
-        const skills: any[] = get(jsonResume, 'skills.items', []);
+        const skills: any[] = get(jsonWebsite, 'skills.items', []);
         skills.forEach((skill) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               skills: {
                 items: [
-                  ...get(resume, 'sections.skills.items', []),
+                  ...get(website, 'sections.skills.items', []),
                   {
                     id: uuidv4(),
                     name: get(skill, 'name'),
@@ -250,13 +250,13 @@ export class IntegrationsService {
 
       // Languages
       try {
-        const languages: any[] = get(jsonResume, 'languages.items', []);
+        const languages: any[] = get(jsonWebsite, 'languages.items', []);
         languages.forEach((language) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               languages: {
                 items: [
-                  ...get(resume, 'sections.languages.items', []),
+                  ...get(website, 'sections.languages.items', []),
                   {
                     id: uuidv4(),
                     name: get(language, 'name'),
@@ -274,13 +274,13 @@ export class IntegrationsService {
 
       // Hobbies
       try {
-        const hobbies: any[] = get(jsonResume, 'hobbies.items', []);
+        const hobbies: any[] = get(jsonWebsite, 'hobbies.items', []);
         hobbies.forEach((hobby) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               interests: {
                 items: [
-                  ...get(resume, 'sections.interests.items', []),
+                  ...get(website, 'sections.interests.items', []),
                   {
                     id: uuidv4(),
                     name: get(hobby, 'name'),
@@ -297,13 +297,13 @@ export class IntegrationsService {
 
       // References
       try {
-        const references: any[] = get(jsonResume, 'references.items', []);
+        const references: any[] = get(jsonWebsite, 'references.items', []);
         references.forEach((reference) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               references: {
                 items: [
-                  ...get(resume, 'sections.references.items', []),
+                  ...get(website, 'sections.references.items', []),
                   {
                     id: uuidv4(),
                     name: get(reference, 'name'),
@@ -323,13 +323,13 @@ export class IntegrationsService {
 
       // Projects
       try {
-        const projects: any[] = get(jsonResume, 'projects.items', []);
+        const projects: any[] = get(jsonWebsite, 'projects.items', []);
         projects.forEach((project) => {
-          merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+          merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
               projects: {
                 items: [
-                  ...get(resume, 'sections.projects.items', []),
+                  ...get(website, 'sections.projects.items', []),
                   {
                     id: uuidv4(),
                     name: get(project, 'title'),
@@ -350,37 +350,37 @@ export class IntegrationsService {
       }
 
       // Metadata
-      const template = get(jsonResume, 'metadata.template');
+      const template = get(jsonWebsite, 'metadata.template');
       const templateWhitelist = ['onyx', 'pikachu', 'gengar', 'castform', 'glalie'];
-      merge<Partial<Resume>, DeepPartial<Resume>>(resume, {
+      merge<Partial<Website>, DeepPartial<Website>>(website, {
         metadata: {
-          ...get(resume, 'metadata'),
+          ...get(website, 'metadata'),
           typography: {
             family: {
-              heading: get(jsonResume, 'metadata.font'),
-              body: get(jsonResume, 'metadata.font'),
+              heading: get(jsonWebsite, 'metadata.font'),
+              body: get(jsonWebsite, 'metadata.font'),
             },
             size: {
-              heading: get(jsonResume, 'metadata.fontSize'),
-              body: get(jsonResume, 'metadata.fontSize'),
+              heading: get(jsonWebsite, 'metadata.fontSize'),
+              body: get(jsonWebsite, 'metadata.fontSize'),
             },
           },
           page: {
             format: 'A4',
           },
           theme: {
-            background: get(jsonResume, 'metadata.colors.background'),
-            primary: get(jsonResume, 'metadata.colors.primary'),
-            text: get(jsonResume, 'metadata.colors.text'),
+            background: get(jsonWebsite, 'metadata.colors.background'),
+            primary: get(jsonWebsite, 'metadata.colors.primary'),
+            text: get(jsonWebsite, 'metadata.colors.text'),
           },
-          locale: get(jsonResume, 'metadata.language'),
+          locale: get(jsonWebsite, 'metadata.language'),
           template: templateWhitelist.includes(template) ? template : 'kakuna',
         },
       });
 
-      return this.resumeService.import(resume, userId);
+      return this.websiteService.import(website, userId);
     } catch {
-      throw new HttpException('You must upload a valid JSON Resume file.', HttpStatus.BAD_REQUEST);
+      throw new HttpException('You must upload a valid JSON Website file.', HttpStatus.BAD_REQUEST);
     } finally {
       await unlink(path);
     }

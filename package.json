@@ -10,7 +10,9 @@
     "build": "env-cmd --silent turbo run build",
     "start": "env-cmd --silent turbo run start",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "release": "standard-version --release-as patch"
+    "release": "standard-version --release-as patch",
+    "lint:fix": "eslint --fix .",
+    "lint": "eslint ."
   },
   "workspaces": [
     "schema",

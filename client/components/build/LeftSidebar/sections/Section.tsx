@@ -1,6 +1,6 @@
 import { Add } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { ListItem } from '@reactive-resume/schema';
+import { ListItem } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import { useTranslation } from 'next-i18next';
@@ -10,7 +10,7 @@ import Heading from '@/components/shared/Heading';
 import List from '@/components/shared/List';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { ModalName, setModalState } from '@/store/modal/modalSlice';
-import { duplicateItem } from '@/store/resume/resumeSlice';
+import { duplicateItem } from '@/store/website/websiteSlice';
 
 import SectionSettings from './SectionSettings';
 
@@ -37,8 +37,8 @@ const Section: React.FC<Props> = ({
 
   const dispatch = useAppDispatch();
 
-  const heading = useAppSelector<string>((state) => get(state.resume.present, `${path}.name`, name));
-  const visibility = useAppSelector<boolean>((state) => get(state.resume.present, `${path}.visible`, true));
+  const heading = useAppSelector<string>((state) => get(state.website.present, `${path}.name`, name));
+  const visibility = useAppSelector<boolean>((state) => get(state.website.present, `${path}.visible`, true));
 
   const handleAdd = () => {
     const id = path.split('.')[1];

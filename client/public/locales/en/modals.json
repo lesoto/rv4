@@ -17,7 +17,7 @@
       "actions": {
         "login": "Login"
       },
-      "body": "Please enter your username and password associated with your account to login and access, manage and share your resumes.",
+      "body": "Please enter your username and password associated with your account to login and access, manage and share your websites.",
       "form": {
         "password": {
           "label": "Password"
@@ -74,11 +74,11 @@
     }
   },
   "dashboard": {
-    "create-resume": {
+    "create-website": {
       "actions": {
-        "create-resume": "Create Resume"
+        "create-website": "Create Website"
       },
-      "body": "Start building your resume by giving it a name. It could be in reference to the role you are applying for, or just your favorite snack.",
+      "body": "Start building your website by giving it a name. It could be in reference to the role you are applying for, or just your favorite snack.",
       "form": {
         "name": {
           "label": "Name"
@@ -90,22 +90,22 @@
           "label": "Slug"
         }
       },
-      "heading": "Create a new resume"
+      "heading": "Create a new website"
     },
     "import-external": {
       "heading": "Import from External Sources",
-      "reactive-resume": {
+      "reactive-website": {
         "actions": {
           "upload-json": "Upload JSON",
           "upload-json-v2": "Upload JSON from v2"
         },
-        "body": "If you have a JSON that was exported with the current version of Reactive Resume, you can import it back here to get an editable version again.",
-        "heading": "Import From Reactive Resume"
+        "body": "If you have a JSON that was exported with the current version of Reactive Website, you can import it back here to get an editable version again.",
+        "heading": "Import From Reactive Website"
       }
     },
-    "rename-resume": {
+    "rename-website": {
       "actions": {
-        "rename-resume": "Rename Resume"
+        "rename-website": "Rename Website"
       },
       "form": {
         "name": {
@@ -115,7 +115,7 @@
           "label": "Slug"
         }
       },
-      "heading": "Rename your resume"
+      "heading": "Rename your website"
     }
   }
 }

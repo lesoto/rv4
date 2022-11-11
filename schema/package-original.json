@@ -1,5 +1,5 @@
 {
-  "name": "@reactive-resume/schema",
+  "name": "@reactive-website/schema",
   "type": "commonjs",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",

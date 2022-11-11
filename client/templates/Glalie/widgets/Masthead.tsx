@@ -10,10 +10,10 @@ import getProfileIcon from '@/utils/getProfileIcon';
 import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 export const MastheadSidebar: React.FC = () => {
-  const dateFormat: string = useAppSelector((state) => get(state.resume.present, 'metadata.date.format'));
-  const primaryColor: string = useAppSelector((state) => get(state.resume.present, 'metadata.theme.primary'));
+  const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
+  const primaryColor: string = useAppSelector((state) => get(state.website.present, 'metadata.theme.primary'));
   const { name, headline, photo, email, phone, birthdate, website, location, profiles } = useAppSelector(
-    (state) => state.resume.present.basics
+    (state) => state.website.present.basics
   );
 
   return (
@@ -65,7 +65,7 @@ export const MastheadSidebar: React.FC = () => {
 };
 
 export const MastheadMain: React.FC = () => {
-  const { summary } = useAppSelector((state) => state.resume.present.basics);
+  const { summary } = useAppSelector((state) => state.website.present.basics);
 
   return <Markdown>{summary}</Markdown>;
 };

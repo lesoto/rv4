@@ -1,4 +1,4 @@
-import { User } from '@reactive-resume/schema';
+import { User } from '@reactive-website/schema';
 import { AxiosResponse } from 'axios';
 import toast from 'react-hot-toast';
 

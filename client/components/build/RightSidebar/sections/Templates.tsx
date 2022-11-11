@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next';
 
 import Heading from '@/components/shared/Heading';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 import templateMap, { TemplateMeta } from '@/templates/templateMap';
 
 import styles from './Templates.module.scss';
@@ -16,10 +16,10 @@ const Templates = () => {
 
   const dispatch = useAppDispatch();
 
-  const currentTemplate: string = useAppSelector((state) => get(state.resume.present, 'metadata.template'));
+  const currentTemplate: string = useAppSelector((state) => get(state.website.present, 'metadata.template'));
 
   const handleChange = (template: TemplateMeta) => {
-    dispatch(setResumeState({ path: 'metadata.template', value: template.id }));
+    dispatch(setWebsiteState({ path: 'metadata.template', value: template.id }));
   };
 
   return (

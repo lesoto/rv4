@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 
 import Heading from '@/components/shared/Heading';
-import ResumeInput from '@/components/shared/ResumeInput';
+import WebsiteInput from '@/components/shared/WebsiteInput';
 
 const Location = () => {
   const { t } = useTranslation();
@@ -11,24 +11,24 @@ const Location = () => {
       <Heading path="sections.location" name={t<string>('builder.leftSidebar.sections.location.heading')} />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <ResumeInput
+        <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.location.address.label')}
           path="basics.location.address"
           className="sm:col-span-2"
         />
-        <ResumeInput
+        <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.location.city.label')}
           path="basics.location.city"
         />
-        <ResumeInput
+        <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.location.region.label')}
           path="basics.location.region"
         />
-        <ResumeInput
+        <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.location.country.label')}
           path="basics.location.country"
         />
-        <ResumeInput
+        <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.location.postal-code.label')}
           path="basics.location.postalCode"
         />

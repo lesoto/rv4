@@ -2,7 +2,7 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
-import { Project, SectionPath } from '@reactive-resume/schema';
+import { Project, SectionPath } from '@reactive-website/schema';
 import dayjs from 'dayjs';
 import Joi from 'joi';
 import get from 'lodash/get';
@@ -17,7 +17,7 @@ import MarkdownSupported from '@/components/shared/MarkdownSupported';
 import { VALID_URL_REGEX } from '@/constants/index';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
-import { addItem, editItem } from '@/store/resume/resumeSlice';
+import { addItem, editItem } from '@/store/website/websiteSlice';
 
 type FormData = Project;
 
@@ -53,7 +53,7 @@ const ProjectModal: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const heading = useAppSelector((state) => get(state.resume.present, `${path}.name`));
+  const heading = useAppSelector((state) => get(state.website.present, `${path}.name`));
   const { open: isOpen, payload } = useAppSelector((state) => state.modal[`builder.${path}`]);
 
   const item: FormData = get(payload, 'item', null);

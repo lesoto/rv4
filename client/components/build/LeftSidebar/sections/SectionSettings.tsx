@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 
 type Props = {
   path: string;
@@ -18,7 +18,7 @@ const SectionSettings: React.FC<Props> = ({ path }) => {
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const columns = useAppSelector<number>((state) => get(state.resume.present, `${path}.columns`, 2));
+  const columns = useAppSelector<number>((state) => get(state.website.present, `${path}.columns`, 2));
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,7 +28,7 @@ const SectionSettings: React.FC<Props> = ({ path }) => {
     setAnchorEl(null);
   };
 
-  const handleSetColumns = (index: number) => dispatch(setResumeState({ path: `${path}.columns`, value: index }));
+  const handleSetColumns = (index: number) => dispatch(setWebsiteState({ path: `${path}.columns`, value: index }));
 
   return (
     <div>

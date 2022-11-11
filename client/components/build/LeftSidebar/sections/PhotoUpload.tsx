@@ -1,5 +1,5 @@
 import { Avatar, IconButton, Skeleton, Tooltip } from '@mui/material';
-import { Photo, Resume } from '@reactive-resume/schema';
+import { Photo, Website } from '@reactive-website/schema';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { useTranslation } from 'next-i18next';
@@ -8,9 +8,9 @@ import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
 
 import { ServerError } from '@/services/axios';
-import { deletePhoto, DeletePhotoParams, uploadPhoto, UploadPhotoParams } from '@/services/resume';
+import { deletePhoto, DeletePhotoParams, uploadPhoto, UploadPhotoParams } from '@/services/website';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 
 const FILE_UPLOAD_MAX_SIZE = 2000000; // 2 MB
 
@@ -21,12 +21,12 @@ const PhotoUpload: React.FC = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const id: number = useAppSelector((state) => get(state.resume.present, 'id'));
-  const photo: Photo = useAppSelector((state) => get(state.resume.present, 'basics.photo'));
+  const id: number = useAppSelector((state) => get(state.website.present, 'id'));
+  const photo: Photo = useAppSelector((state) => get(state.website.present, 'basics.photo'));
 
-  const { mutateAsync: uploadMutation, isLoading } = useMutation<Resume, ServerError, UploadPhotoParams>(uploadPhoto);
+  const { mutateAsync: uploadMutation, isLoading } = useMutation<Website, ServerError, UploadPhotoParams>(uploadPhoto);
 
-  const { mutateAsync: deleteMutation } = useMutation<Resume, ServerError, DeletePhotoParams>(deletePhoto);
+  const { mutateAsync: deleteMutation } = useMutation<Website, ServerError, DeletePhotoParams>(deletePhoto);
 
   const handleClick = async () => {
     if (fileInputRef.current) {
@@ -34,7 +34,7 @@ const PhotoUpload: React.FC = () => {
         try {
           await deleteMutation({ id });
         } finally {
-          dispatch(setResumeState({ path: 'basics.photo.url', value: '' }));
+          dispatch(setWebsiteState({ path: 'basics.photo.url', value: '' }));
         }
       } else {
         fileInputRef.current.click();
@@ -53,9 +53,9 @@ const PhotoUpload: React.FC = () => {
         return;
       }
 
-      const resume = await uploadMutation({ id, file });
+      const website = await uploadMutation({ id, file });
 
-      dispatch(setResumeState({ path: 'basics.photo.url', value: get(resume, 'basics.photo.url', '') }));
+      dispatch(setWebsiteState({ path: 'basics.photo.url', value: get(website, 'basics.photo.url', '') }));
     }
   };
 

@@ -1,9 +1,9 @@
 import axios from './axios';
 
-export type PrintResumeAsPdfParams = {
+export type PrintWebsiteAsPdfParams = {
   username: string;
   slug: string;
 };
 
-export const printResumeAsPdf = (printResumeAsPdfParams: PrintResumeAsPdfParams): Promise<string> =>
-  axios.get(`/printer/${printResumeAsPdfParams.username}/${printResumeAsPdfParams.slug}`).then((res) => res.data);
+export const printWebsiteAsPdf = (printWebsiteAsPdfParams: PrintWebsiteAsPdfParams): Promise<string> =>
+  axios.get(`/printer/${printWebsiteAsPdfParams.username}/${printWebsiteAsPdfParams.slug}`).then((res) => res.data);

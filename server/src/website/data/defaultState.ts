@@ -1,4 +1,4 @@
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 
 const defaultCSS = `/* Enter custom CSS here */
 
@@ -6,7 +6,7 @@ const defaultCSS = `/* Enter custom CSS here */
     outline: 1px solid #000;
 }`;
 
-const defaultState: Partial<Resume> = {
+const defaultState: Partial<Website> = {
   basics: {
     email: '',
     headline: '',

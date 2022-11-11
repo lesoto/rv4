@@ -3,7 +3,7 @@ import { Metadata } from './metadata';
 import { Section } from './section';
 import { User } from './user';
 
-export type Resume = {
+export type Website = {
   id: number;
   shortId: string;
   name: string;

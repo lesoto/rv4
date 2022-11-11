@@ -1,6 +1,6 @@
 import { Download, Downloading } from '@mui/icons-material';
 import { ButtonBase } from '@mui/material';
-import { Resume } from '@reactive-resume/schema';
+import { Website } from '@reactive-website/schema';
 import clsx from 'clsx';
 import download from 'downloadjs';
 import get from 'lodash/get';
@@ -15,10 +15,10 @@ import { useMutation, useQuery } from 'react-query';
 
 import Page from '@/components/build/Center/Page';
 import { ServerError } from '@/services/axios';
-import { printResumeAsPdf, PrintResumeAsPdfParams } from '@/services/printer';
-import { fetchResumeByShortId } from '@/services/resume';
+import { printWebsiteAsPdf, PrintWebsiteAsPdfParams } from '@/services/printer';
+import { fetchWebsiteByShortId } from '@/services/website';
 import { useAppDispatch } from '@/store/hooks';
-import { setResume } from '@/store/resume/resumeSlice';
+import { setWebsite } from '@/store/website/websiteSlice';
 import styles from '@/styles/pages/Preview.module.scss';
 
 type QueryParams = {
@@ -40,36 +40,36 @@ const Preview: NextPage<Props> = ({ shortId }) => {
 
   const dispatch = useAppDispatch();
 
-  const { data: resume } = useQuery<Resume>(`resume/${shortId}`, () => fetchResumeByShortId({ shortId }), {
+  const { data: website } = useQuery<Website>(`website/${shortId}`, () => fetchWebsiteByShortId({ shortId }), {
     refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     onSuccess: (data) => {
-      dispatch(setResume(data));
+      dispatch(setWebsite(data));
     },
   });
 
-  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintResumeAsPdfParams>(printResumeAsPdf);
+  const { mutateAsync, isLoading } = useMutation<string, ServerError, PrintWebsiteAsPdfParams>(printWebsiteAsPdf);
 
   useEffect(() => {
-    if (resume) dispatch(setResume(resume));
-  }, [resume, dispatch]);
+    if (website) dispatch(setWebsite(website));
+  }, [website, dispatch]);
 
   useEffect(() => {
-    if (resume && !isEmpty(resume) && router.locale !== resume.metadata.locale) {
+    if (website && !isEmpty(website) && router.locale !== website.metadata.locale) {
       const { pathname, asPath, query } = router;
 
-      router.push({ pathname, query }, asPath, { locale: resume.metadata.locale });
+      router.push({ pathname, query }, asPath, { locale: website.metadata.locale });
     }
-  }, [resume, router]);
+  }, [website, router]);
 
-  if (!resume || isEmpty(resume)) return null;
+  if (!website || isEmpty(website)) return null;
 
-  const layout: string[][][] = get(resume, 'metadata.layout', []);
+  const layout: string[][][] = get(website, 'metadata.layout', []);
 
   const handleDownload = async () => {
     try {
-      const url = await mutateAsync({ username: resume.user.username, slug: resume.slug });
+      const url = await mutateAsync({ username: website.user.username, slug: website.slug });
 
       download(url);
     } catch {
@@ -100,7 +100,7 @@ const Preview: NextPage<Props> = ({ shortId }) => {
       </div>
 
       <p className={styles.footer}>
-        Made with <Link href="/">Reactive Resume</Link>
+        Made with <Link href="/">Reactive Website</Link>
       </p>
     </div>
   );

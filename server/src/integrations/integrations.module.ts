@@ -4,7 +4,7 @@ import { mkdir } from 'fs/promises';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 
-import { ResumeModule } from '@/resume/resume.module';
+import { WebsiteModule } from '@/website/website.module';
 import { User } from '@/users/entities/user.entity';
 
 import { IntegrationsController } from './integrations.controller';
@@ -12,7 +12,7 @@ import { IntegrationsService } from './integrations.service';
 
 @Module({
   imports: [
-    ResumeModule,
+    WebsiteModule,
     MulterModule.register({
       storage: diskStorage({
         destination: async (req, _, cb) => {

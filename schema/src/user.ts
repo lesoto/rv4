@@ -1,4 +1,4 @@
-import { Resume } from './resume';
+import { Website } from './website';
 
 export type User = {
   id: number;
@@ -8,7 +8,7 @@ export type User = {
   password?: string;
   provider: 'email' | 'google';
   resetToken?: string;
-  resumes: Resume[];
+  websites: Website[];
   createdAt: Date;
   updatedAt: Date;
 };

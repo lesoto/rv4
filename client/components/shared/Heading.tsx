@@ -7,7 +7,7 @@ import React, { useMemo, useState } from 'react';
 
 import sections from '@/config/sections';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { deleteSection, setResumeState } from '@/store/resume/resumeSlice';
+import { deleteSection, setWebsiteState } from '@/store/website/websiteSlice';
 
 import styles from './Heading.module.scss';
 
@@ -32,8 +32,8 @@ const Heading: React.FC<Props> = ({
 
   const dispatch = useAppDispatch();
 
-  const heading = useAppSelector((state) => get(state.resume.present, `${path}.name`, name));
-  const visibility = useAppSelector((state) => get(state.resume.present, `${path}.visible`, true));
+  const heading = useAppSelector((state) => get(state.website.present, `${path}.name`, name));
+  const visibility = useAppSelector((state) => get(state.website.present, `${path}.visible`, true));
 
   const [editMode, setEditMode] = useState(false);
 
@@ -42,13 +42,13 @@ const Heading: React.FC<Props> = ({
   const icon = sections.find((x) => x.id === id)?.icon || <Grade />;
 
   const toggleVisibility = () => {
-    dispatch(setResumeState({ path: `${path}.visible`, value: !visibility }));
+    dispatch(setWebsiteState({ path: `${path}.visible`, value: !visibility }));
   };
 
   const toggleEditMode = () => setEditMode(!editMode);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setResumeState({ path: `${path}.name`, value: event.target.value }));
+    dispatch(setWebsiteState({ path: `${path}.name`, value: event.target.value }));
   };
 
   const handleDelete = () => {

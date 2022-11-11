@@ -1,26 +1,32 @@
 import { joiResolver } from '@hookform/resolvers/joi';
-import { DriveFileRenameOutline } from '@mui/icons-material';
-import { Button, TextField } from '@mui/material';
-import { Resume } from '@reactive-resume/schema';
+import { Add } from '@mui/icons-material';
+import { Button, FormControlLabel, FormGroup, Switch, TextField } from '@mui/material';
+import { Website } from '@reactive-website/schema';
 import Joi from 'joi';
-import get from 'lodash/get';
-import noop from 'lodash/noop';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
 
 import BaseModal from '@/components/shared/BaseModal';
-import { RESUMES_QUERY } from '@/constants/index';
+import { WEBSITE_QUERY } from '@/constants/index';
 import { ServerError } from '@/services/axios';
 import queryClient from '@/services/react-query';
-import { renameResume, RenameResumeParams } from '@/services/resume';
+import { createWebsite, CreateWebsiteParams } from '@/services/website';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { ModalState, setModalState } from '@/store/modal/modalSlice';
+import { setModalState } from '@/store/modal/modalSlice';
 
 type FormData = {
   name: string;
   slug: string;
+  isPublic: boolean;
+};
+
+const defaultState: FormData = {
+  name: '',
+  slug: '',
+  isPublic: true,
 };
 
 const schema = Joi.object({
@@ -30,24 +36,20 @@ const schema = Joi.object({
     .min(3)
     .regex(/^[a-z0-9-]+$/, 'only lowercase characters, numbers and hyphens')
     .required(),
+  isPublic: Joi.boolean().default(true).required(),
 });
 
-const RenameResumeModal: React.FC = () => {
+const CreateWebsiteModal: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
 
-  const { open: isOpen, payload } = useAppSelector((state) => state.modal['dashboard.rename-resume']) as ModalState;
-  const resume: Resume = get(payload, 'item') as Resume;
-  const onComplete = get(payload, 'onComplete', noop);
+  const { open: isOpen } = useAppSelector((state) => state.modal['dashboard.create-website']);
 
-  const { mutateAsync, isLoading } = useMutation<Resume, ServerError, RenameResumeParams>(renameResume);
+  const { mutateAsync, isLoading } = useMutation<Website, ServerError, CreateWebsiteParams>(createWebsite);
 
   const { reset, watch, control, setValue, handleSubmit } = useForm<FormData>({
-    defaultValues: {
-      name: resume?.name,
-      slug: resume?.slug,
-    },
+    defaultValues: defaultState,
     resolver: joiResolver(schema),
   });
   const name = watch('name');
@@ -63,43 +65,37 @@ const RenameResumeModal: React.FC = () => {
     setValue('slug', slug);
   }, [name, setValue]);
 
-  useEffect(() => {
-    if (!resume) return;
+  const onSubmit = async ({ name, slug, isPublic }: FormData) => {
+    try {
+      await mutateAsync({ name, slug, public: isPublic });
 
-    const { name, slug }: FormData = resume;
+      await queryClient.invalidateQueries(WEBSITE_QUERY);
 
-    reset({ name, slug });
-  }, [resume, reset]);
-
-  const onSubmit = async ({ name, slug }: FormData) => {
-    if (!resume) return;
-
-    const newResume = await mutateAsync({ id: resume.id, name, slug });
-
-    onComplete && onComplete(newResume);
-
-    queryClient.invalidateQueries(RESUMES_QUERY);
-
-    handleClose();
+      handleClose();
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   const handleClose = () => {
-    dispatch(setModalState({ modal: 'dashboard.rename-resume', state: { open: false } }));
+    dispatch(setModalState({ modal: 'dashboard.create-website', state: { open: false } }));
     reset();
   };
 
   return (
     <BaseModal
-      icon={<DriveFileRenameOutline />}
       isOpen={isOpen}
-      heading={t<string>('modals.dashboard.rename-resume.heading')}
+      icon={<Add />}
+      heading={t<string>('modals.dashboard.create-website.heading')}
       handleClose={handleClose}
       footerChildren={
         <Button type="submit" disabled={isLoading} onClick={handleSubmit(onSubmit)}>
-          {t<string>('modals.dashboard.rename-resume.actions.rename-resume')}
+          {t<string>('modals.dashboard.create-website.actions.create-website')}
         </Button>
       }
     >
+      <p>{t<string>('modals.dashboard.create-website.body')}</p>
+
       <form className="grid gap-4">
         <Controller
           name="name"
@@ -107,7 +103,7 @@ const RenameResumeModal: React.FC = () => {
           render={({ field, fieldState }) => (
             <TextField
               autoFocus
-              label={t<string>('modals.dashboard.rename-resume.form.name.label')}
+              label={t<string>('modals.dashboard.create-website.form.name.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
@@ -120,16 +116,29 @@ const RenameResumeModal: React.FC = () => {
           control={control}
           render={({ field, fieldState }) => (
             <TextField
-              label={t<string>('modals.dashboard.rename-resume.form.slug.label')}
+              label={t<string>('modals.dashboard.create-website.form.slug.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
             />
           )}
         />
+
+        <FormGroup>
+          <FormControlLabel
+            label={t<string>('modals.dashboard.create-website.form.public.label')}
+            control={
+              <Controller
+                name="isPublic"
+                control={control}
+                render={({ field }) => <Switch defaultChecked color="secondary" {...field} />}
+              />
+            }
+          />
+        </FormGroup>
       </form>
     </BaseModal>
   );
 };
 
-export default RenameResumeModal;
+export default CreateWebsiteModal;

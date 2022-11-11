@@ -1,6 +1,6 @@
 import { Cake, Email, Phone, Public, Room } from '@mui/icons-material';
 import { alpha } from '@mui/material';
-import { ThemeConfig } from '@reactive-resume/schema';
+import { ThemeConfig } from '@reactive-website/schema';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
@@ -12,11 +12,11 @@ import getProfileIcon from '@/utils/getProfileIcon';
 import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead: React.FC = () => {
-  const dateFormat: string = useAppSelector((state) => get(state.resume.present, 'metadata.date.format'));
+  const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const { name, photo, headline, summary, email, phone, birthdate, website, location, profiles } = useAppSelector(
-    (state) => state.resume.present.basics
+    (state) => state.website.present.basics
   );
-  const theme: ThemeConfig = useAppSelector((state) => get(state.resume.present, 'metadata.theme', {}));
+  const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
 
   return (
     <div>

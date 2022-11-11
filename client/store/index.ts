@@ -6,7 +6,7 @@ import undoable from 'redux-undo';
 import authReducer from '@/store/auth/authSlice';
 import buildReducer from '@/store/build/buildSlice';
 import modalReducer from '@/store/modal/modalSlice';
-import resumeReducer from '@/store/resume/resumeSlice';
+import websiteReducer from '@/store/website/websiteSlice';
 
 import syncSaga from './sagas/sync';
 import storage from './storage';
@@ -17,7 +17,7 @@ const reducers = combineReducers({
   auth: authReducer,
   modal: modalReducer,
   build: buildReducer,
-  resume: undoable(resumeReducer),
+  website: undoable(websiteReducer),
 });
 
 const persistedReducers = persistReducer({ key: 'root', storage, whitelist: ['auth', 'build'] }, reducers);

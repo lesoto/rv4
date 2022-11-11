@@ -13,7 +13,7 @@ import { HealthModule } from './health/health.module';
 import { IntegrationsModule } from './integrations/integrations.module';
 import { MailModule } from './mail/mail.module';
 import { PrinterModule } from './printer/printer.module';
-import { ResumeModule } from './resume/resume.module';
+import { WebsiteModule } from './website/website.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -29,7 +29,7 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     MailModule.register(),
     UsersModule,
-    ResumeModule,
+    WebsiteModule,
     FontsModule,
     IntegrationsModule,
     PrinterModule,

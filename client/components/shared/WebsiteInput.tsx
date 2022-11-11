@@ -6,7 +6,7 @@ import get from 'lodash/get';
 import { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setResumeState } from '@/store/resume/resumeSlice';
+import { setWebsiteState } from '@/store/website/websiteSlice';
 
 import MarkdownSupported from './MarkdownSupported';
 
@@ -18,10 +18,10 @@ interface Props {
   markdownSupported?: boolean;
 }
 
-const ResumeInput: React.FC<Props> = ({ type = 'text', label, path, className, markdownSupported = false }) => {
+const WebsiteInput: React.FC<Props> = ({ type = 'text', label, path, className, markdownSupported = false }) => {
   const dispatch = useAppDispatch();
 
-  const stateValue = useAppSelector((state) => get(state.resume.present, path, ''));
+  const stateValue = useAppSelector((state) => get(state.website.present, path, ''));
 
   useEffect(() => {
     setValue(stateValue);
@@ -31,12 +31,12 @@ const ResumeInput: React.FC<Props> = ({ type = 'text', label, path, className, m
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValue(event.target.value);
-    dispatch(setResumeState({ path, value: event.target.value }));
+    dispatch(setWebsiteState({ path, value: event.target.value }));
   };
 
   const onChangeValue = (value: string) => {
     setValue(value);
-    dispatch(setResumeState({ path, value }));
+    dispatch(setWebsiteState({ path, value }));
   };
 
   if (type === 'textarea') {
@@ -72,4 +72,4 @@ const ResumeInput: React.FC<Props> = ({ type = 'text', label, path, className, m
   return <TextField type={type} label={label} value={value} onChange={onChange} className={className} />;
 };
 
-export default ResumeInput;
+export default WebsiteInput;

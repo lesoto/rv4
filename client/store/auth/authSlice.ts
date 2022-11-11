@@ -1,4 +1,4 @@
-import { User } from '@reactive-resume/schema';
+import { User } from '@reactive-website/schema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type AuthState = {

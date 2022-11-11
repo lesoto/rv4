@@ -1,5 +1,5 @@
 import { Cake, Email, Phone, Public, Room } from '@mui/icons-material';
-import { ThemeConfig } from '@reactive-resume/schema';
+import { ThemeConfig } from '@reactive-website/schema';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { useMemo } from 'react';
@@ -13,9 +13,9 @@ import { getContrastColor } from '@/utils/styles';
 import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 export const MastheadSidebar: React.FC = () => {
-  const dateFormat: string = useAppSelector((state) => get(state.resume.present, 'metadata.date.format'));
+  const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const { name, photo, email, phone, birthdate, website, location, profiles } = useAppSelector(
-    (state) => state.resume.present.basics
+    (state) => state.website.present.basics
   );
 
   return (
@@ -62,10 +62,10 @@ export const MastheadSidebar: React.FC = () => {
 };
 
 export const MastheadMain: React.FC = () => {
-  const theme: ThemeConfig = useAppSelector((state) => get(state.resume.present, 'metadata.theme', {}));
+  const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
   const contrast = useMemo(() => getContrastColor(theme.primary), [theme.primary]);
 
-  const { name, summary, headline } = useAppSelector((state) => state.resume.present.basics);
+  const { name, summary, headline } = useAppSelector((state) => state.website.present.basics);
 
   return (
     <div

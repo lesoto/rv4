@@ -1,13 +1,13 @@
 {
-  "create-resume": {
+  "create-website": {
     "subtitle": "Начать с нуля",
     "title": "Создать новое резюме"
   },
   "import-external": {
-    "subtitle": "JSON or Reactive Resume",
+    "subtitle": "JSON or Reactive Website",
     "title": "Импорт из внешних источников"
   },
-  "resume": {
+  "website": {
     "menu": {
       "delete": "Удалить",
       "duplicate": "Дублировать",

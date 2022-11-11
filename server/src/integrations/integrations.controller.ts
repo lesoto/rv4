@@ -11,24 +11,24 @@ export class IntegrationsController {
   constructor(private integrationsService: IntegrationsService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Post('reactive-resume')
+  @Post('reactive-website')
   @UseInterceptors(FileInterceptor('file'))
-  reactiveResume(@User('id') userId: number, @UploadedFile() file: Express.Multer.File) {
+  reactiveWebsite(@User('id') userId: number, @UploadedFile() file: Express.Multer.File) {
     if (!file) {
       throw new HttpException('You must upload a valid JSON file.', HttpStatus.BAD_REQUEST);
     }
 
-    return this.integrationsService.reactiveResume(userId, file.path);
+    return this.integrationsService.reactiveWebsite(userId, file.path);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('reactive-resume-v2')
+  @Post('reactive-website-v2')
   @UseInterceptors(FileInterceptor('file'))
-  reactiveResumeV2(@User('id') userId: number, @UploadedFile() file: Express.Multer.File) {
+  reactiveWebsiteV2(@User('id') userId: number, @UploadedFile() file: Express.Multer.File) {
     if (!file) {
       throw new HttpException('You must upload a valid JSON file.', HttpStatus.BAD_REQUEST);
     }
 
-    return this.integrationsService.reactiveResumeV2(userId, file.path);
+    return this.integrationsService.reactiveWebsiteV2(userId, file.path);
   }
 }
