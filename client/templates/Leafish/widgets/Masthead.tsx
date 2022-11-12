@@ -12,7 +12,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
-  const { name, photo, headline, summary, email, phone, birthdate, website, contact, profiles } = useAppSelector(
+  const { name, photo, headline, summary, email, phone, website, contact, social } = useAppSelector(
     (state) => state.website.present.basics
   );
   const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
@@ -44,8 +44,6 @@ const Masthead: React.FC = () => {
           {formatLocation(contact)}
         </DataDisplay>
 
-        <DataDisplay icon={<Cake />}>{formatDateString(birthdate, dateFormat)}</DataDisplay>
-
         <DataDisplay icon={<Email />} link={`mailto:${email}`}>
           {email}
         </DataDisplay>
@@ -58,7 +56,7 @@ const Masthead: React.FC = () => {
           {website}
         </DataDisplay>
 
-        {profiles.map(({ id, username, network, url }) => (
+        {social.map(({ id, username, network, url }) => (
           <DataDisplay key={id} icon={getProfileIcon(network)} link={url && addHttp(url)}>
             {username}
           </DataDisplay>

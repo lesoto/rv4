@@ -121,9 +121,6 @@
         "name": {
           "label": "Full Name"
         },
-        "birthdate": {
-          "label": "Date of Birth"
-        },
         "photo-filters": {
           "effects": {
             "border": {
@@ -192,7 +189,7 @@
           "label": "State"
         }
       },
-      "profiles": {
+      "social": {
         "form": {
           "network": {
             "label": "Network"
@@ -201,8 +198,8 @@
             "label": "Username"
           }
         },
-        "heading": "Profiles",
-        "heading_one": "Profile"
+        "heading": "Social",
+        "heading_one": "Social Networks"
       },
       "publications": {
         "form": {

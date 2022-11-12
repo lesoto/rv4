@@ -43,10 +43,10 @@ const ProfileModal: React.FC = () => {
   const isEditMode = useMemo(() => !!item, [item]);
 
   const addText = t<string>('builder.common.actions.add', {
-    token: t<string>('builder.leftSidebar.sections.profiles.heading', { count: 1 }),
+    token: t<string>('builder.leftSidebar.sections.social.heading', { count: 1 }),
   });
   const editText = t<string>('builder.common.actions.edit', {
-    token: t<string>('builder.leftSidebar.sections.profiles.heading', { count: 1 }),
+    token: t<string>('builder.leftSidebar.sections.social.heading', { count: 1 }),
   });
 
   const { reset, control, handleSubmit } = useForm<FormData>({
@@ -56,9 +56,9 @@ const ProfileModal: React.FC = () => {
 
   const onSubmit = (formData: FormData) => {
     if (isEditMode) {
-      dispatch(editItem({ path: 'basics.profiles', value: formData }));
+      dispatch(editItem({ path: 'basics.social', value: formData }));
     } else {
-      dispatch(addItem({ path: 'basics.profiles', value: formData }));
+      dispatch(addItem({ path: 'basics.social', value: formData }));
     }
 
     handleClose();
@@ -97,7 +97,7 @@ const ProfileModal: React.FC = () => {
             <TextField
               required
               autoFocus
-              label={t<string>('builder.leftSidebar.sections.profiles.form.network.label')}
+              label={t<string>('builder.leftSidebar.sections.social.form.network.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
@@ -111,7 +111,7 @@ const ProfileModal: React.FC = () => {
           render={({ field, fieldState }) => (
             <TextField
               required
-              label={t<string>('builder.leftSidebar.sections.profiles.form.username.label')}
+              label={t<string>('builder.leftSidebar.sections.social.form.username.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               InputProps={{

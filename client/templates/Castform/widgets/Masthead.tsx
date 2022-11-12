@@ -15,7 +15,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 export const MastheadSidebar: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
-  const { name, headline, photo, email, phone, birthdate, website, contact, profiles } = useAppSelector(
+  const { name, headline, photo, email, phone, website, contact, social } = useAppSelector(
     (state) => state.website.present.basics
   );
   const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
@@ -44,10 +44,6 @@ export const MastheadSidebar: React.FC = () => {
           {formatLocation(contact)}
         </DataDisplay>
 
-        <DataDisplay icon={<Cake />} className="!gap-2 text-xs">
-          {formatDateString(birthdate, dateFormat)}
-        </DataDisplay>
-
         <DataDisplay icon={<Email />} className="!gap-2 text-xs" link={`mailto:${email}`}>
           {email}
         </DataDisplay>
@@ -60,7 +56,7 @@ export const MastheadSidebar: React.FC = () => {
           {website}
         </DataDisplay>
 
-        {profiles.map(({ id, username, network, url }) => (
+        {social.map(({ id, username, network, url }) => (
           <DataDisplay key={id} icon={getProfileIcon(network)} link={url && addHttp(url)} className="!gap-2 text-xs">
             {username}
           </DataDisplay>

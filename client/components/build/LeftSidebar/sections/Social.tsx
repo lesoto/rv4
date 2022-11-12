@@ -9,7 +9,7 @@ import { useAppDispatch } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
 import { duplicateItem } from '@/store/website/websiteSlice';
 
-const Profiles = () => {
+const Social = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
@@ -23,15 +23,15 @@ const Profiles = () => {
   };
 
   const handleDuplicate = (item: ListItem) => {
-    dispatch(duplicateItem({ path: 'basics.profiles', value: item }));
+    dispatch(duplicateItem({ path: 'basics.social', value: item }));
   };
 
   return (
     <>
-      <Heading path="sections.profiles" name={t<string>('builder.leftSidebar.sections.profiles.heading')} />
+      <Heading path="sections.social" name={t<string>('builder.leftSidebar.sections.social.heading')} />
 
       <List
-        path="basics.profiles"
+        path="basics.social"
         titleKey="username"
         subtitleKey="network"
         onEdit={handleEdit}
@@ -41,7 +41,7 @@ const Profiles = () => {
       <footer className="flex justify-end">
         <Button variant="outlined" startIcon={<Add />} onClick={handleAdd}>
           {t<string>('builder.common.actions.add', {
-            token: t<string>('builder.leftSidebar.sections.profiles.heading', { count: 1 }),
+            token: t<string>('builder.leftSidebar.sections.social.heading', { count: 1 }),
           })}
         </Button>
       </footer>
@@ -49,4 +49,4 @@ const Profiles = () => {
   );
 };
 
-export default Profiles;
+export default Social;

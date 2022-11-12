@@ -1,4 +1,7 @@
 export type Contact = {
+  phone: string;
+  email: string;
+  website: string;
   address: string;
   city: string;
   state: string;
@@ -31,12 +34,8 @@ export type Photo = {
 export type Basics = {
   name: string;
   photo: Photo;
-  email: string;
-  phone: string;
-  website: string;
   headline: string;
-  birthdate: string;
   summary: string;
   contact: Contact;
-  profiles: Profile[];
+  social: Profile[];
 };

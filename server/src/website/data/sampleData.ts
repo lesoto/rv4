@@ -3,9 +3,6 @@ import { Website } from '../entities/website.entity';
 const sampleData: Partial<Website> = {
   basics: {
     name: 'Jessica Jones',
-    email: 'alexis.jones@gmail.com',
-    phone: '+1 800 1200 3820',
-    birthdate: '1995-08-06T00:00:00.000Z',
     photo: {
       url: `/images/sample-photo.jpg`,
       filters: {
@@ -18,7 +15,6 @@ const sampleData: Partial<Website> = {
     },
     summary:
       'I am a creative frontend developer offering 4+ years of experience providing high-impact web solutions for diverse industry organizations. Skilled in designing, developing and testing multiple web-based applications incorporating a range of technologies. Aspiring to combine broad background with strong technical skills to excel as a frontend web developer.',
-    website: 'alexisjones.com',
     headline: 'Highly Creative Frontend Web Developer',
     contact: {
       city: 'Jacksonville',
@@ -26,8 +22,11 @@ const sampleData: Partial<Website> = {
       address: '128 Ollenhauer Str',
       country: 'USA',
       zipCode: '70376',
+      email: 'alexis.jones@gmail.com',
+      phone: '305 1200 3820',
+      website: 'jessjones.com',
     },
-    profiles: [
+    social: [
       {
         id: '4df61ffc-e48b-43f1-9434-add35d9cb155',
         url: 'https://linkedin.com/in/JessicaJones',
@@ -36,8 +35,8 @@ const sampleData: Partial<Website> = {
       },
       {
         id: '8f77327d-4484-40b4-92eb-65eaa6aae5f4',
-        url: 'https://dribbble.com/JessicaJones',
-        network: 'Dribbble',
+        url: 'https://facebook.com/JessicaJones',
+        network: 'Facebook',
         username: 'JessicaJones',
       },
     ],

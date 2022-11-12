@@ -10,7 +10,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
-  const { name, photo, email, phone, website, birthdate, headline, contact, profiles } = useAppSelector(
+  const { name, photo, email, phone, website, headline, contact, social } = useAppSelector(
     (state) => state.website.present.basics
   );
 
@@ -36,10 +36,6 @@ const Masthead: React.FC = () => {
           </DataDisplay>
 
           <div className="flex items-center gap-2">
-            <DataDisplay icon={<Cake />} className="text-xs">
-              {formatDateString(birthdate, dateFormat)}
-            </DataDisplay>
-
             <DataDisplay icon={<Email />} className="text-xs" link={`mailto:${email}`}>
               {email}
             </DataDisplay>
@@ -56,7 +52,7 @@ const Masthead: React.FC = () => {
           {website}
         </DataDisplay>
 
-        {profiles.map(({ id, username, network, url }) => (
+        {social.map(({ id, username, network, url }) => (
           <DataDisplay key={id} icon={getProfileIcon(network)} link={url && addHttp(url)} className="text-xs">
             {username}
           </DataDisplay>

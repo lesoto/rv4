@@ -11,7 +11,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
-  const { name, photo, email, phone, website, birthdate, headline, contact, profiles } = useAppSelector(
+  const { name, photo, email, phone, website, headline, contact, social } = useAppSelector(
     (state) => state.website.present.basics
   );
 
@@ -35,8 +35,6 @@ const Masthead = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-3">
-        <DataDisplay icon={<Cake />}>{formatDateString(birthdate, dateFormat)}</DataDisplay>
-
         <DataDisplay icon={<Email />} link={`mailto:${email}`}>
           {email}
         </DataDisplay>
@@ -45,13 +43,13 @@ const Masthead = () => {
           {phone}
         </DataDisplay>
 
-        <DataDisplay icon={<Public />} link={addHttp(website)}>
+        {/*<DataDisplay icon={<Public />} link={addHttp(website)}>
           {website}
-        </DataDisplay>
+        </DataDisplay>*/}
 
         <DataDisplay icon={<Room />}>{formatLocation(contact)}</DataDisplay>
 
-        {profiles.map(({ id, username, network, url }) => (
+        {social.map(({ id, username, network, url }) => (
           <DataDisplay key={id} icon={getProfileIcon(network)} link={url && addHttp(url)}>
             {username}
           </DataDisplay>

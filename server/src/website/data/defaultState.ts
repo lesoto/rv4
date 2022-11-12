@@ -8,9 +8,7 @@ const defaultCSS = `/* Enter custom CSS here */
 
 const defaultState: Partial<Website> = {
   basics: {
-    email: '',
     headline: '',
-    birthdate: '',
     photo: {
       url: '',
       visible: true,
@@ -22,17 +20,18 @@ const defaultState: Partial<Website> = {
       },
     },
     name: '',
-    phone: '',
     summary: '',
-    website: '',
     contact: {
+      phone: '',
+      email: '',
+      website: '',
       address: '',
       city: '',
       country: '',
       state: '',
       zipCode: '',
     },
-    profiles: [],
+    social: [],
   },
   sections: {
     work: {

@@ -121,9 +121,6 @@
         "name": {
           "label": "ФИО"
         },
-        "birthdate": {
-          "label": "Дата рождения"
-        },
         "photo-filters": {
           "effects": {
             "border": {
@@ -192,7 +189,7 @@
           "label": "Область"
         }
       },
-      "profiles": {
+      "social": {
         "form": {
           "network": {
             "label": "Сеть"

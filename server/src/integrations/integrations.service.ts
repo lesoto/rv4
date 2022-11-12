@@ -76,9 +76,9 @@ export class IntegrationsService {
             photo: {
               url: get(jsonWebsite, 'profile.photograph'),
             },
-            email: get(jsonWebsite, 'profile.email'),
-            phone: get(jsonWebsite, 'profile.phone'),
-            website: get(jsonWebsite, 'profile.website'),
+            //email: get(jsonWebsite, 'email'),
+            //phone: get(jsonWebsite, 'contact.phone'),
+            //website: get(jsonWebsite, 'basics.contact.website'),
             summary: get(jsonWebsite, 'objective'),
             contact: {
               address: get(jsonWebsite, 'profile.address.line1'),
@@ -97,8 +97,8 @@ export class IntegrationsService {
         profiles.forEach((profile) => {
           merge<Partial<Website>, DeepPartial<Website>>(website, {
             basics: {
-              profiles: [
-                ...website.basics.profiles,
+              social: [
+                ...website.basics.social,
                 {
                   id: uuidv4(),
                   url: get(profile, 'url'),

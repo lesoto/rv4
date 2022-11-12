@@ -11,7 +11,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 export const MastheadSidebar: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const primaryColor: string = useAppSelector((state) => get(state.website.present, 'metadata.theme.primary'));
-  const { name, headline, photo, email, phone, birthdate, website, contact, profiles } = useAppSelector(
+  const { name, headline, photo, email, phone, website, contact, social } = useAppSelector(
     (state) => state.website.present.basics
   );
 
@@ -37,10 +37,6 @@ export const MastheadSidebar: React.FC = () => {
           {formatLocation(contact)}
         </DataDisplay>
 
-        <DataDisplay icon={<Cake />} className="text-xs">
-          {formatDateString(birthdate, dateFormat)}
-        </DataDisplay>
-
         <DataDisplay icon={<Email />} className="text-xs" link={`mailto:${email}`}>
           {email}
         </DataDisplay>
@@ -53,7 +49,7 @@ export const MastheadSidebar: React.FC = () => {
           {website}
         </DataDisplay>
 
-        {profiles.map(({ id, username, network, url }) => (
+        {social.map(({ id, username, network, url }) => (
           <DataDisplay key={id} icon={getProfileIcon(network)} link={url && addHttp(url)} className="text-xs">
             {username}
           </DataDisplay>
@@ -66,5 +62,5 @@ export const MastheadSidebar: React.FC = () => {
 export const MastheadMain: React.FC = () => {
   const { summary } = useAppSelector((state) => state.website.present.basics);
 
-  return { summary };
+  return <div>{summary}</div>;
 };

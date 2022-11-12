@@ -28,7 +28,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import Basics from '@/components/build/LeftSidebar/sections/Basics';
 import Contact from '@/components/build/LeftSidebar/sections/Contact';
-import Profiles from '@/components/build/LeftSidebar/sections/Profiles';
+import Social from '@/components/build/LeftSidebar/sections/Social';
 import Section from '@/components/build/LeftSidebar/sections/Section';
 import CustomCSS from '@/components/build/RightSidebar/sections/CustomCSS';
 import Export from '@/components/build/RightSidebar/sections/Export';
@@ -46,11 +46,6 @@ export const left: SidebarSection[] = [
     id: 'basics',
     icon: <Person />,
     component: <Basics />,
-  },
-  {
-    id: 'profiles',
-    icon: <Twitter />,
-    component: <Profiles />,
   },
   {
     id: 'work',
@@ -108,6 +103,11 @@ export const left: SidebarSection[] = [
     id: 'references',
     icon: <Groups />,
     component: <Section path="sections.references" titleKey="name" subtitleKey="relationship" isEditable isHideable />,
+  },
+  {
+    id: 'social',
+    icon: <Twitter />,
+    component: <Social />,
   },
   {
     id: 'contact',

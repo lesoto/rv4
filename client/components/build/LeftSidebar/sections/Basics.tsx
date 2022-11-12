@@ -57,20 +57,6 @@ const Basics = () => {
           </div>
         </div>
 
-        <WebsiteInput
-          type="date"
-          label={t<string>('builder.leftSidebar.sections.basics.birthdate.label')}
-          path="basics.birthdate"
-          className="sm:col-span-2"
-        />
-        <WebsiteInput
-          label={t<string>('builder.common.form.email.label')}
-          path="basics.email"
-          className="sm:col-span-2"
-        />
-        <WebsiteInput label={t<string>('builder.common.form.phone.label')} path="basics.phone" />
-        <WebsiteInput label={t<string>('builder.common.form.url.label')} path="basics.website" />
-
         <Divider className="sm:col-span-2" />
 
         <WebsiteInput
