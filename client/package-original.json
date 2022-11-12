@@ -55,9 +55,7 @@
     "remark-gfm": "^3.0.1",
     "sharp": "^0.31.1",
     "uuid": "^9.0.0",
-    "webfontloader": "^1.6.28"
-  },
-  "devDependencies": {
+    "webfontloader": "^1.6.28",
     "@babel/core": "^7.19.3",
     "@reactive-website/schema": "workspace:*",
     "eslint-plugin-unused-imports": "^2.0.0",

@@ -25,12 +25,12 @@ const defaultState: Partial<Website> = {
     phone: '',
     summary: '',
     website: '',
-    location: {
+    contact: {
       address: '',
       city: '',
       country: '',
-      region: '',
-      postalCode: '',
+      state: '',
+      zipCode: '',
     },
     profiles: [],
   },

@@ -1,4 +1,4 @@
-import { ListItem, Location, PhotoFilters } from '@reactive-website/schema';
+import { ListItem, Contact, PhotoFilters } from '@reactive-website/schema';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
@@ -10,11 +10,11 @@ export type PageProps = {
   page: number;
 };
 
-export const formatLocation = (location?: Location): string => {
-  if (!location) return '';
+export const formatLocation = (contact?: Contact): string => {
+  if (!contact) return '';
 
-  const locationArr = [location.address, location.city, location.region, location.postalCode, location.country];
-  const filteredLocationArr = locationArr.filter((x) => !isEmpty(x));
+  const contactArr = [contact.address, contact.city, contact.state, contact.zipCode, contact.country];
+  const filteredLocationArr = contactArr.filter((x) => !isEmpty(x));
 
   return filteredLocationArr.join(', ');
 };

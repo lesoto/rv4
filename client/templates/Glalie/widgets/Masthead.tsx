@@ -12,7 +12,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 export const MastheadSidebar: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const primaryColor: string = useAppSelector((state) => get(state.website.present, 'metadata.theme.primary'));
-  const { name, headline, photo, email, phone, birthdate, website, location, profiles } = useAppSelector(
+  const { name, headline, photo, email, phone, birthdate, website, contact, profiles } = useAppSelector(
     (state) => state.website.present.basics
   );
 
@@ -35,7 +35,7 @@ export const MastheadSidebar: React.FC = () => {
 
       <div className="flex flex-col gap-2 rounded border-2 p-4" style={{ borderColor: primaryColor }}>
         <DataDisplay icon={<Room />} className="text-xs">
-          {formatLocation(location)}
+          {formatLocation(contact)}
         </DataDisplay>
 
         <DataDisplay icon={<Cake />} className="text-xs">

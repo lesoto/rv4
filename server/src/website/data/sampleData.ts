@@ -20,12 +20,12 @@ const sampleData: Partial<Website> = {
       'I am a creative frontend developer offering 4+ years of experience providing high-impact web solutions for diverse industry organizations. Skilled in designing, developing and testing multiple web-based applications incorporating a range of technologies. Aspiring to combine broad background with strong technical skills to excel as a frontend web developer.',
     website: 'alexisjones.com',
     headline: 'Highly Creative Frontend Web Developer',
-    location: {
-      city: 'Stuttgart',
-      region: 'Baden-Württemberg',
-      address: 'Ollenhauer Str. 51',
-      country: 'Germany',
-      postalCode: '70376',
+    contact: {
+      city: 'Jacksonville',
+      state: 'Wyoming',
+      address: '128 Ollenhauer Str',
+      country: 'USA',
+      zipCode: '70376',
     },
     profiles: [
       {

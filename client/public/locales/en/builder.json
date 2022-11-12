@@ -174,7 +174,7 @@
           }
         }
       },
-      "location": {
+      "contact": {
         "address": {
           "label": "Address"
         },
@@ -184,12 +184,12 @@
         "country": {
           "label": "Country"
         },
-        "heading": "Location",
-        "postal-code": {
-          "label": "Postal Code"
+        "heading": "Contact",
+        "zip-code": {
+          "label": "Zip Code"
         },
-        "region": {
-          "label": "Region"
+        "state": {
+          "label": "State"
         }
       },
       "profiles": {

@@ -1,9 +1,9 @@
-export type Location = {
+export type Contact = {
   address: string;
   city: string;
-  region: string;
+  state: string;
   country: string;
-  postalCode: string;
+  zipCode: string;
 };
 
 export type Profile = {
@@ -37,6 +37,6 @@ export type Basics = {
   headline: string;
   birthdate: string;
   summary: string;
-  location: Location;
+  contact: Contact;
   profiles: Profile[];
 };

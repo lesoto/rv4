@@ -22,7 +22,7 @@ const bootstrap = async () => {
 
   await app.listen(port);
 
-  Logger.log(`🚀 Server is up and running!`);
+  Logger.log(`Server is up and running!`);
 };
 
 bootstrap();

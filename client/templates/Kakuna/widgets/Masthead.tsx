@@ -11,7 +11,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
-  const { name, photo, email, phone, website, birthdate, headline, location, profiles } = useAppSelector(
+  const { name, photo, email, phone, website, birthdate, headline, contact, profiles } = useAppSelector(
     (state) => state.website.present.basics
   );
 
@@ -49,7 +49,7 @@ const Masthead = () => {
           {website}
         </DataDisplay>
 
-        <DataDisplay icon={<Room />}>{formatLocation(location)}</DataDisplay>
+        <DataDisplay icon={<Room />}>{formatLocation(contact)}</DataDisplay>
 
         {profiles.map(({ id, username, network, url }) => (
           <DataDisplay key={id} icon={getProfileIcon(network)} link={url && addHttp(url)}>

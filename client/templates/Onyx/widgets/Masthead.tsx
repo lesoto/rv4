@@ -10,7 +10,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
-  const { name, photo, email, phone, website, birthdate, headline, location, profiles } = useAppSelector(
+  const { name, photo, email, phone, website, birthdate, headline, contact, profiles } = useAppSelector(
     (state) => state.website.present.basics
   );
 
@@ -32,7 +32,7 @@ const Masthead: React.FC = () => {
 
         <div className="mt-2 grid gap-2">
           <DataDisplay icon={<Room />} className="text-xs">
-            {formatLocation(location)}
+            {formatLocation(contact)}
           </DataDisplay>
 
           <div className="flex items-center gap-2">

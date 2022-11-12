@@ -13,7 +13,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
-  const { name, photo, headline, summary, email, phone, birthdate, website, location, profiles } = useAppSelector(
+  const { name, photo, headline, summary, email, phone, birthdate, website, contact, profiles } = useAppSelector(
     (state) => state.website.present.basics
   );
   const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
@@ -44,7 +44,7 @@ const Masthead: React.FC = () => {
         style={{ backgroundColor: alpha(theme.primary, 0.4), gridTemplateColumns: `repeat(2, minmax(0, 1fr))` }}
       >
         <DataDisplay icon={<Room />} className="col-span-2">
-          {formatLocation(location)}
+          {formatLocation(contact)}
         </DataDisplay>
 
         <DataDisplay icon={<Cake />}>{formatDateString(birthdate, dateFormat)}</DataDisplay>

@@ -80,9 +80,9 @@ export class IntegrationsService {
             phone: get(jsonWebsite, 'profile.phone'),
             website: get(jsonWebsite, 'profile.website'),
             summary: get(jsonWebsite, 'objective'),
-            location: {
+            contact: {
               address: get(jsonWebsite, 'profile.address.line1'),
-              postalCode: get(jsonWebsite, 'profile.address.pincode'),
+              zipCode: get(jsonWebsite, 'profile.address.pincode'),
               city: get(jsonWebsite, 'profile.address.city'),
             },
           },

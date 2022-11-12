@@ -174,7 +174,7 @@
           }
         }
       },
-      "location": {
+      "contact": {
         "address": {
           "label": "Адрес"
         },
@@ -185,10 +185,10 @@
           "label": "Страна"
         },
         "heading": "Местоположение",
-        "postal-code": {
+        "zip-code": {
           "label": "Почтовый индекс"
         },
-        "region": {
+        "state": {
           "label": "Область"
         }
       },
