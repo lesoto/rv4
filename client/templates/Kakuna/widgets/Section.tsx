@@ -5,7 +5,6 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import { useMemo } from 'react';
 
-import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
 import { SectionProps } from '@/templates/sectionMap';
 import { formatDateString } from '@/utils/date';
@@ -83,7 +82,7 @@ const Section: React.FC<SectionProps> = ({
 
               {date && <div className="opacity-50">({date})</div>}
 
-              {summary && <Markdown>{summary}</Markdown>}
+              {summary}
 
               {url && (
                 <div className="inline-flex justify-center">

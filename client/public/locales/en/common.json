@@ -8,9 +8,6 @@
   "footer": {
     "license": "By the community, for the community."
   },
-  "markdown": {
-    "help-text": "This section supports <1>markdown</1> formatting."
-  },
   "date": {
     "present": "Present"
   },

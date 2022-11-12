@@ -83,7 +83,6 @@ const Basics = () => {
           label={t<string>('builder.common.form.summary.label')}
           path="basics.summary"
           className="sm:col-span-2"
-          markdownSupported
         />
       </div>
     </>

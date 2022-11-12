@@ -2,7 +2,6 @@ import { Cake, Email, Phone, Public, Room } from '@mui/icons-material';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
-import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
 import DataDisplay from '@/templates/shared/DataDisplay';
 import { formatDateString } from '@/utils/date';
@@ -67,5 +66,5 @@ export const MastheadSidebar: React.FC = () => {
 export const MastheadMain: React.FC = () => {
   const { summary } = useAppSelector((state) => state.website.present.basics);
 
-  return <Markdown>{summary}</Markdown>;
+  return { summary };
 };

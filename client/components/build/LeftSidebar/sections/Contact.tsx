@@ -16,10 +16,7 @@ const Contact = () => {
           path="basics.contact.address"
           className="sm:col-span-2"
         />
-        <WebsiteInput
-          label={t<string>('builder.leftSidebar.sections.contact.city.label')}
-          path="basics.contact.city"
-        />
+        <WebsiteInput label={t<string>('builder.leftSidebar.sections.contact.city.label')} path="basics.contact.city" />
         <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.contact.state.label')}
           path="basics.contact.state"

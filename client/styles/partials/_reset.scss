@@ -253,28 +253,6 @@
   -ms-appearance: none;
   appearance: none;
 
-  // Markdown
-  .markdown {
-    // Lists
-    ul,
-    ol {
-      list-style: disc;
-      list-style-position: inside;
-    }
-
-    // Tables
-    table {
-      border-collapse: collapse;
-    }
-
-    th,
-    td {
-      border: 1px solid #ccc;
-      text-align: left;
-      padding: 6px;
-    }
-  }
-
   // For Modern Browsers
   all: initial;
 }

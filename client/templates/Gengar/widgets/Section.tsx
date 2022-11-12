@@ -5,7 +5,6 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import { useMemo } from 'react';
 
-import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
 import { SectionProps } from '@/templates/sectionMap';
 import DataDisplay from '@/templates/shared/DataDisplay';
@@ -87,7 +86,7 @@ const Section: React.FC<SectionProps> = ({
                 </div>
               )}
 
-              {summary && <Markdown>{summary}</Markdown>}
+              {summary}
 
               {url && (
                 <DataDisplay icon={<Link />} link={addHttp(url)}>

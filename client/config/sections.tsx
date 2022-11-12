@@ -113,7 +113,7 @@ export const left: SidebarSection[] = [
     id: 'contact',
     icon: <Map />,
     component: <Contact />,
-  }
+  },
 ];
 
 export const right: SidebarSection[] = [

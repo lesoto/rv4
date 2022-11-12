@@ -4,7 +4,6 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { useMemo } from 'react';
 
-import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
 import DataDisplay from '@/templates/shared/DataDisplay';
 import { formatDateString } from '@/utils/date';
@@ -79,7 +78,7 @@ export const MastheadMain: React.FC = () => {
 
       <hr className="opacity-25" />
 
-      <Markdown>{summary}</Markdown>
+      <p>{summary}</p>
     </div>
   );
 };

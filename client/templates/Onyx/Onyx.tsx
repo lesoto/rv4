@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
 import { PageProps } from '@/utils/template';
 
@@ -20,7 +19,7 @@ const Onyx: React.FC<PageProps> = ({ page }) => {
       {isFirstPage && (
         <div className="mb-4 grid gap-4 border-b pb-4">
           <Masthead />
-          <Markdown>{summary}</Markdown>
+          <p>{summary}</p>
         </div>
       )}
 

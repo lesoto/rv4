@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
 import { PageProps } from '@/utils/template';
 
@@ -20,7 +19,7 @@ const Kakuna: React.FC<PageProps> = ({ page }) => {
       {isFirstPage && (
         <>
           <Masthead />
-          <Markdown className="mb-2 text-center">{summary}</Markdown>
+          <p className="mb-2 text-center">{summary}</p>
         </>
       )}
 

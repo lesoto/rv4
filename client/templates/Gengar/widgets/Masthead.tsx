@@ -7,7 +7,6 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { useMemo } from 'react';
 
-import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
 import DataDisplay from '@/templates/shared/DataDisplay';
 import { formatDateString } from '@/utils/date';
@@ -80,7 +79,7 @@ export const MastheadMain: React.FC = () => {
 
   return (
     <div className="grid gap-2 p-4" style={{ backgroundColor }}>
-      <Markdown>{summary}</Markdown>
+      {summary}
     </div>
   );
 };

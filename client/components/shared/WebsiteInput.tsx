@@ -8,17 +8,14 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setWebsiteState } from '@/store/website/websiteSlice';
 
-import MarkdownSupported from './MarkdownSupported';
-
 interface Props {
   type?: 'text' | 'textarea' | 'date';
   label: string;
   path: string;
   className?: string;
-  markdownSupported?: boolean;
 }
 
-const WebsiteInput: React.FC<Props> = ({ type = 'text', label, path, className, markdownSupported = false }) => {
+const WebsiteInput: React.FC<Props> = ({ type = 'text', label, path, className }) => {
   const dispatch = useAppDispatch();
 
   const stateValue = useAppSelector((state) => get(state.website.present, path, ''));
@@ -48,7 +45,7 @@ const WebsiteInput: React.FC<Props> = ({ type = 'text', label, path, className, 
         value={value}
         onChange={onChange}
         className={className}
-        helperText={markdownSupported && <MarkdownSupported />}
+        helperText=""
       />
     );
   }

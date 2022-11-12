@@ -51,9 +51,9 @@ const TermsOfService: NextPage = () => (
       with your mobile network provider will still apply. As a result, you may be charged by your mobile provider for
       the cost of data for the duration of the connection while accessing the app, or other third-party charges. In
       using the app, you&apos;re accepting responsibility for any such charges, including roaming data charges if you
-      use the app outside of your home state or country without turning off data roaming. If you are
-      not the bill payer for the device on which you&apos;re using the app, please be aware that we assume that you have
-      received permission from the bill payer for using the app.
+      use the app outside of your home state or country without turning off data roaming. If you are not the bill payer
+      for the device on which you&apos;re using the app, please be aware that we assume that you have received
+      permission from the bill payer for using the app.
     </p>
 
     <p>

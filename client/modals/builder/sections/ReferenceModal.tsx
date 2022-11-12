@@ -10,7 +10,6 @@ import { useEffect, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import BaseModal from '@/components/shared/BaseModal';
-import MarkdownSupported from '@/components/shared/MarkdownSupported';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
 import { addItem, editItem } from '@/store/website/websiteSlice';
@@ -157,7 +156,7 @@ const ReferenceModal: React.FC = () => {
               label={t<string>('builder.common.form.summary.label')}
               className="col-span-2"
               error={!!fieldState.error}
-              helperText={fieldState.error?.message || <MarkdownSupported />}
+              helperText={fieldState.error?.message}
               {...field}
             />
           )}
