@@ -44,16 +44,12 @@ const sampleData: Partial<Website> = {
   sections: {
     work: {
       id: 'work',
-      name: 'Work Experience',
+      name: 'Work',
       type: 'basic',
       items: [
         {
           id: 'fe280c61-9d92-4dba-8a08-274866470096',
           url: 'https://www.espritcam.com',
-          date: {
-            end: '',
-            start: '2015-09-01T16:34:27.000Z',
-          },
           name: 'DP Technology Corp.',
           summary:
             '- Manage website development projects from initial design through completion, optimizing all cross-browser and multi-platform compatibility.\n- Work closely with programmers and clients to meet project requirements, goals, and desired functionality.\n- Develop and integrate customized themes into WordPress, PHP-Fusion, and Concrete5.\nConduct training for clients on handling website content management systems.\n- Enable site-wide promotions by programming HTML5 canvases to animate particles on web backgrounds.',
@@ -62,10 +58,6 @@ const sampleData: Partial<Website> = {
         {
           id: '285d78f8-df56-4569-ba6b-cff5ebe5381e',
           url: 'https://www.vokophone.com',
-          date: {
-            end: '2015-07-31T22:00:00.000Z',
-            start: '2011-05-31T22:00:00.000Z',
-          },
           name: 'Voko Communications',
           summary:
             '- Developed websites from front to backend using PHP, JavaScript, and HTML.\n- Enhanced user experience and accomplish webpage objectives by creating site structure, navigation, page optimization, and graphics integration.\n- Implemented enhancements that improved web functionality and responsiveness.\n- Designed and maintained both corporate and client websites, using scripting languages and content management systems including WordPress.',
@@ -181,10 +173,6 @@ const sampleData: Partial<Website> = {
           id: '3f0eded8-ee1f-4c0e-b4a7-7a0811c150db',
           url: 'https://www.greenriver.edu',
           area: 'Computer Science',
-          date: {
-            end: '',
-            start: '2011-01-04T23:00:00.000Z',
-          },
           score: 'Honors: cum laude (GPA: 3.6/4.0)',
           degree: 'Bachelor of Science',
           courses: ['Data Structures and Algorithms', 'Logic Design'],
@@ -195,10 +183,6 @@ const sampleData: Partial<Website> = {
           id: 'e4977e01-25bf-4524-95c4-20c77c3cf700',
           url: 'https://www.lsu.edu',
           area: 'English Literature',
-          date: {
-            end: '2010-12-31T23:00:00.000Z',
-            start: '2008-01-31T23:00:00.000Z',
-          },
           score: 'Baton Rouge, LA',
           degree: 'Bachelor of Arts',
           courses: ['Copywriting', 'Product Analysis'],
@@ -218,11 +202,6 @@ const sampleData: Partial<Website> = {
           name: 'Video Games',
           keywords: ['FIFA', 'Age of Empires'],
           id: 'ddebb0e1-0a49-4ca6-be8a-956f10f62307',
-        },
-        {
-          name: 'Football',
-          keywords: ['Manchester United', 'Los Angeles Rams'],
-          id: '2df59b01-8dde-40d5-b3da-f5f5e698e8fa',
         },
         {
           name: 'Mindfulness',

@@ -99,7 +99,7 @@ export const left: SidebarSection[] = [
     icon: <Coffee />,
     component: <Section path="sections.projects" titleKey="name" subtitleKey="description" isEditable isHideable />,
   },
-    {
+  {
     id: 'social',
     icon: <Twitter />,
     component: <Social />,

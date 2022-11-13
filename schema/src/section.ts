@@ -5,7 +5,6 @@ export type WorkExperience = {
   id?: string;
   name: string;
   position: string;
-  date?: DateRange;
   url?: string;
   summary?: string;
 };
@@ -16,7 +15,6 @@ export type Education = {
   degree: string;
   area?: string;
   score?: string;
-  date?: DateRange;
   url?: string;
   summary?: string;
   courses?: string[];

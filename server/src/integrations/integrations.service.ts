@@ -128,10 +128,6 @@ export class IntegrationsService {
                     position: get(item, 'position'),
                     summary: get(item, 'summary'),
                     url: get(item, 'website'),
-                    date: {
-                      start: this.parseDate(get(item, 'startDate')),
-                      end: this.parseDate(get(item, 'endDate')),
-                    },
                   } as WorkExperience,
                 ],
               },
@@ -160,10 +156,6 @@ export class IntegrationsService {
                     area: get(item, 'field'),
                     summary: get(item, 'summary'),
                     courses: get(item, 'courses', []),
-                    date: {
-                      start: this.parseDate(get(item, 'startDate')),
-                      end: this.parseDate(get(item, 'endDate')),
-                    },
                   } as Education,
                 ],
               },

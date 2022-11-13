@@ -1,7 +1,6 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers';
 import { SectionPath, WorkExperience } from '@reactive-website/schema';
 import dayjs from 'dayjs';
 import Joi from 'joi';
@@ -24,10 +23,6 @@ const path: SectionPath = 'sections.work';
 const defaultState: FormData = {
   name: '',
   position: '',
-  date: {
-    start: '',
-    end: '',
-  },
   url: '',
   summary: '',
 };
@@ -36,10 +31,6 @@ const schema = Joi.object<FormData>().keys({
   id: Joi.string(),
   name: Joi.string().required(),
   position: Joi.string().required(),
-  date: Joi.object().keys({
-    start: Joi.string().allow(''),
-    end: Joi.string().allow(''),
-  }),
   url: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
   summary: Joi.string().allow(''),
 });
@@ -124,54 +115,6 @@ const WorkModal: React.FC = () => {
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
-            />
-          )}
-        />
-
-        <Controller
-          name="date.start"
-          control={control}
-          render={({ field, fieldState }) => (
-            <DatePicker
-              {...field}
-              openTo="year"
-              label={t<string>('builder.common.form.start-date.label')}
-              views={['year', 'month', 'day']}
-              onChange={(date: Date | null, keyboardInputValue: string | undefined) => {
-                isEmpty(keyboardInputValue) && field.onChange('');
-                date && dayjs(date).utc().isValid() && field.onChange(dayjs(date).utc().toISOString());
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message || params.inputProps?.placeholder}
-                />
-              )}
-            />
-          )}
-        />
-
-        <Controller
-          name="date.end"
-          control={control}
-          render={({ field, fieldState }) => (
-            <DatePicker
-              {...field}
-              openTo="year"
-              label={t<string>('builder.common.form.end-date.label')}
-              views={['year', 'month', 'day']}
-              onChange={(date: Date | null, keyboardInputValue: string | undefined) => {
-                isEmpty(keyboardInputValue) && field.onChange('');
-                date && dayjs(date).utc().isValid() && field.onChange(dayjs(date).utc().toISOString());
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message || t<string>('builder.common.form.end-date.help-text')}
-                />
-              )}
             />
           )}
         />
