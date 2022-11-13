@@ -103,9 +103,9 @@
   },
   "leftSidebar": {
     "sections": {
-      "awards": {
+      "blog": {
         "form": {
-          "awarder": {
+          "category": {
             "label": "Awarder"
           }
         }

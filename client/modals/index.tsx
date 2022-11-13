@@ -8,7 +8,7 @@ import ForgotPasswordModal from './auth/ForgotPasswordModal';
 import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
 import ResetPasswordModal from './auth/ResetPasswordModal';
-import AwardModal from './builder/sections/AwardModal';
+import BlogModal from './builder/sections/BlogModal';
 import CertificateModal from './builder/sections/CertificateModal';
 import CustomModal from './builder/sections/CustomModal';
 import EducationModal from './builder/sections/EducationModal';
@@ -61,7 +61,7 @@ const ModalWrapper: React.FC = () => {
       <ProfileModal />
       <WorkModal />
       <EducationModal />
-      <AwardModal />
+      <BlogModal />
       <CertificateModal />
       <PublicationModal />
       <SkillModal />

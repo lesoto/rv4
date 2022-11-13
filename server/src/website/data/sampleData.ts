@@ -67,14 +67,14 @@ const sampleData: Partial<Website> = {
       columns: 1,
       visible: true,
     },
-    awards: {
-      id: 'awards',
-      name: 'Awards',
+    blog: {
+      id: 'blog',
+      name: 'Blog',
       type: 'basic',
       items: [
         {
           title: 'Blitz Hackathon',
-          awarder: '2nd Place',
+          category: '2nd Place',
           date: '2018-03-31T22:00:00.000Z',
           url: '',
           summary: '',
@@ -82,7 +82,7 @@ const sampleData: Partial<Website> = {
         },
         {
           title: 'Carl-Zeiss Hackathon',
-          awarder: '2nd Place',
+          category: '2nd Place',
           date: '2017-05-09T22:00:00.000Z',
           url: '',
           summary: '',
@@ -90,7 +90,7 @@ const sampleData: Partial<Website> = {
         },
         {
           title: 'JP Morgan Chase - Code for Good',
-          awarder: '3rd Place',
+          category: '3rd Place',
           date: '2018-03-12T23:00:00.000Z',
           url: '',
           summary: '',
@@ -391,7 +391,7 @@ const sampleData: Partial<Website> = {
         ['publications', 'volunteer'],
       ],
       [
-        ['skills', '2d47a563-d0a0-4275-af18-fea3ba6b57b4', 'awards'],
+        ['skills', '2d47a563-d0a0-4275-af18-fea3ba6b57b4', 'blog'],
         ['certifications', 'interests', 'languages'],
       ],
       [['projects'], ['footer']],

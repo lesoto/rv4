@@ -23,7 +23,7 @@ export type Education = {
 export type Award = {
   id?: string;
   title: string;
-  awarder: string;
+  category: string;
   date?: string;
   url?: string;
   summary?: string;

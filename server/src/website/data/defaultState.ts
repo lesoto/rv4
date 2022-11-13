@@ -50,9 +50,9 @@ const defaultState: Partial<Website> = {
       visible: true,
       items: [],
     },
-    awards: {
-      id: 'awards',
-      name: 'Awards',
+    blog: {
+      id: 'blog',
+      name: 'Blog',
       type: 'basic',
       columns: 2,
       visible: true,
@@ -143,7 +143,7 @@ const defaultState: Partial<Website> = {
     layout: [
       [
         ['work', 'education', 'projects', 'volunteer', 'footer'],
-        ['skills', 'interests', 'languages', 'awards', 'certifications', 'publications'],
+        ['skills', 'interests', 'languages', 'blog', 'certifications', 'publications'],
       ],
     ],
     template: 'kakuna',

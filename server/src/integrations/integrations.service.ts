@@ -166,21 +166,21 @@ export class IntegrationsService {
         // pass through
       }
 
-      // Awards
+      // Blog
       try {
-        const awards: any[] = get(jsonWebsite, 'awards.items', []);
-        awards.forEach((award) => {
+        const blog: any[] = get(jsonWebsite, 'blog.items', []);
+        blog.forEach((blog) => {
           merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
-              awards: {
+              blog: {
                 items: [
-                  ...get(website, 'sections.awards.items', []),
+                  ...get(website, 'sections.blog.items', []),
                   {
                     id: uuidv4(),
-                    title: get(award, 'title'),
-                    awarder: get(award, 'awarder'),
-                    summary: get(award, 'summary'),
-                    date: this.parseDate(get(award, 'date')),
+                    title: get(blog, 'title'),
+                    category: get(blog, 'category'),
+                    summary: get(blog, 'summary'),
+                    date: this.parseDate(get(blog, 'date')),
                   } as Award,
                 ],
               },

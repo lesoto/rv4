@@ -19,11 +19,11 @@ import { addItem, editItem } from '@/store/website/websiteSlice';
 
 type FormData = Award;
 
-const path: SectionPath = 'sections.awards';
+const path: SectionPath = 'sections.blog';
 
 const defaultState: FormData = {
   title: '',
-  awarder: '',
+  category: '',
   date: '',
   url: '',
   summary: '',
@@ -32,13 +32,13 @@ const defaultState: FormData = {
 const schema = Joi.object<FormData>().keys({
   id: Joi.string(),
   title: Joi.string().required(),
-  awarder: Joi.string().required(),
+  category: Joi.string().required(),
   date: Joi.string().allow(''),
   url: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
   summary: Joi.string().allow(''),
 });
 
-const AwardModal: React.FC = () => {
+const BlogModal: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
@@ -109,12 +109,12 @@ const AwardModal: React.FC = () => {
         />
 
         <Controller
-          name="awarder"
+          name="category"
           control={control}
           render={({ field, fieldState }) => (
             <TextField
               required
-              label={t<string>('builder.leftSidebar.sections.awards.form.awarder.label')}
+              label={t<string>('builder.leftSidebar.sections.blog.form.category.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
@@ -182,4 +182,4 @@ const AwardModal: React.FC = () => {
   );
 };
 
-export default AwardModal;
+export default BlogModal;
