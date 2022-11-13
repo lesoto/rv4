@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {
-  Award,
+  Blog,
   CTA,
   Education,
   Footer,
@@ -181,7 +181,7 @@ export class IntegrationsService {
                     category: get(blog, 'category'),
                     summary: get(blog, 'summary'),
                     date: this.parseDate(get(blog, 'date')),
-                  } as Award,
+                  } as Blog,
                 ],
               },
             },

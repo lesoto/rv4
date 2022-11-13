@@ -20,7 +20,7 @@ export type Education = {
   courses?: string[];
 };
 
-export type Award = {
+export type Blog = {
   id?: string;
   title: string;
   category: string;
@@ -109,7 +109,7 @@ export type Custom = {
 };
 
 export type ListItem =
-  | Award
+  | Blog
   | CTA
   | Education
   | Interest

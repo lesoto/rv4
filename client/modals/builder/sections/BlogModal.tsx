@@ -2,7 +2,7 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
-import { Award, SectionPath } from '@reactive-website/schema';
+import { Blog, SectionPath } from '@reactive-website/schema';
 import dayjs from 'dayjs';
 import Joi from 'joi';
 import get from 'lodash/get';
@@ -17,7 +17,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
 import { addItem, editItem } from '@/store/website/websiteSlice';
 
-type FormData = Award;
+type FormData = Blog;
 
 const path: SectionPath = 'sections.blog';
 

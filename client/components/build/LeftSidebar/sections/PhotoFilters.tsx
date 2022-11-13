@@ -27,7 +27,8 @@ const PhotoFilters = () => {
   const handleSetGrayscale = (value: boolean) =>
     dispatch(setWebsiteState({ path: 'general.photo.filters.grayscale', value }));
 
-  const handleSetBorder = (value: boolean) => dispatch(setWebsiteState({ path: 'general.photo.filters.border', value }));
+  const handleSetBorder = (value: boolean) =>
+    dispatch(setWebsiteState({ path: 'general.photo.filters.border', value }));
 
   return (
     <div className="flex flex-col gap-2 p-5 dark:bg-neutral-800">
