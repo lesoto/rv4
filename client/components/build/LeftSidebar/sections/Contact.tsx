@@ -13,29 +13,29 @@ const Contact = () => {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <WebsiteInput
           label={t<string>('builder.common.form.email.label')}
-          path="basics.email"
+          path="general.email"
           className="sm:col-span-2"
         />
-        <WebsiteInput label={t<string>('builder.common.form.url.label')} path="basics.website" />
-        <WebsiteInput label={t<string>('builder.common.form.phone.label')} path="basics.phone" />
+        <WebsiteInput label={t<string>('builder.common.form.url.label')} path="general.website" />
+        <WebsiteInput label={t<string>('builder.common.form.phone.label')} path="general.phone" />
 
         <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.contact.address.label')}
-          path="basics.contact.address"
+          path="general.contact.address"
           className="sm:col-span-2"
         />
-        <WebsiteInput label={t<string>('builder.leftSidebar.sections.contact.city.label')} path="basics.contact.city" />
+        <WebsiteInput label={t<string>('builder.leftSidebar.sections.contact.city.label')} path="general.contact.city" />
         <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.contact.state.label')}
-          path="basics.contact.state"
+          path="general.contact.state"
         />
         <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.contact.zip-code.label')}
-          path="basics.contact.zipCode"
+          path="general.contact.zipCode"
         />
         <WebsiteInput
           label={t<string>('builder.leftSidebar.sections.contact.country.label')}
-          path="basics.contact.country"
+          path="general.contact.country"
         />
       </div>
     </>

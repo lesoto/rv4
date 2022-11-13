@@ -32,7 +32,7 @@ const Export = () => {
     const { nanoid } = await import('nanoid');
     const download = (await import('downloadjs')).default;
 
-    const redactedWebsite = pick(website, ['basics', 'sections', 'metadata', 'public']);
+    const redactedWebsite = pick(website, ['general', 'sections', 'metadata', 'public']);
     const jsonString = JSON.stringify(redactedWebsite, null, 4);
     const jsonBlob = new Blob([jsonString], { type: 'application/json;charset=utf-8' });
     const filename = `RxWebsite_JSONExport_${nanoid()}.json`;

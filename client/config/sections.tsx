@@ -26,7 +26,7 @@ import {
 import { Section as SectionRecord } from '@reactive-website/schema';
 import isEmpty from 'lodash/isEmpty';
 
-import Basics from '@/components/build/LeftSidebar/sections/Basics';
+import General from '@/components/build/LeftSidebar/sections/General';
 import Contact from '@/components/build/LeftSidebar/sections/Contact';
 import Social from '@/components/build/LeftSidebar/sections/Social';
 import Section from '@/components/build/LeftSidebar/sections/Section';
@@ -43,9 +43,9 @@ import { SidebarSection } from '@/types/app';
 
 export const left: SidebarSection[] = [
   {
-    id: 'basics',
+    id: 'general',
     icon: <Person />,
-    component: <Basics />,
+    component: <General />,
   },
   {
     id: 'work',

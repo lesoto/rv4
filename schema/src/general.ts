@@ -31,7 +31,7 @@ export type Photo = {
   filters: PhotoFilters;
 };
 
-export type Basics = {
+export type General = {
   name: string;
   photo: Photo;
   headline: string;

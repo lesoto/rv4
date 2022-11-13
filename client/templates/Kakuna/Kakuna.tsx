@@ -11,7 +11,7 @@ import Section from './widgets/Section';
 const Kakuna: React.FC<PageProps> = ({ page }) => {
   const isFirstPage = useMemo(() => page === 0, [page]);
 
-  const { summary } = useAppSelector((state) => state.website.present.basics);
+  const { summary } = useAppSelector((state) => state.website.present.general);
   const layout: string[][] = useAppSelector((state) => state.website.present.metadata.layout[page]);
 
   return (

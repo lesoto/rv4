@@ -1,5 +1,5 @@
 export * from './atoms';
-export * from './basics';
+export * from './general';
 export * from './fonts';
 export * from './integrations';
 export * from './metadata';

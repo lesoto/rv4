@@ -7,7 +7,7 @@ const defaultCSS = `/* Enter custom CSS here */
 }`;
 
 const defaultState: Partial<Website> = {
-  basics: {
+  general: {
     headline: '',
     photo: {
       url: '',
@@ -45,22 +45,6 @@ const defaultState: Partial<Website> = {
     education: {
       id: 'education',
       name: 'Education',
-      type: 'basic',
-      columns: 2,
-      visible: true,
-      items: [],
-    },
-    blog: {
-      id: 'blog',
-      name: 'Blog',
-      type: 'basic',
-      columns: 2,
-      visible: true,
-      items: [],
-    },
-    call_to_actions: {
-      id: 'call_to_actions',
-      name: 'Call to Action',
       type: 'basic',
       columns: 2,
       visible: true,
@@ -106,17 +90,33 @@ const defaultState: Partial<Website> = {
       visible: true,
       items: [],
     },
-    footer: {
-      id: 'footer',
-      name: 'Footer',
+    projects: {
+      id: 'projects',
+      name: 'Projects',
       type: 'basic',
       columns: 2,
       visible: true,
       items: [],
     },
-    projects: {
-      id: 'projects',
-      name: 'Projects',
+    blog: {
+      id: 'blog',
+      name: 'Blog',
+      type: 'basic',
+      columns: 2,
+      visible: true,
+      items: [],
+    },
+    call_to_actions: {
+      id: 'call_to_actions',
+      name: 'Call to Action',
+      type: 'basic',
+      columns: 2,
+      visible: true,
+      items: [],
+    },
+    footer: {
+      id: 'footer',
+      name: 'Footer',
       type: 'basic',
       columns: 2,
       visible: true,
@@ -135,7 +135,7 @@ const defaultState: Partial<Website> = {
     },
     locale: 'en',
     date: {
-      format: 'MMMM DD, YYYY',
+      format: 'MM/DD/YYYY',
     },
     page: {
       format: 'A4',

@@ -1,5 +1,5 @@
 import { DateRange } from './atoms';
-import { Social } from './basics';
+import { Social } from './general';
 
 export type WorkExperience = {
   id?: string;
@@ -24,15 +24,6 @@ export type Award = {
   id?: string;
   title: string;
   category: string;
-  date?: string;
-  url?: string;
-  summary?: string;
-};
-
-export type CTA = {
-  id?: string;
-  name: string;
-  subtitle: string;
   date?: string;
   url?: string;
   summary?: string;
@@ -75,6 +66,15 @@ export type Interest = {
   id?: string;
   name: string;
   keywords?: string[];
+};
+
+export type CTA = {
+  id?: string;
+  name: string;
+  subtitle: string;
+  date?: string;
+  url?: string;
+  summary?: string;
 };
 
 export type Project = {

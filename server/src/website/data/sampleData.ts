@@ -1,7 +1,7 @@
 import { Website } from '../entities/website.entity';
 
 const sampleData: Partial<Website> = {
-  basics: {
+  general: {
     name: 'Jessica Jones',
     photo: {
       url: `/images/sample-photo.jpg`,

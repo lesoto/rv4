@@ -48,7 +48,7 @@
         "label": "Subtitle"
       },
       "summary": {
-        "label": "Summary"
+        "label": "Content"
       },
       "title": {
         "label": "Title"
@@ -110,7 +110,7 @@
           }
         }
       },
-      "basics": {
+      "general": {
         "actions": {
           "photo-filters": "Photo Filters"
         },

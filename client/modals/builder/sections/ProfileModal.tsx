@@ -56,9 +56,9 @@ const ProfileModal: React.FC = () => {
 
   const onSubmit = (formData: FormData) => {
     if (isEditMode) {
-      dispatch(editItem({ path: 'basics.social', value: formData }));
+      dispatch(editItem({ path: 'general.social', value: formData }));
     } else {
-      dispatch(addItem({ path: 'basics.social', value: formData }));
+      dispatch(addItem({ path: 'general.social', value: formData }));
     }
 
     handleClose();

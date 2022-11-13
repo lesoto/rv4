@@ -16,7 +16,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 export const MastheadSidebar: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const { name, headline, photo, email, phone, website, contact, social } = useAppSelector(
-    (state) => state.website.present.basics
+    (state) => state.website.present.general
   );
   const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
   const contrast = useMemo(() => getContrastColor(theme.primary), [theme.primary]);
@@ -67,7 +67,7 @@ export const MastheadSidebar: React.FC = () => {
 };
 
 export const MastheadMain: React.FC = () => {
-  const { summary } = useAppSelector((state) => state.website.present.basics);
+  const { summary } = useAppSelector((state) => state.website.present.general);
 
   return <div className="px-4 pt-4">{summary}</div>;
 };

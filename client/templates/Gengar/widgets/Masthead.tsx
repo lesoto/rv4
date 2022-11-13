@@ -17,7 +17,7 @@ import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 export const MastheadSidebar: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const { name, headline, photo, email, phone, website, contact, social } = useAppSelector(
-    (state) => state.website.present.basics
+    (state) => state.website.present.general
   );
   const theme: ThemeConfig = useAppSelector((state) => get(state.website.present, 'metadata.theme', {}));
   const contrast = useMemo(() => getContrastColor(theme.primary), [theme.primary]);
@@ -71,7 +71,7 @@ export const MastheadMain: React.FC = () => {
   const primaryColor: string = useAppSelector((state) => get(state.website.present, 'metadata.theme.primary'));
   const backgroundColor: string = useMemo(() => alpha(primaryColor, 0.15), [primaryColor]);
 
-  const { summary } = useAppSelector((state) => state.website.present.basics);
+  const { summary } = useAppSelector((state) => state.website.present.general);
 
   return (
     <div className="grid gap-2 p-4" style={{ backgroundColor }}>

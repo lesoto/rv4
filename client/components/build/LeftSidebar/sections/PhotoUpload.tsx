@@ -22,7 +22,7 @@ const PhotoUpload: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const id: number = useAppSelector((state) => get(state.website.present, 'id'));
-  const photo: Photo = useAppSelector((state) => get(state.website.present, 'basics.photo'));
+  const photo: Photo = useAppSelector((state) => get(state.website.present, 'general.photo'));
 
   const { mutateAsync: uploadMutation, isLoading } = useMutation<Website, ServerError, UploadPhotoParams>(uploadPhoto);
 
@@ -34,7 +34,7 @@ const PhotoUpload: React.FC = () => {
         try {
           await deleteMutation({ id });
         } finally {
-          dispatch(setWebsiteState({ path: 'basics.photo.url', value: '' }));
+          dispatch(setWebsiteState({ path: 'general.photo.url', value: '' }));
         }
       } else {
         fileInputRef.current.click();
@@ -55,7 +55,7 @@ const PhotoUpload: React.FC = () => {
 
       const website = await uploadMutation({ id, file });
 
-      dispatch(setWebsiteState({ path: 'basics.photo.url', value: get(website, 'basics.photo.url', '') }));
+      dispatch(setWebsiteState({ path: 'general.photo.url', value: get(website, 'general.photo.url', '') }));
     }
   };
 
@@ -67,8 +67,8 @@ const PhotoUpload: React.FC = () => {
         <Tooltip
           title={
             isEmpty(photo.url)
-              ? (t<string>('builder.leftSidebar.sections.basics.photo-upload.tooltip.upload') as string)
-              : (t<string>('builder.leftSidebar.sections.basics.photo-upload.tooltip.remove') as string)
+              ? (t<string>('builder.leftSidebar.sections.general.photo-upload.tooltip.upload') as string)
+              : (t<string>('builder.leftSidebar.sections.general.photo-upload.tooltip.remove') as string)
           }
         >
           <Avatar sx={{ width: 96, height: 96 }} src={photo.url} />

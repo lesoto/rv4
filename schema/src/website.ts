@@ -1,4 +1,4 @@
-import { Basics } from './basics';
+import { General } from './general';
 import { Metadata } from './metadata';
 import { Section } from './section';
 import { User } from './user';
@@ -10,7 +10,7 @@ export type Website = {
   slug: string;
   image: string;
   user: User;
-  basics: Basics;
+  general: General;
   sections: Record<string, Section>;
   metadata: Metadata;
   public: boolean;

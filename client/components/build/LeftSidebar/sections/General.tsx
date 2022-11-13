@@ -9,7 +9,7 @@ import WebsiteInput from '@/components/shared/WebsiteInput';
 import PhotoFilters from './PhotoFilters';
 import PhotoUpload from './PhotoUpload';
 
-const Basics = () => {
+const General = () => {
   const { t } = useTranslation();
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -24,7 +24,7 @@ const Basics = () => {
 
   return (
     <>
-      <Heading path="sections.basics" name={t<string>('builder.leftSidebar.sections.basics.heading')} />
+      <Heading path="sections.general" name={t<string>('builder.leftSidebar.sections.general.heading')} />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="grid items-center gap-4 sm:col-span-2 sm:grid-cols-3">
@@ -33,10 +33,10 @@ const Basics = () => {
           </div>
 
           <div className="grid w-full gap-2 sm:col-span-2">
-            <WebsiteInput label={t<string>('builder.leftSidebar.sections.basics.name.label')} path="basics.name" />
+            <WebsiteInput label={t<string>('builder.leftSidebar.sections.general.name.label')} path="general.name" />
 
             <Button variant="outlined" startIcon={<PhotoFilter />} onClick={handleClick}>
-              {t<string>('builder.leftSidebar.sections.basics.actions.photo-filters')}
+              {t<string>('builder.leftSidebar.sections.general.actions.photo-filters')}
             </Button>
 
             <Popover
@@ -60,14 +60,14 @@ const Basics = () => {
         <Divider className="sm:col-span-2" />
 
         <WebsiteInput
-          label={t<string>('builder.leftSidebar.sections.basics.headline.label')}
-          path="basics.headline"
+          label={t<string>('builder.leftSidebar.sections.general.headline.label')}
+          path="general.headline"
           className="sm:col-span-2"
         />
         <WebsiteInput
           type="textarea"
           label={t<string>('builder.common.form.summary.label')}
-          path="basics.summary"
+          path="general.summary"
           className="sm:col-span-2"
         />
       </div>
@@ -75,4 +75,4 @@ const Basics = () => {
   );
 };
 
-export default Basics;
+export default General;

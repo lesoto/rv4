@@ -12,27 +12,27 @@ const PhotoFilters = () => {
 
   const dispatch = useAppDispatch();
 
-  const photo: Photo = useAppSelector((state) => get(state.website.present, 'basics.photo'));
+  const photo: Photo = useAppSelector((state) => get(state.website.present, 'general.photo'));
   const size: number = get(photo, 'filters.size', 128);
   const shape: PhotoShape = get(photo, 'filters.shape', 'square');
   const grayscale: boolean = get(photo, 'filters.grayscale', false);
   const border: boolean = get(photo, 'filters.border', false);
 
   const handleChangeSize = (size: number | number[]) =>
-    dispatch(setWebsiteState({ path: 'basics.photo.filters.size', value: size }));
+    dispatch(setWebsiteState({ path: 'general.photo.filters.size', value: size }));
 
   const handleChangeShape = (shape: PhotoShape) =>
-    dispatch(setWebsiteState({ path: 'basics.photo.filters.shape', value: shape }));
+    dispatch(setWebsiteState({ path: 'general.photo.filters.shape', value: shape }));
 
   const handleSetGrayscale = (value: boolean) =>
-    dispatch(setWebsiteState({ path: 'basics.photo.filters.grayscale', value }));
+    dispatch(setWebsiteState({ path: 'general.photo.filters.grayscale', value }));
 
-  const handleSetBorder = (value: boolean) => dispatch(setWebsiteState({ path: 'basics.photo.filters.border', value }));
+  const handleSetBorder = (value: boolean) => dispatch(setWebsiteState({ path: 'general.photo.filters.border', value }));
 
   return (
     <div className="flex flex-col gap-2 p-5 dark:bg-neutral-800">
       <div>
-        <h4 className="font-medium">{t<string>('builder.leftSidebar.sections.basics.photo-filters.size.heading')}</h4>
+        <h4 className="font-medium">{t<string>('builder.leftSidebar.sections.general.photo-filters.size.heading')}</h4>
 
         <div className="mx-2">
           <Slider
@@ -55,19 +55,19 @@ const PhotoFilters = () => {
 
       <div>
         <h4 className="font-medium">
-          {t<string>('builder.leftSidebar.sections.basics.photo-filters.effects.heading')}
+          {t<string>('builder.leftSidebar.sections.general.photo-filters.effects.heading')}
         </h4>
 
         <div className="flex items-center">
           <FormControlLabel
-            label={t<string>('builder.leftSidebar.sections.basics.photo-filters.effects.grayscale.label')}
+            label={t<string>('builder.leftSidebar.sections.general.photo-filters.effects.grayscale.label')}
             control={
               <Checkbox color="secondary" checked={grayscale} onChange={(_, value) => handleSetGrayscale(value)} />
             }
           />
 
           <FormControlLabel
-            label={t<string>('builder.leftSidebar.sections.basics.photo-filters.effects.border.label')}
+            label={t<string>('builder.leftSidebar.sections.general.photo-filters.effects.border.label')}
             control={<Checkbox color="secondary" checked={border} onChange={(_, value) => handleSetBorder(value)} />}
           />
         </div>
@@ -76,7 +76,7 @@ const PhotoFilters = () => {
       <Divider />
 
       <div className="flex flex-col gap-2">
-        <h4 className="font-medium">{t<string>('builder.leftSidebar.sections.basics.photo-filters.shape.heading')}</h4>
+        <h4 className="font-medium">{t<string>('builder.leftSidebar.sections.general.photo-filters.shape.heading')}</h4>
 
         <ToggleButtonGroup exclusive value={shape} onChange={(_, value) => handleChangeShape(value)}>
           <ToggleButton size="small" value="square" className="w-14">

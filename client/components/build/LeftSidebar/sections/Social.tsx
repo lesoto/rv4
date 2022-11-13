@@ -23,7 +23,7 @@ const Social = () => {
   };
 
   const handleDuplicate = (item: ListItem) => {
-    dispatch(duplicateItem({ path: 'basics.social', value: item }));
+    dispatch(duplicateItem({ path: 'general.social', value: item }));
   };
 
   return (
@@ -31,7 +31,7 @@ const Social = () => {
       <Heading path="sections.social" name={t<string>('builder.leftSidebar.sections.social.heading')} />
 
       <List
-        path="basics.social"
+        path="general.social"
         titleKey="username"
         subtitleKey="network"
         onEdit={handleEdit}

@@ -110,7 +110,7 @@
           }
         }
       },
-      "basics": {
+      "general": {
         "actions": {
           "photo-filters": "Фотофильтры"
         },

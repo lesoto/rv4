@@ -67,10 +67,10 @@ export class IntegrationsService {
         slug: `imported-from-reactive-website-v2-${timestamp}`,
       });
 
-      // Basics
+      // General
       try {
         merge<Partial<Website>, DeepPartial<Website>>(website, {
-          basics: {
+          general: {
             name: get(jsonWebsite, 'profile.firstName') + ' ' + get(jsonWebsite, 'profile.lastName'),
             headline: get(jsonWebsite, 'profile.subtitle'),
             photo: {
@@ -78,7 +78,7 @@ export class IntegrationsService {
             },
             //email: get(jsonWebsite, 'email'),
             //phone: get(jsonWebsite, 'contact.phone'),
-            //website: get(jsonWebsite, 'basics.contact.website'),
+            //website: get(jsonWebsite, 'general.contact.website'),
             summary: get(jsonWebsite, 'objective'),
             contact: {
               address: get(jsonWebsite, 'profile.address.line1'),
@@ -96,9 +96,9 @@ export class IntegrationsService {
         const profiles: any[] = get(jsonWebsite, 'social.items', []);
         profiles.forEach((profile) => {
           merge<Partial<Website>, DeepPartial<Website>>(website, {
-            basics: {
+            general: {
               social: [
-                ...website.basics.social,
+                ...website.general.social,
                 {
                   id: uuidv4(),
                   url: get(profile, 'url'),

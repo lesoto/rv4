@@ -1,4 +1,4 @@
-import { Basics, Metadata, Section } from '@reactive-website/schema';
+import { General, Metadata, Section } from '@reactive-website/schema';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 import { User } from '@/users/entities/user.entity';
@@ -29,7 +29,7 @@ export class Website {
   user: User;
 
   @Column({ type: 'jsonb', default: {} })
-  basics: Basics;
+  general: General;
 
   @Column({ type: 'jsonb', default: {} })
   sections: Partial<Record<string, Section>>;

@@ -58,8 +58,8 @@ export class WebsiteService {
         shortId,
         image,
         user,
-        basics: {
-          ...defaultState.basics,
+        general: {
+          ...defaultState.general,
           name: user.name,
         },
       });
@@ -188,7 +188,7 @@ export class WebsiteService {
       const image = `/images/covers/${sample(covers)}`;
 
       const duplicatedWebsite: Partial<Website> = {
-        ...pick(originalWebsite, ['name', 'slug', 'basics', 'metadata', 'sections', 'public']),
+        ...pick(originalWebsite, ['name', 'slug', 'general', 'metadata', 'sections', 'public']),
         name: `${originalWebsite.name} Copy`,
         slug: `${originalWebsite.slug}-copy`,
         shortId,
@@ -251,7 +251,7 @@ export class WebsiteService {
           ACL: 'public-read',
         })
       );
-      updatedWebsite = set(website, 'basics.photo.url', publicUrl);
+      updatedWebsite = set(website, 'general.photo.url', publicUrl);
     } else {
       const path = `${__dirname}/../assets/uploads/${userId}/${id}/`;
       const serverUrl = this.configService.get<string>('app.serverUrl');
@@ -260,7 +260,7 @@ export class WebsiteService {
         await fs.mkdir(path, { recursive: true });
         await fs.writeFile(path + filename, file.buffer);
 
-        updatedWebsite = set(website, 'basics.photo.url', `${serverUrl}/assets/uploads/${userId}/${id}/` + filename);
+        updatedWebsite = set(website, 'general.photo.url', `${serverUrl}/assets/uploads/${userId}/${id}/` + filename);
       } catch (error) {
         throw new HttpException(
           'Something went wrong. Please try again later, or raise an issue on GitHub if the problem persists.',
@@ -274,7 +274,7 @@ export class WebsiteService {
 
   async deletePhoto(id: number, userId: number) {
     const website = await this.findOne(id, userId);
-    const publicUrl = website.basics.photo.url;
+    const publicUrl = website.general.photo.url;
 
     if (this.s3Enabled) {
       const urlPrefix = this.configService.get<string>('storage.urlPrefix');
@@ -288,7 +288,7 @@ export class WebsiteService {
       );
     } else {
       const serverUrl = this.configService.get<string>('app.serverUrl');
-      const filePath = __dirname + '/..' + website.basics.photo.url.replace(serverUrl, '');
+      const filePath = __dirname + '/..' + website.general.photo.url.replace(serverUrl, '');
 
       const isValidFile = (await fs.stat(filePath)).isFile();
 
@@ -297,7 +297,7 @@ export class WebsiteService {
       }
     }
 
-    const updatedWebsite = set(website, 'basics.photo.url', '');
+    const updatedWebsite = set(website, 'general.photo.url', '');
 
     return this.websiteRepository.save<Website>(updatedWebsite);
   }

@@ -12,7 +12,7 @@ export const MastheadSidebar: React.FC = () => {
   const dateFormat: string = useAppSelector((state) => get(state.website.present, 'metadata.date.format'));
   const primaryColor: string = useAppSelector((state) => get(state.website.present, 'metadata.theme.primary'));
   const { name, headline, photo, email, phone, website, contact, social } = useAppSelector(
-    (state) => state.website.present.basics
+    (state) => state.website.present.general
   );
 
   return (
@@ -60,7 +60,7 @@ export const MastheadSidebar: React.FC = () => {
 };
 
 export const MastheadMain: React.FC = () => {
-  const { summary } = useAppSelector((state) => state.website.present.basics);
+  const { summary } = useAppSelector((state) => state.website.present.general);
 
   return <div>{summary}</div>;
 };
