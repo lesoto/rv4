@@ -9,7 +9,7 @@ import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
 import ResetPasswordModal from './auth/ResetPasswordModal';
 import BlogModal from './builder/sections/BlogModal';
-import CertificateModal from './builder/sections/CertificateModal';
+import CTAModal from './builder/sections/CTAModal';
 import CustomModal from './builder/sections/CustomModal';
 import EducationModal from './builder/sections/EducationModal';
 import InterestModal from './builder/sections/InterestModal';
@@ -62,7 +62,7 @@ const ModalWrapper: React.FC = () => {
       <WorkModal />
       <EducationModal />
       <BlogModal />
-      <CertificateModal />
+      <CTAModal />
       <PublicationModal />
       <SkillModal />
       <LanguageModal />

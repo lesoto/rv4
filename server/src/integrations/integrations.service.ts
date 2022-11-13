@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {
   Award,
-  Certificate,
+  CTA,
   Education,
   Footer,
   Interest,
@@ -191,22 +191,22 @@ export class IntegrationsService {
         // pass through
       }
 
-      // Certifications
+      // Call to Action
       try {
-        const certifications: any[] = get(jsonWebsite, 'certifications.items', []);
-        certifications.forEach((certificate) => {
+        const call_to_actions: any[] = get(jsonWebsite, 'call_to_actions.items', []);
+        call_to_actions.forEach((cta) => {
           merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
-              certifications: {
+              ctas: {
                 items: [
-                  ...get(website, 'sections.certifications.items', []),
+                  ...get(website, 'sections.call_to_actions.items', []),
                   {
                     id: uuidv4(),
-                    name: get(certificate, 'title'),
-                    issuer: get(certificate, 'issuer'),
-                    summary: get(certificate, 'summary'),
-                    date: this.parseDate(get(certificate, 'date')),
-                  } as Certificate,
+                    name: get(cta, 'title'),
+                    subtitle: get(cta, 'subtitle'),
+                    summary: get(cta, 'summary'),
+                    date: this.parseDate(get(cta, 'date')),
+                  } as CTA,
                 ],
               },
             },

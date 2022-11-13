@@ -36,7 +36,7 @@ const defaultState: Partial<Website> = {
   sections: {
     work: {
       id: 'work',
-      name: 'Work Experience',
+      name: 'Work',
       type: 'basic',
       columns: 2,
       visible: true,
@@ -58,9 +58,9 @@ const defaultState: Partial<Website> = {
       visible: true,
       items: [],
     },
-    certifications: {
-      id: 'certifications',
-      name: 'Certifications',
+    call_to_actions: {
+      id: 'call_to_actions',
+      name: 'Call to Action',
       type: 'basic',
       columns: 2,
       visible: true,
@@ -143,7 +143,7 @@ const defaultState: Partial<Website> = {
     layout: [
       [
         ['work', 'education', 'projects', 'volunteer', 'footer'],
-        ['skills', 'interests', 'languages', 'blog', 'certifications', 'publications'],
+        ['skills', 'interests', 'languages', 'blog', 'call_to_actions', 'publications'],
       ],
     ],
     template: 'kakuna',

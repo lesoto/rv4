@@ -63,9 +63,9 @@ export const left: SidebarSection[] = [
     component: <Section path="sections.blog" titleKey="title" subtitleKey="category" isEditable isHideable />,
   },
   {
-    id: 'certifications',
+    id: 'call_to_actions',
     icon: <CardGiftcard />,
-    component: <Section path="sections.certifications" titleKey="name" subtitleKey="issuer" isEditable isHideable />,
+    component: <Section path="sections.call_to_actions" titleKey="name" subtitleKey="subtitle" isEditable isHideable />,
   },
   {
     id: 'publications',

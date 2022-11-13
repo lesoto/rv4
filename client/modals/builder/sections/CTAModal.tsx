@@ -1,8 +1,7 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers';
-import { Certificate, SectionPath } from '@reactive-website/schema';
+import { CTA, SectionPath } from '@reactive-website/schema';
 import dayjs from 'dayjs';
 import Joi from 'joi';
 import get from 'lodash/get';
@@ -17,14 +16,13 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
 import { addItem, editItem } from '@/store/website/websiteSlice';
 
-type FormData = Certificate;
+type FormData = CTA;
 
-const path: SectionPath = 'sections.certifications';
+const path: SectionPath = 'sections.call_to_actions';
 
 const defaultState: FormData = {
   name: '',
-  issuer: '',
-  date: '',
+  subtitle: '',
   url: '',
   summary: '',
 };
@@ -32,13 +30,12 @@ const defaultState: FormData = {
 const schema = Joi.object<FormData>().keys({
   id: Joi.string(),
   name: Joi.string().required(),
-  issuer: Joi.string().required(),
-  date: Joi.string().allow(''),
+  subtitle: Joi.string().required(),
   url: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
   summary: Joi.string().allow(''),
 });
 
-const CertificateModal: React.FC = () => {
+const CTAModal: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
@@ -109,39 +106,15 @@ const CertificateModal: React.FC = () => {
         />
 
         <Controller
-          name="issuer"
+          name="subtitle"
           control={control}
           render={({ field, fieldState }) => (
             <TextField
               required
-              label={t<string>('builder.leftSidebar.sections.certifications.form.issuer.label')}
+              label={t<string>('builder.leftSidebar.sections.call_to_actions.form.subtitle.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
-            />
-          )}
-        />
-
-        <Controller
-          name="date"
-          control={control}
-          render={({ field, fieldState }) => (
-            <DatePicker
-              {...field}
-              openTo="year"
-              label={t<string>('builder.common.form.date.label')}
-              views={['year', 'month', 'day']}
-              onChange={(date: Date | null, keyboardInputValue: string | undefined) => {
-                isEmpty(keyboardInputValue) && field.onChange('');
-                date && dayjs(date).utc().isValid() && field.onChange(dayjs(date).utc().toISOString());
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message || params.inputProps?.placeholder}
-                />
-              )}
             />
           )}
         />
@@ -182,4 +155,4 @@ const CertificateModal: React.FC = () => {
   );
 };
 
-export default CertificateModal;
+export default CTAModal;

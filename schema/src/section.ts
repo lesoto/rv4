@@ -29,10 +29,10 @@ export type Award = {
   summary?: string;
 };
 
-export type Certificate = {
+export type CTA = {
   id?: string;
   name: string;
-  issuer: string;
+  subtitle: string;
   date?: string;
   url?: string;
   summary?: string;
@@ -110,7 +110,7 @@ export type Custom = {
 
 export type ListItem =
   | Award
-  | Certificate
+  | CTA
   | Education
   | Interest
   | Language

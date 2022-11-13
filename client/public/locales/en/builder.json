@@ -54,7 +54,7 @@
         "label": "Title"
       },
       "url": {
-        "label": "Website"
+        "label": "URL Link"
       }
     },
     "glossary": {
@@ -106,7 +106,7 @@
       "blog": {
         "form": {
           "category": {
-            "label": "Awarder"
+            "label": "Category"
           }
         }
       },
@@ -145,10 +145,10 @@
           }
         }
       },
-      "certifications": {
+      "call_to_actions": {
         "form": {
-          "issuer": {
-            "label": "Issuer"
+          "subtitle": {
+            "label": "Subtitle"
           }
         }
       },
@@ -296,7 +296,7 @@
           }
         },
         "website": {
-          "heading": "Website",
+          "heading": "URL Link",
           "reset": {
             "primary": "Reset Everything",
             "secondary": "Made too many mistakes? Click here to reset all changes and start from scratch. Be careful, this action cannot be reversed."

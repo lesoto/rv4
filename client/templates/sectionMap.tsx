@@ -23,8 +23,8 @@ const sectionMap = (Section: React.FC<SectionProps>): Record<string, JSX.Element
     />
   ),
   blog: <Section key="blog" path="sections.blog" titlePath="title" subtitlePath="category" />,
-  certifications: (
-    <Section key="certifications" path="sections.certifications" titlePath="name" subtitlePath="issuer" />
+  call_to_actions: (
+    <Section key="call_to_actions" path="sections.call_to_actions" titlePath="name" subtitlePath="subtitle" />
   ),
   publications: <Section key="publications" path="sections.publications" titlePath="name" subtitlePath="publisher" />,
   skills: <Section key="skills" path="sections.skills" titlePath="name" keywordsPath="keywords" />,

@@ -281,14 +281,14 @@ const sampleData: Partial<Website> = {
       columns: 2,
       visible: true,
     },
-    certifications: {
-      id: 'certifications',
-      name: 'Certifications',
+    call_to_actions: {
+      id: 'call_to_actions',
+      name: 'Call to Action',
       type: 'basic',
       items: [
         {
           name: 'Web Applications for Everbody',
-          issuer: 'Coursera',
+          subtitle: 'Coursera',
           date: '',
           url: 'https://www.coursera.org/',
           summary: '',
@@ -296,7 +296,7 @@ const sampleData: Partial<Website> = {
         },
         {
           name: 'Full-Stack Web Development with Stack',
-          issuer: 'Coursera',
+          subtitle: 'Coursera',
           date: '',
           url: 'https://www.coursera.org/',
           summary: '',
@@ -392,7 +392,7 @@ const sampleData: Partial<Website> = {
       ],
       [
         ['skills', '2d47a563-d0a0-4275-af18-fea3ba6b57b4', 'blog'],
-        ['certifications', 'interests', 'languages'],
+        ['call_to_actions', 'interests', 'languages'],
       ],
       [['projects'], ['footer']],
     ],
