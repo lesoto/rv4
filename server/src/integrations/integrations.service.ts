@@ -3,11 +3,11 @@ import {
   Award,
   Certificate,
   Education,
+  Footer,
   Interest,
   Language,
   Project,
   Publication,
-  Reference,
   Skill,
   Volunteer,
   Website,
@@ -295,23 +295,23 @@ export class IntegrationsService {
         // pass through
       }
 
-      // References
+      // footer
       try {
-        const references: any[] = get(jsonWebsite, 'references.items', []);
-        references.forEach((reference) => {
+        const footer: any[] = get(jsonWebsite, 'footer.items', []);
+        footer.forEach((footerItem) => {
           merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
-              references: {
+              footer: {
                 items: [
-                  ...get(website, 'sections.references.items', []),
+                  ...get(website, 'sections.footer.items', []),
                   {
                     id: uuidv4(),
-                    name: get(reference, 'name'),
-                    relationship: get(reference, 'position'),
-                    phone: get(reference, 'phone'),
-                    email: get(reference, 'email'),
-                    summary: get(reference, 'summary'),
-                  } as Reference,
+                    terms: get(footerItem, 'terms'),
+                    privacy: get(footerItem, 'privacy'),
+                    phone: get(footerItem, 'phone'),
+                    email: get(footerItem, 'email'),
+                    summary: get(footerItem, 'summary'),
+                  } as Footer,
                 ],
               },
             },
@@ -336,9 +336,6 @@ export class IntegrationsService {
                     summary: get(project, 'summary'),
                     keywords: get(project, 'keywords'),
                     url: get(project, 'link'),
-                    date: {
-                      start: this.parseDate(get(project, 'startDate')),
-                    },
                   } as Project,
                 ],
               },

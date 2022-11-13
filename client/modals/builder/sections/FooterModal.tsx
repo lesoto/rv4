@@ -1,7 +1,7 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
-import { Reference, SectionPath } from '@reactive-website/schema';
+import { Footer, SectionPath } from '@reactive-website/schema';
 import Joi from 'joi';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -14,13 +14,13 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
 import { addItem, editItem } from '@/store/website/websiteSlice';
 
-type FormData = Reference;
+type FormData = Footer;
 
-const path: SectionPath = 'sections.references';
+const path: SectionPath = 'sections.footer';
 
 const defaultState: FormData = {
-  name: '',
-  relationship: '',
+  terms: '',
+  privacy: '',
   phone: '',
   email: '',
   summary: '',
@@ -28,14 +28,14 @@ const defaultState: FormData = {
 
 const schema = Joi.object<FormData>().keys({
   id: Joi.string(),
-  name: Joi.string().required(),
-  relationship: Joi.string().required(),
+  terms: Joi.string().required(),
+  privacy: Joi.string().required(),
   phone: Joi.string().allow(''),
   email: Joi.string().allow(''),
   summary: Joi.string().allow(''),
 });
 
-const ReferenceModal: React.FC = () => {
+const FooterModal: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
@@ -91,13 +91,13 @@ const ReferenceModal: React.FC = () => {
     >
       <form className="my-2 grid grid-cols-2 gap-4" onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          name="name"
+          name="terms"
           control={control}
           render={({ field, fieldState }) => (
             <TextField
               required
               autoFocus
-              label={t<string>('builder.common.form.name.label')}
+              label={t<string>('builder.leftSidebar.sections.footer.form.terms.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
@@ -106,12 +106,12 @@ const ReferenceModal: React.FC = () => {
         />
 
         <Controller
-          name="relationship"
+          name="privacy"
           control={control}
           render={({ field, fieldState }) => (
             <TextField
               required
-              label={t<string>('builder.leftSidebar.sections.references.form.relationship.label')}
+              label={t<string>('builder.leftSidebar.sections.footer.form.privacy.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               {...field}
@@ -167,4 +167,4 @@ const ReferenceModal: React.FC = () => {
   );
 };
 
-export default ReferenceModal;
+export default FooterModal;

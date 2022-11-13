@@ -15,7 +15,7 @@ const Links = () => {
       <Heading path="metadata.links" name={t<string>('builder.rightSidebar.sections.links.heading')} />
 
       <div className={styles.container}>
-        <div className={styles.section}>
+        <div>
           <a href={GITHUB_URL} target="_blank" rel="noreferrer">
             <Button variant="text" startIcon={<Link />}>
               {t<string>('builder.rightSidebar.sections.links.github')}

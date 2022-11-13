@@ -1,5 +1,5 @@
 import { DateRange } from './atoms';
-import { Profile } from './basics';
+import { Social } from './basics';
 
 export type WorkExperience = {
   id?: string;
@@ -89,10 +89,10 @@ export type Project = {
   keywords?: string[];
 };
 
-export type Reference = {
+export type Footer = {
   id?: string;
-  name: string;
-  relationship: string;
+  terms: string;
+  privacy: string;
   phone?: string;
   email?: string;
   summary?: string;
@@ -116,10 +116,10 @@ export type ListItem =
   | Education
   | Interest
   | Language
-  | Profile
+  | Social
   | Project
   | Publication
-  | Reference
+  | Footer
   | Skill
   | Volunteer
   | WorkExperience

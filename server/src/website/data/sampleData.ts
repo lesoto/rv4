@@ -130,7 +130,7 @@ const sampleData: Partial<Website> = {
         {
           id: 'bf4253f2-7829-432c-a1d5-07446e7ae873',
           name: 'Adobe Creative Cloud',
-          level: 'Novice',
+          level: 'Intermediate',
           keywords: ['Photoshop', 'Illustrator', 'InDesign', 'Fireworks'],
           levelNum: 8,
         },
@@ -151,12 +151,8 @@ const sampleData: Partial<Website> = {
       type: 'basic',
       items: [
         {
-          name: 'Fintech News Inc.',
+          name: 'Fintech News',
           description: 'Backend Developer',
-          date: {
-            start: '2020-01-01T17:14:14.000Z',
-            end: '2020-04-01T16:14:20.000Z',
-          },
           url: '',
           summary:
             '- Created a content management system serving as a client interface that reduced download times by 30%.\n- Developed new admin panel, which improved internal operating efficiency by over 40%.\n- Created comprehensive testing regime using RSpec to ensure bug-free code.\n- Rebuilt entire website with up to date technologies and frameworks.',
@@ -166,10 +162,6 @@ const sampleData: Partial<Website> = {
         {
           name: 'Systron Solutions, San Francisco, CA',
           description: 'Inside Sales Associate',
-          date: {
-            start: '2020-01-01T17:14:14.000Z',
-            end: '2020-04-01T16:14:20.000Z',
-          },
           url: '',
           summary:
             '- Performed an average of 90+ cold calls daily creating three new qualified prospects exceeding company average by 10%.\n- Managed a $1 million pipeline that supported the creation of 50 new accounts.\n- Sold SaaS and Cloud offering to key accounts including California State University, Ace Athetics and BMI, succeeding in reducing back-up time by 50%.\n\n**Key Projects:** Worked with IT team to create a new web-based leads-generating system, resulting in closed sales increasing by 18% contributing to a $1.5 million increase in profits.',
@@ -275,14 +267,14 @@ const sampleData: Partial<Website> = {
       columns: 2,
       visible: true,
     },
-    references: {
-      id: 'references',
-      name: 'References',
+    footer: {
+      id: 'footer',
+      name: 'Footer',
       type: 'basic',
       items: [
         {
-          name: 'Cindy J. Helmer',
-          relationship: 'CEO/Founder, Copy.ai',
+          terms: 'terms of service',
+          privacy: 'Our privacy policy',
           phone: '916-609-9531',
           email: 'cindyjh@joupide.com',
           summary:
@@ -290,8 +282,8 @@ const sampleData: Partial<Website> = {
           id: '5a114a83-b62c-4b90-a0ef-1ab5516dc0dd',
         },
         {
-          name: 'Keisha Whaley',
-          relationship: 'Solutions Architect, AWS',
+          terms: 'Keisha Whaley',
+          privacy: 'Solutions Architect, AWS',
           phone: '978-584-6675',
           email: 'keishawhaley@aws.de',
           summary:
@@ -330,22 +322,6 @@ const sampleData: Partial<Website> = {
           url: 'https://www.coursera.org/',
           summary: '',
           id: 'd1057a6c-c2b2-436f-9166-9e17ae591e71',
-        },
-        {
-          name: 'Critical Thinking Masterclass',
-          issuer: 'Khan Academy',
-          date: '',
-          url: 'https://www.khanacademy.org/',
-          summary: '',
-          id: '44fc2443-b6fc-4c39-8e29-55884cb2b8d0',
-        },
-        {
-          name: 'Web Development Bootcamp',
-          issuer: 'Udemy',
-          date: '',
-          url: 'https://udemy.com/',
-          summary: '',
-          id: '7308d2bc-0bb8-4f53-991a-e17506f5e6a1',
         },
       ],
       columns: 2,
@@ -439,7 +415,7 @@ const sampleData: Partial<Website> = {
         ['skills', '2d47a563-d0a0-4275-af18-fea3ba6b57b4', 'awards'],
         ['certifications', 'interests', 'languages'],
       ],
-      [['projects'], ['references']],
+      [['projects'], ['footer']],
     ],
     template: 'kakuna',
     typography: {

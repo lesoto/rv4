@@ -36,7 +36,7 @@ const initialState: Record<ModalName, ModalState> = {
   'builder.sections.languages': { open: false },
   'builder.sections.volunteer': { open: false },
   'builder.sections.interests': { open: false },
-  'builder.sections.references': { open: false },
+  'builder.sections.footer': { open: false },
   'builder.sections.projects': { open: false },
   'builder.sections.custom': { open: false },
 };

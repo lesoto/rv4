@@ -12,7 +12,7 @@
     "present": "Present"
   },
   "subtitle": "A free and open source website builder.",
-  "title": "Reactive Website",
+  "title": "Website Builder",
   "toast": {
     "error": {
       "upload-file-size": "Please upload only files under 2 megabytes.",

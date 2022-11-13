@@ -99,12 +99,7 @@ export const left: SidebarSection[] = [
     icon: <Coffee />,
     component: <Section path="sections.projects" titleKey="name" subtitleKey="description" isEditable isHideable />,
   },
-  {
-    id: 'references',
-    icon: <Groups />,
-    component: <Section path="sections.references" titleKey="name" subtitleKey="relationship" isEditable isHideable />,
-  },
-  {
+    {
     id: 'social',
     icon: <Twitter />,
     component: <Social />,
@@ -113,6 +108,11 @@ export const left: SidebarSection[] = [
     id: 'contact',
     icon: <Map />,
     component: <Contact />,
+  },
+  {
+    id: 'footer',
+    icon: <Groups />,
+    component: <Section path="sections.footer" titleKey="terms" subtitleKey="privacy" isEditable isHideable />,
   },
 ];
 

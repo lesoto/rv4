@@ -208,9 +208,12 @@
           }
         }
       },
-      "references": {
+      "footer": {
         "form": {
-          "relationship": {
+          "terms": {
+            "label": "Terms and Conditions"
+          },
+          "privacy": {
             "label": "Отношения"
           }
         }

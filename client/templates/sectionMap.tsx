@@ -40,7 +40,7 @@ const sectionMap = (Section: React.FC<SectionProps>): Record<string, JSX.Element
     />
   ),
   volunteer: <Section key="volunteer" path="sections.volunteer" titlePath="organization" subtitlePath="position" />,
-  references: <Section key="references" path="sections.references" titlePath="name" subtitlePath="relationship" />,
+  footer: <Section key="footer" path="sections.footer" titlePath="terms" subtitlePath="privacy" />,
 });
 
 export const getSectionById = (id: string, Section: React.FC<SectionProps>): JSX.Element => {

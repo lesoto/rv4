@@ -106,9 +106,9 @@ const defaultState: Partial<Website> = {
       visible: true,
       items: [],
     },
-    references: {
-      id: 'references',
-      name: 'References',
+    footer: {
+      id: 'footer',
+      name: 'Footer',
       type: 'basic',
       columns: 2,
       visible: true,
@@ -142,7 +142,7 @@ const defaultState: Partial<Website> = {
     },
     layout: [
       [
-        ['work', 'education', 'projects', 'volunteer', 'references'],
+        ['work', 'education', 'projects', 'volunteer', 'footer'],
         ['skills', 'interests', 'languages', 'awards', 'certifications', 'publications'],
       ],
     ],

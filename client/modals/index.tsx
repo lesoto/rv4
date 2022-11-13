@@ -17,7 +17,7 @@ import LanguageModal from './builder/sections/LanguageModal';
 import ProfileModal from './builder/sections/ProfileModal';
 import ProjectModal from './builder/sections/ProjectModal';
 import PublicationModal from './builder/sections/PublicationModal';
-import ReferenceModal from './builder/sections/ReferenceModal';
+import FooterModal from './builder/sections/FooterModal';
 import SkillModal from './builder/sections/SkillModal';
 import VolunteerModal from './builder/sections/VolunteerModal';
 import WorkModal from './builder/sections/WorkModal';
@@ -69,7 +69,7 @@ const ModalWrapper: React.FC = () => {
       <InterestModal />
       <VolunteerModal />
       <ProjectModal />
-      <ReferenceModal />
+      <FooterModal />
 
       {/* Custom Sections */}
       <CustomModal />

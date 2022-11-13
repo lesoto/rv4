@@ -20,7 +20,7 @@
         "label": "Email Address"
       },
       "end-date": {
-        "help-text": "Leave this field blank, if still present",
+        "help-text": "Leave this field blank if still present",
         "label": "End Date"
       },
       "keywords": {
@@ -140,8 +140,8 @@
         },
         "photo-upload": {
           "tooltip": {
-            "remove": "Remove Photo",
-            "upload": "Upload Photo"
+            "remove": "Remove Logo",
+            "upload": "Upload Logo"
           }
         }
       },
@@ -208,10 +208,13 @@
           }
         }
       },
-      "references": {
+      "footer": {
         "form": {
-          "relationship": {
-            "label": "Relationship"
+          "terms": {
+            "label": "Terms and Conditions"
+          },
+          "privacy": {
+            "label": "Privacy Policy"
           }
         }
       },

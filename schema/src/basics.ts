@@ -9,7 +9,7 @@ export type Contact = {
   zipCode: string;
 };
 
-export type Profile = {
+export type Social = {
   id?: string;
   network: string;
   username: string;
@@ -37,5 +37,5 @@ export type Basics = {
   headline: string;
   summary: string;
   contact: Contact;
-  social: Profile[];
+  social: Social[];
 };

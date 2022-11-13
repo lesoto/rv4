@@ -78,7 +78,7 @@
       "actions": {
         "create-website": "Create Website"
       },
-      "body": "Start building your website by giving it a name. It could be in reference to the role you are applying for, or just your favorite snack.",
+      "body": "Start building your website by giving it a name. It could be the role you are applying for, or just your favorite snack.",
       "form": {
         "name": {
           "label": "Name"
