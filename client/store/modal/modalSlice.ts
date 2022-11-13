@@ -27,7 +27,7 @@ const initialState: Record<ModalName, ModalState> = {
   'dashboard.import-external': { open: false },
   'dashboard.rename-website': { open: false },
   'builder.sections.profile': { open: false },
-  'builder.sections.work': { open: false },
+  'builder.sections.team': { open: false },
   'builder.sections.education': { open: false },
   'builder.sections.blog': { open: false },
   'builder.sections.call_to_actions': { open: false },

@@ -1,7 +1,7 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import { Add, DriveFileRenameOutline } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
-import { SectionPath, WorkExperience } from '@reactive-website/schema';
+import { SectionPath, Team } from '@reactive-website/schema';
 import dayjs from 'dayjs';
 import Joi from 'joi';
 import get from 'lodash/get';
@@ -16,9 +16,9 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setModalState } from '@/store/modal/modalSlice';
 import { addItem, editItem } from '@/store/website/websiteSlice';
 
-type FormData = WorkExperience;
+type FormData = Team;
 
-const path: SectionPath = 'sections.work';
+const path: SectionPath = 'sections.team';
 
 const defaultState: FormData = {
   name: '',
@@ -35,7 +35,7 @@ const schema = Joi.object<FormData>().keys({
   summary: Joi.string().allow(''),
 });
 
-const WorkModal: React.FC = () => {
+const TeamModal: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
@@ -156,4 +156,4 @@ const WorkModal: React.FC = () => {
   );
 };
 
-export default WorkModal;
+export default TeamModal;

@@ -1,7 +1,7 @@
 import { DateRange } from './atoms';
 import { Social } from './general';
 
-export type WorkExperience = {
+export type Team = {
   id?: string;
   name: string;
   position: string;
@@ -120,7 +120,7 @@ export type ListItem =
   | Footer
   | Skill
   | Volunteer
-  | WorkExperience
+  | Team
   | Custom;
 
 export type SectionType = 'basic' | 'custom';

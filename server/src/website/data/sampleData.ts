@@ -42,9 +42,9 @@ const sampleData: Partial<Website> = {
     ],
   },
   sections: {
-    work: {
-      id: 'work',
-      name: 'Work',
+    team: {
+      id: 'team',
+      name: 'Team',
       type: 'basic',
       items: [
         {
@@ -387,7 +387,7 @@ const sampleData: Partial<Website> = {
     },
     layout: [
       [
-        ['work', 'education'],
+        ['team', 'education'],
         ['publications', 'volunteer'],
       ],
       [

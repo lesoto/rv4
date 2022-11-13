@@ -11,7 +11,7 @@ import {
   Skill,
   Volunteer,
   Website,
-  WorkExperience,
+  Team,
 } from '@reactive-website/schema';
 import csv from 'csvtojson';
 import dayjs from 'dayjs';
@@ -115,20 +115,20 @@ export class IntegrationsService {
 
       // Work
       try {
-        const work: any[] = get(jsonWebsite, 'work.items', []);
-        work.forEach((item) => {
+        const team: any[] = get(jsonWebsite, 'team.items', []);
+        team.forEach((item) => {
           merge<Partial<Website>, DeepPartial<Website>>(website, {
             sections: {
-              work: {
+              team: {
                 items: [
-                  ...get(website, 'sections.work.items', []),
+                  ...get(website, 'sections.team.items', []),
                   {
                     id: uuidv4(),
                     name: get(item, 'company'),
                     position: get(item, 'position'),
                     summary: get(item, 'summary'),
                     url: get(item, 'website'),
-                  } as WorkExperience,
+                  } as Team,
                 ],
               },
             },

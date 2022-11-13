@@ -11,7 +11,7 @@ export type SectionProps = {
 };
 
 const sectionMap = (Section: React.FC<SectionProps>): Record<string, JSX.Element> => ({
-  work: <Section key="work" path="sections.work" titlePath="name" subtitlePath="position" />,
+  team: <Section key="team" path="sections.team" titlePath="name" subtitlePath="position" />,
   education: (
     <Section
       key="education"

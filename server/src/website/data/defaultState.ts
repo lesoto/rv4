@@ -34,9 +34,9 @@ const defaultState: Partial<Website> = {
     social: [],
   },
   sections: {
-    work: {
-      id: 'work',
-      name: 'Work',
+    team: {
+      id: 'team',
+      name: 'Team',
       type: 'basic',
       columns: 2,
       visible: true,
@@ -142,7 +142,7 @@ const defaultState: Partial<Website> = {
     },
     layout: [
       [
-        ['work', 'education', 'projects', 'volunteer', 'footer'],
+        ['team', 'education', 'projects', 'volunteer', 'footer'],
         ['skills', 'interests', 'languages', 'blog', 'call_to_actions', 'publications'],
       ],
     ],

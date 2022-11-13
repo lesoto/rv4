@@ -20,7 +20,7 @@ import PublicationModal from './builder/sections/PublicationModal';
 import FooterModal from './builder/sections/FooterModal';
 import SkillModal from './builder/sections/SkillModal';
 import VolunteerModal from './builder/sections/VolunteerModal';
-import WorkModal from './builder/sections/WorkModal';
+import TeamModal from './builder/sections/TeamModal';
 import CreateWebsiteModal from './dashboard/CreateWebsiteModal';
 import ImportExternalModal from './dashboard/ImportExternalModal';
 import RenameWebsiteModal from './dashboard/RenameWebsiteModal';
@@ -59,7 +59,7 @@ const ModalWrapper: React.FC = () => {
 
       {/* Sections */}
       <ProfileModal />
-      <WorkModal />
+      <TeamModal />
       <EducationModal />
       <BlogModal />
       <CTAModal />
